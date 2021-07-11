@@ -33,13 +33,13 @@
           <br>
           <form id="frmlogin" method="POST" class="form-horizontal" role="form" onsubmit="return logear()">
             <div class="form-group">
-              <label class="col-sm-3 control-label" for="email-03">Usuario</label>
+              <label class="col-sm-3 control-label" for="usuario">Usuario</label>
               <div class="col-sm-9">
                 <input class="form-control" id="usuario" placeholder="Ingresa tu usuario" type="text">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-3 control-label" for="password-03">Contraseña:</label>
+              <label class="col-sm-3 control-label" for="password">Contraseña:</label>
               <div class="col-sm-9">
                 <input class="form-control" id="password" placeholder="Contraseña" type="password">
               </div>
