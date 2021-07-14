@@ -6,17 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ejemplo de nueva página para GOB.mx</title>
-<<<<<<< HEAD
   <!-- CSS -->
   <link href="/favicon.ico" rel="shortcut icon">
   <link href="https://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet">
-=======
-
-  <!-- CSS -->
-  <link href="/favicon.ico" rel="shortcut icon">
-  <link href="https://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet">
-
->>>>>>> e297a25b8667922493d369b2dc3545543f1740e9
   <!-- Respond.js soporte de media queries para Internet Explorer 8 -->
   <!-- ie8.js EventTarget para cada nodo en Internet Explorer 8 -->
   <!--[if lt IE 9]>
@@ -25,10 +17,6 @@
     <![endif]-->
 </head>
 <body>
-<<<<<<< HEAD
-=======
-
->>>>>>> e297a25b8667922493d369b2dc3545543f1740e9
   <!-- Contenido -->
   <main class="page">
     <div class="container">
