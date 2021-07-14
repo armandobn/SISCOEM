@@ -56,36 +56,36 @@
             <tbody>
               <tr>
                 <td>
-                  <span class="glyphicon glyphicon-asterisk" aria-hidden="true" style="color:#D0021B;"></span>
-                  <span class="glyphicon glyphicon-asterisk" aria-hidden="true" style="color:#D0021B;"></span>
-                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color:#D0021B;"></span>
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color:#DDDDDD;"></span>
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color:#DDDDDD;"></span>
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color:#DDDDDD;"></span>
                 </td>
                 <td>
-                  <span class="glyphicon glyphicon-asterisk" aria-hidden="true" style="color:#4D92DF;"></span>
-                  <span class="glyphicon glyphicon-asterisk" aria-hidden="true" style="color:#4D92DF;"></span>
-                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color:#4D92DF;"></span>
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color:#DDDDDD;"></span>
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color:#DDDDDD;"></span>
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color:#DDDDDD;"></span>
                 </td>
                 <td>
-                  <span class="glyphicon glyphicon-asterisk" aria-hidden="true" style="color:#DDDDDD;"></span>
-                  <span class="glyphicon glyphicon-asterisk" aria-hidden="true" style="color:#DDDDDD;"></span>
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color:#DDDDDD;"></span>
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color:#DDDDDD;"></span>
                   <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color:#DDDDDD;"></span>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color:#D0021B;"></span>
-                  <span class="glyphicon glyphicon-asterisk" aria-hidden="true" style="color:#D0021B;"></span>
-                  <span class="glyphicon glyphicon-asterisk" aria-hidden="true" style="color:#D0021B;"></span>
-                </td>
-                <td>
-                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color:#4D92DF;"></span>
-                  <span class="glyphicon glyphicon-asterisk" aria-hidden="true" style="color:#4D92DF;"></span>
-                  <span class="glyphicon glyphicon-asterisk" aria-hidden="true" style="color:#4D92DF;"></span>
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color:#DDDDDD;"></span>
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color:#DDDDDD;"></span>
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color:#DDDDDD;"></span>
                 </td>
                 <td>
                   <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color:#DDDDDD;"></span>
-                  <span class="glyphicon glyphicon-asterisk" aria-hidden="true" style="color:#DDDDDD;"></span>
-                  <span class="glyphicon glyphicon-asterisk" aria-hidden="true" style="color:#DDDDDD;"></span>
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color:#DDDDDD;"></span>
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color:#DDDDDD;"></span>
+                </td>
+                <td>
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color:#DDDDDD;"></span>
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color:#DDDDDD;"></span>
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color:#DDDDDD;"></span>
                 </td>
               </tr>
             </tbody>
