@@ -116,7 +116,6 @@
                       <input type="checkbox" id="opcion02" value="opcion02">
                     </label>
                   </td>
-                  <td>X</td>
                 </tr>
                 <tr>
                   <th scope="row">3</th>
