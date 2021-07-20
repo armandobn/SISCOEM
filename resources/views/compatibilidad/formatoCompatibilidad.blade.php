@@ -10,40 +10,72 @@
         </div>
         <div class="col-md-4"></div>
     </div>
+    
+    <div class="alert alert-danger"> </div>
 
-    <form class="form-inline bottom-buffer">
+    <form class="form bottom-buffer">
         <div class="row">
-            <div class="col-md-8">
-
+            <div class="col-md-4">
                 <div class="form-group">
-                    <label class="sr-only" for="rfc">R.F.C:</label>
+                    <label class="control-label" for="rfc">R.F.C
+                        <span class="form-text" id="asterisco_rfc">*</span>:
+                    </label>
                     <input class="form-control" id="rfc" placeholder="Ingrese R.F.C" type="text">
                 </div>
-                <button class="btn btn-primary" type="submit">Buscar</button>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-primary" id="btn_editar">Editar</button>
+                    <button type="button" class="btn btn-primary" id="btn_buscar_rfc">Buscar</button>
+                </div>
+                
             </div>
-            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                
+            </div>
         </div>
 
     </form>
+
+    
 
     <form class="form">
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-                    <label class="control-label" for="nombre">Nombre(s):</label>
-                    <input class="form-control" id="nombre" placeholder="Nombre(s)" type="text">
+                    <label class="control-label" for="inst_l_nombre">Nombre(s)
+                        <span class="form-text form-text-error">*</span>:
+                    </label>
+                    <input 
+                        class="form-control form-control-error" 
+                        id="inst_l_nombre" 
+                        name="inst_l_nombre" 
+                        placeholder="Nombre(s)" 
+                        type="text" 
+                        readonly>
+                        <small class="form-text form-text-error">Este campo es obligatorio</small>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label class="control-label" for="apellido_paterno">Apellido paterno:</label>
-                    <input class="form-control" id="apellido_paterno" placeholder="Apellido paterno" type="text">
+                    <label class="control-label" for="inst_l_apellido_paterno">Apellido paterno:</label>
+                    <input 
+                        class="form-control" 
+                        id="inst_l_apellido_paterno" 
+                        name="inst_l_apellido_paterno" 
+                        placeholder="Apellido paterno" 
+                        type="text"
+                        readonly>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label class="control-label" for="apellido_materno">Apellido materno:</label>
-                    <input class="form-control" id="apellido_materno" placeholder="Apellido materno" type="text">
+                    <label class="control-label" for="inst_l_apellido_materno">Apellido materno:</label>
+                    <input 
+                        class="form-control" 
+                        id="inst_l_apellido_materno" 
+                        name="inst_l_apellido_materno"
+                        placeholder="Apellido materno" 
+                        type="text"
+                        readonly>
                 </div>
             </div>
         </div>
@@ -69,31 +101,57 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label" for="sep">S.E.P:</label>
-                            <input class="form-control" id="sep" placeholder="S.E.P" type="text">
+                            <label class="control-label" for="inst_l_sep">S.E.P:</label>
+                            <input 
+                                class="form-control" 
+                                id="inst_l_sep" 
+                                name="inst_l_sep"
+                                placeholder="S.E.P" 
+                                type="text"
+                                readonly>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label" for="sems">S.E.M.S:</label>
-                            <input class="form-control" id="sems" placeholder="S.E.M.S" type="text">
+                            <label class="control-label" for="inst_l_sems">S.E.M.S:</label>
+                            <input 
+                                class="form-control" 
+                                id="inst_l_sems" 
+                                name="inst_l_sems"
+                                placeholder="S.E.M.S" 
+                                type="text"
+                                readonly>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label class="control-label" for="plantel">Plantel (CETIS No. 167):</label>
-                    <input class="form-control" id="plantel" placeholder="Plantel" type="text">
+                    <label class="control-label" for="inst_l_plantel">Plantel (CETIS No. 167):</label>
+                    <input 
+                        class="form-control" 
+                        id="inst_l_plantel" 
+                        name="inst_l_plantel"
+                        placeholder="Plantel" 
+                        type="text"
+                        readonly>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" for="firma_trabajador">Firma del trabajador:</label>
-                    <div id="firma_trabajador" placeholder="Firma del trabajador" type="text"
+                    <div placeholder="Firma del trabajador" type="text"
                         style="border-bottom: 3px solid black;"><br><br> </div>
 
                 </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pull-right">
+                    <button class="btn btn-primary btn-sm" type="button" id="btn_agregar_inst_l">Agregar</button>
+                </div>   
             </div>
         </div>
 
@@ -118,17 +176,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td scope="row"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                      <dt>  <div id="inst_l_tabla"></div>     </dt>
                     </tr>
+                   
                 </tbody>
             </table>
         </div>
@@ -154,14 +204,26 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label" for="sep">S.E.P:</label>
-                            <input class="form-control" id="sep" placeholder="S.E.P" type="text">
+                            <label class="control-label" for="inst_ll_sep">S.E.P:</label>
+                            <input 
+                                class="form-control" 
+                                id="inst_ll_sep" 
+                                name="inst_ll_sep"
+                                placeholder="S.E.P" 
+                                type="text"
+                                readonly>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label" for="sems">S.E.M.S:</label>
-                            <input class="form-control" id="sems" placeholder="S.E.M.S" type="text">
+                            <label class="control-label" for="inst_ll_sems">S.E.M.S:</label>
+                            <input 
+                                class="form-control" 
+                                id="inst_ll_sems" 
+                                name="inst_ll_sems"
+                                placeholder="S.E.M.S" 
+                                type="text"
+                                readonly>
                         </div>
                     </div>
                 </div>
@@ -170,17 +232,37 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label" for="uemstis">U.E.M.S.T.I.S:</label>
-                            <input class="form-control" id="uemstis" placeholder="U.E.M.S.T.I.S" type="text">
+                            <label class="control-label" for="inst_ll_uemstis">U.E.M.S.T.I.S:</label>
+                            <input 
+                                class="form-control" 
+                                id="inst_ll_uemstis" 
+                                name="inst_ll_uemstis"
+                                placeholder="U.E.M.S.T.I.S" 
+                                type="text"
+                                readonly>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label" for="plantel">Plantel</label>
-                            <input class="form-control" id="plantel" placeholder="CETIS No. 167" type="text">
+                            <label class="control-label" for="inst_ll_plantel">Plantel</label>
+                            <input 
+                                class="form-control" 
+                                id="inst_ll_plantel" 
+                                name="inst_ll_plantel"
+                                placeholder="CETIS No. 167" 
+                                type="text"
+                                readonly>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pull-right">
+                    <button class="btn btn-primary btn-sm" type="button" id="btn_agregar_inst_ll">Agregar</button>
+                </div>   
             </div>
         </div>
 
@@ -235,21 +317,25 @@
                 CERTIFICÓ<br>
                 <p style="border-bottom: 3px solid black;">POR LA SECRETARIA DE EDUCACION PUBLICA</p>
                 DENOMINACIÓN DE LA INSTITUCIÓN 1
-                <input class="form-control text-center" id="email-02" placeholder="DIRECTOR DEL CETIS No. 167" type="text"
+                <input 
+                    class="form-control text-center" 
+                    id="director_cetis"
+                    name="director_cetis"
+                    placeholder="DIRECTOR DEL CETIS No. 167" 
+                    type="text"
+                    readonly
                     style="border-bottom: 3px solid black;">
                 PUESTO DEL SERVIDOR PÚBLICO
-                <input class="form-control text-center" id="email-02" placeholder="MANUEL TORRES CRUZ" type="text"
+                <input class="form-control text-center" type="text"
                     style="border-bottom: 3px solid black;">
                 NOMBRE Y FIRMA
             </div>
-            <div class="col-md-2"></div>
-            <div class="col-md-5">
+            
+            <div class="col-md-7">
                 VALIDÓ<br>
                 <p style="border-bottom: 3px solid black;">POR LA SECRETARIA DE EDUCACION PUBLICA</p>
                 DENOMINACIÓN DE LA INSTITUCIÓN 2
-                <input class="form-control text-center" id="email-02"
-                    placeholder="DIRECCION GENERAL DE RECURSOS HUMANOS Y ORGANIZACIÓN" type="text"
-                    style="border-bottom: 3px solid black;">
+                <p  style="border-bottom: 3px solid black;">DIRECCION GENERAL DE RECURSOS HUMANOS Y ORGANIZACIÓN</p>                    
                 PUESTO DEL SERVIDOR PÚBLICO
                 <input class="form-control text-center" id="email-02" placeholder="" type="text"
                     style="border-bottom: 3px solid black;">
@@ -270,15 +356,18 @@
             <div class="col-md-12">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" value="opcion-01">
+                        <input type="checkbox" 
+                        value="" 
+                        id="a_dgor"
+                        name="a_dgor">
                         <p style="display:inline;">a) De conformidad con lo dispuesto en los artículos 136 y 137 del
                             Reglamento de la Ley Federal de
                             Presupuesto
                             y Responsabilidad Hacendaria, se otorga la presente AUTORIZACIÓN de Compatibilidad a partir del
                         <div style="display:inline; text-decoration: underline black;box-shadow: inset 0 -3px black;"
-                            id="fecha">
+                            id="fecha_dgor"
+                            name="fecha_dgor">
                             ____Dia___Mes___Año___
-                            <button class="btn btn-primary btn-xs" type="button">Editar Fecha</button>
                         </div>
                         misma que sera valida hasta tanto no cambien los supuestos arriba mencionados
                         que sirvieron de base para su otorgamiento.
@@ -293,7 +382,10 @@
             <div class="col-md-12">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" value="opcion-01">
+                        <input type="checkbox" 
+                        value=""
+                        id="b_dgor"
+                        name="b_dgor">
                         <p>b) De conformidad con lo dispuesto en los artículos 136 y 137 del Reglamento de la Ley Federal de
                             Presupuesto y Responsabilidad Hacendaria, NO SE OTORGA LA AUTORIZACIÓN de Compatibilidad, debido
                             a
@@ -311,13 +403,13 @@
                 <p><strong>NOTA: Este documento deberá contar con el sello de ambas instituciones.</strong></p>
             </div>
         </div>
-
+        {{-- lista checable --}}
         <div class="row">
             <div class="col-md-8">
                 <h2>LISTA CHECABLE</h2>
             </div>
         </div>
-
+        
         <div class="table-responsive">
             <table class="table table-bordered ">
                 <thead>
@@ -336,29 +428,51 @@
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_1_1" value="opcion-01" checked="checked"> Si
-                                </label>
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_1_1_si"
+                                        name="institucion_uno_1_1"
+                                        checked="checked"
+                                        value="si"
+                                        disabled> Si
+                                    </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_1_1" value="opcion-01" checked="checked"> No
-                                </label>
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_1_1_no"
+                                        name="institucion_uno_1_1"
+                                        value="no"
+                                        disabled> No
+                                    </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_1_1" value="opcion-01" checked="checked"> Si
-                                </label>
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_1_1_si"
+                                        name="institucion_dos_1_1"
+                                        value="si" 
+                                        checked="checked"
+                                        disabled> Si
+                                    </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_1_1" value="opcion-01" checked="checked"> No
-                                </label>
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_1_1_no"
+                                        name="institucion_dos_1_1"
+                                        value="no"
+                                        disabled> No
+                                    </label>
                             </div>
                         </td>
                     </tr>
@@ -367,29 +481,51 @@
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_1_2" value="opcion-01" checked="checked"> Si
-                                </label>
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_1_2_si"
+                                        name="institucion_uno_1_2"
+                                        value="si" 
+                                        checked="checked"
+                                        disabled> Si
+                                    </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_1_2" value="opcion-01" checked="checked"> No
-                                </label>
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_1_2_no"
+                                        name="institucion_uno_1_2"
+                                        value="no"
+                                        disabled> No
+                                    </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_1_2" value="opcion-01" checked="checked"> Si
-                                </label>
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_1_2_si"
+                                        name="institucion_dos_1_2"
+                                        value="si" 
+                                        checked="checked"
+                                        disabled> Si
+                                    </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_1_2" value="opcion-01" checked="checked"> No
-                                </label>
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_1_2_no"
+                                        name="institucion_dos_1_2"
+                                        value="no"
+                                        disabled> No
+                                    </label>
                             </div>
                         </td>
                     </tr>
@@ -401,28 +537,50 @@
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_2_1" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_2_1_si"
+                                        name="institucion_uno_2_1"
+                                        value="si"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_2_1" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_2_1_no"
+                                        name="institucion_uno_2_1"
+                                        value="no"
+                                        checked="checked"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_2_1" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio"
+                                        id="institucion_dos_2_1_si" 
+                                        name="institucion_dos_2_1"
+                                        value="si"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_2_1" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_2_1_no"
+                                        name="institucion_dos_2_1" 
+                                        value="no"
+                                        checked="checked"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
@@ -432,28 +590,50 @@
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_2_2" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_2_2_si"
+                                        name="institucion_uno_2_2"
+                                        value="si"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_2_2" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_2_2_no"
+                                        name="institucion_uno_2_2" 
+                                        value="no"
+                                        checked="checked"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_2_2" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio"
+                                        id="institucion_dos_2_2_si" 
+                                        name="institucion_dos_2_2"
+                                        value="si"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_2_2" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio"
+                                        id="institucion_dos_2_2_no" 
+                                        name="institucion_dos_2_2" 
+                                        value="no"
+                                        checked="checked"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
@@ -466,28 +646,50 @@
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_3_1" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_3_1_si"
+                                        name="institucion_uno_3_1"
+                                        value="si"
+                                        checked="checked"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_3_1" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_3_1_no"
+                                        name="institucion_uno_3_1"
+                                        value="no"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_3_1" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_3_1_si"
+                                        name="institucion_dos_3_1"
+                                        value="si"
+                                        checked="checked"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_3_1" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_3_1_no"
+                                        name="institucion_dos_3_1"
+                                        value="no"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
@@ -499,28 +701,50 @@
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_3_2" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio"
+                                        id="institucion_uno_3_2_si" 
+                                        name="institucion_uno_3_2"
+                                        value="si" 
+                                        checked="checked"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_3_2" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_3_2_no"
+                                        name="institucion_uno_3_2"
+                                        value="no"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_3_2" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_3_2_si"
+                                        name="institucion_dos_3_2"
+                                        value="si" 
+                                        checked="checked"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_3_2" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_3_2_no"
+                                        name="institucion_dos_3_2"
+                                        value="no"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
@@ -530,28 +754,50 @@
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_3_3" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio"
+                                        id="institucion_uno_3_3_si" 
+                                        name="institucion_uno_3_3"
+                                        value="si"
+                                        checked="checked"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_3_3" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio"
+                                        id="institucion_uno_3_3_no" 
+                                        name="institucion_uno_3_3"
+                                        value="no"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_3_3" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_3_3_si"
+                                        name="institucion_dos_3_3"
+                                        value="si"
+                                        checked="checked"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_3_3" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_3_3_no"
+                                        name="institucion_dos_3_3"
+                                        value="no"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
@@ -563,28 +809,50 @@
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_3_4" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_3_4_si"
+                                        name="institucion_uno_3_4"
+                                        value="si"
+                                        checked="checked"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_3_4" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_3_4_no"
+                                        name="institucion_uno_3_4"
+                                        value="no"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_3_4" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_3_4_si"
+                                        name="institucion_dos_3_4"
+                                        value="si" 
+                                        checked="checked"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_3_4" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_3_4_no"
+                                        name="institucion_dos_3_4"
+                                        value="no"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
@@ -594,28 +862,50 @@
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_3_5" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_3_5_si"
+                                        name="institucion_uno_3_5"
+                                        value="si"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_3_5" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_3_5_no"
+                                        name="institucion_uno_3_5"
+                                        value="no"
+                                        checked="checked"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_3_5" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio"
+                                        id="institucion_dos_3_5_si" 
+                                        name="institucion_dos_3_5"
+                                        value="si"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_3_5" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_3_5_no"
+                                        name="institucion_dos_3_5"
+                                        value="no"
+                                        checked="checked"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
@@ -629,28 +919,50 @@
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_3_6" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_3_6_si"
+                                        name="institucion_uno_3_6"
+                                        value="si"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_3_6" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_3_6_no"
+                                        name="institucion_uno_3_6"
+                                        value="no"
+                                        checked="checked"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_3_6" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_3_6_si"
+                                        name="institucion_dos_3_6"
+                                        value="si"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_3_6" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_3_6_no"
+                                        name="institucion_dos_3_6"
+                                        value="no"
+                                        checked="checked"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
@@ -662,28 +974,50 @@
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_3_7" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_3_7_si"
+                                        name="institucion_uno_3_7"
+                                        value="si"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_3_7" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_3_7_no"
+                                        name="institucion_uno_3_7"
+                                        value="no"
+                                        checked="checked"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_3_7" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_3_7_si"
+                                        name="institucion_dos_3_7"
+                                        value="si"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_3_7" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio"
+                                        id="institucion_dos_3_7_no" 
+                                        name="institucion_dos_3_7"
+                                        value="no"
+                                        checked="checked"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
@@ -693,28 +1027,50 @@
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_3_8" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_3_8_si"
+                                        name="institucion_uno_3_8"
+                                        value="si"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_3_8" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_3_8_no"
+                                        name="institucion_uno_3_8"
+                                        value="no"
+                                        checked="checked"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_3_8" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_3_8_si"
+                                        name="institucion_dos_3_8"
+                                        value="si"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_3_8" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_3_8_no"
+                                        name="institucion_dos_3_8"
+                                        value="no"
+                                        checked="checked"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
@@ -724,28 +1080,46 @@
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_3_9" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_3_9_si"
+                                        name="institucion_uno_3_9"
+                                        value="si"
+                                        checked="checked"> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_3_9" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_3_9_no"
+                                        name="institucion_uno_3_9"
+                                        value="no"> No
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_3_9" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_3_9_si"
+                                        name="institucion_dos_3_9"
+                                        value="si" 
+                                        checked="checked"> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_3_9" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_3_9_no"
+                                        name="institucion_dos_3_9"
+                                        value="no"> No
                                 </label>
                             </div>
                         </td>
@@ -762,28 +1136,50 @@
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_3_10" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_uno_3_10_si"
+                                        name="institucion_uno_3_10"
+                                        value="si"
+                                        checked="checked"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_uno_3_10" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio"
+                                        id="institucion_uno_3_10_no" 
+                                        name="institucion_uno_3_10"
+                                        value="no"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_3_10" value="opcion-01" checked="checked"> Si
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_3_10_si"
+                                        name="institucion_dos_3_10"
+                                        value="si"
+                                        checked="checked"
+                                        disabled> Si
                                 </label>
                             </div>
                         </td>
                         <td>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="isntitucion_dos_3_10" value="opcion-01" checked="checked"> No
+                                    <input 
+                                        type="radio" 
+                                        id="institucion_dos_3_10_no"
+                                        name="institucion_dos_3_10"
+                                        value="no"
+                                        disabled> No
                                 </label>
                             </div>
                         </td>
@@ -793,14 +1189,24 @@
                         <td colspan="2">
                             <div class="form-group datepicker-group">
                                 <label class="control-label" for="institutoUnoCalendarYear">Calendario:</label>
-                                <input class="form-control" id="institutoUnoCalendarYear" type="text">
+                                <input 
+                                    class="form-control" 
+                                    id="institutoUnoCalendarYear" 
+                                    name="institutoUnoCalendarYear" 
+                                    type="text"
+                                    readonly>
                                 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                             </div>
                         </td>
                         <td colspan="2">
                             <div class="form-group datepicker-group">
                                 <label class="control-label" for="institutoDosCalendarYear">Calendario:</label>
-                                <input class="form-control" id="institutoDosCalendarYear" type="text">
+                                <input 
+                                    class="form-control" 
+                                    id="institutoDosCalendarYear" 
+                                    name="institutoDosCalendarYear" 
+                                    type="text"
+                                    readonly>
                                 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                             </div>
                         </td>
@@ -808,20 +1214,26 @@
                     <tr>
                         <td>Nombre del analista:</td>
                         <td colspan="2">
-                            <input type="text" class="form-control" id="staticEmail" placeholder="">
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                id="inst_uno_analista"
+                                name="inst_uno_analista"
+                                readonly>
                         </td>
                         <td colspan="2">
-                            <input type="text" class="form-control" id="staticEmail" placeholder="">
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                id="inst_dos_analista"
+                                name="inst_dos_analista"
+                                readonly>
                         </td>
                     </tr>
                     <tr>
                         <td>Firma del analista:</td>
-                        <td colspan="2">
-                            <input type="text" class="form-control" id="staticEmail">
-                        </td>
-                        <td colspan="2">
-                            <input type="text" class="form-control" id="staticEmail">
-                        </td>
+                        <td colspan="2"></td>
+                        <td colspan="2"></td>
                     </tr>
                 </tbody>
             </table>
@@ -841,5 +1253,26 @@
     </form>
     {{-- fin form --}}
 
+    {{-- modal --}}
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Editar Campos</h4>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estas seguro de escribir en todos los campos?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="btn_editar_datos" >Continuar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
+@endsection
+@section('complementos')
+    <script src="https://framework-gb.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 @endsection

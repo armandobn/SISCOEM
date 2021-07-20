@@ -1873,6 +1873,196 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: true
 // });
 
+__webpack_require__(/*! ./formatoCompatibilidad.js */ "./resources/js/formatoCompatibilidad.js");
+
+/***/ }),
+
+/***/ "./resources/js/formatoCompatibilidad.js":
+/*!***********************************************!*\
+  !*** ./resources/js/formatoCompatibilidad.js ***!
+  \***********************************************/
+/***/ (() => {
+
+function obtenerDatos() {
+  /*
+     0 [Institucion 1] , [Institucion 2]
+     00 [[cuestionario 1], [cuestionario 2], [cuestionario 2]] , [cuestionario 1], [cuestionario 2], [cuestionario 2]] ]    
+   */
+  var institucion = [[[], [], []], [[], [], []]];
+
+  for (var z = 0; z < 2; z++) {
+    if (z == 0) {
+      for (var k = 1; k < 4; k++) {
+        for (var i = 1; i < 3; i++) {
+          var elemento = document.getElementsByName("institucion_uno_".concat(k, "_").concat(i));
+
+          for (var j = 0; j < elemento.length; j++) {
+            if (elemento[j].checked) {
+              institucion[z][k - 1][i - 1] = elemento[j].value;
+            }
+          }
+        }
+
+        if (k == 3) {
+          for (var a = 1; a < 11; a++) {
+            var _elemento = document.getElementsByName("institucion_uno_".concat(k, "_").concat(a));
+
+            for (var _j = 0; _j < _elemento.length; _j++) {
+              if (_elemento[_j].checked) {
+                institucion[z][k - 1][a - 1] = _elemento[_j].value;
+              }
+            }
+          }
+        }
+      }
+    } else if (z == 1) {
+      for (var _k = 1; _k < 4; _k++) {
+        for (var _i = 1; _i < 3; _i++) {
+          var _elemento2 = document.getElementsByName("institucion_dos_".concat(_k, "_").concat(_i));
+
+          for (var _j2 = 0; _j2 < _elemento2.length; _j2++) {
+            if (_elemento2[_j2].checked) {
+              institucion[z][_k - 1][_i - 1] = _elemento2[_j2].value;
+            }
+          }
+        }
+
+        if (_k == 3) {
+          for (var _a = 1; _a < 11; _a++) {
+            var _elemento3 = document.getElementsByName("institucion_dos_".concat(_k, "_").concat(_a));
+
+            for (var _j3 = 0; _j3 < _elemento3.length; _j3++) {
+              if (_elemento3[_j3].checked) {
+                institucion[z][_k - 1][_a - 1] = _elemento3[_j3].value;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  console.log(institucion);
+}
+
+$gmx(document).ready(function () {
+  $('#btn_buscar_rfc').click(function () {
+    if ($('#rfc').val() == "") {
+      var id_asterisco_rfc = document.querySelector("#asterisco_rfc");
+
+      if (id_asterisco_rfc.classList.contains("form-text-error") == false) {
+        console.log(id_asterisco_rfc.classList.contains("form-text-error"));
+        id_asterisco_rfc.classList.add("form-text-error");
+        var etiqueta_padre_rfc = document.querySelector("#rfc");
+        etiqueta_padre_rfc.classList.add("form-control-error"); // console.log(etiqueta_padre_rfc.parentElement);
+
+        var contenedor_rfc = etiqueta_padre_rfc.parentElement;
+        var item_rfc = document.createElement("SMALL"); //todo en mayuscula
+
+        var textDelItem_rfc = document.createTextNode("Este campo es obligatorio");
+        item_rfc.appendChild(textDelItem_rfc);
+        item_rfc.classList.add("form-text");
+        item_rfc.classList.add("form-text-error");
+        contenedor_rfc.appendChild(item_rfc); //console.log(item);
+      }
+    }
+  });
+  $('#btn_editar_datos').click(function () {
+    document.getElementById("btn_buscar_rfc").disabled = true;
+    document.getElementById("inst_l_nombre").readOnly = false;
+    document.getElementById("inst_l_apellido_paterno").readOnly = false;
+    document.getElementById("inst_l_apellido_materno").readOnly = false;
+    document.getElementById("inst_l_sep").readOnly = false;
+    document.getElementById("inst_l_sems").readOnly = false;
+    document.getElementById("inst_l_plantel").readOnly = false;
+    document.getElementById("inst_ll_sep").readOnly = false;
+    document.getElementById("inst_ll_sems").readOnly = false;
+    document.getElementById("inst_ll_uemstis").readOnly = false;
+    document.getElementById("inst_ll_plantel").readOnly = false;
+    document.getElementById("director_cetis").readOnly = false; // $('#a_dgor');
+    // $('#fecha_dgor');
+    // $('#b_dgor');
+    //Lista checable
+
+    for (var i = 1; i < 3; i++) {
+      document.getElementById("institucion_uno_1_" + i + "_si").disabled = false;
+      document.getElementById("institucion_uno_1_" + i + "_no").disabled = false;
+      document.getElementById("institucion_dos_1_" + i + "_si").disabled = false;
+      document.getElementById("institucion_dos_1_" + i + "_no").disabled = false;
+      document.getElementById("institucion_uno_2_" + i + "_si").disabled = false;
+      document.getElementById("institucion_uno_2_" + i + "_no").disabled = false;
+      document.getElementById("institucion_dos_2_" + i + "_si").disabled = false;
+      document.getElementById("institucion_dos_2_" + i + "_no").disabled = false;
+    }
+
+    for (var _i2 = 1; _i2 < 11; _i2++) {
+      document.getElementById("institucion_uno_3_" + _i2 + "_si").disabled = false;
+      document.getElementById("institucion_uno_3_" + _i2 + "_no").disabled = false;
+      document.getElementById("institucion_dos_3_" + _i2 + "_si").disabled = false;
+      document.getElementById("institucion_dos_3_" + _i2 + "_no").disabled = false;
+    } // $('#institucion_uno_1_1');
+    // $('#institucion_dos_1_1');
+    // $('#institucion_uno_1_2');
+    // $('#institucion_dos_1_2');
+    // $('#institucion_uno_2_1');
+    // $('#institucion_dos_2_1');
+    // $('#institucion_uno_2_2');
+    // $('#institucion_dos_2_2');
+    // $('#institucion_uno_3_1');
+    // $('#institucion_dos_3_1');
+    // $('#institucion_uno_3_2');
+    // $('#institucion_dos_3_2');
+    // $('#institucion_uno_3_3');
+    // $('#institucion_dos_3_3');
+    // $('#institucion_uno_3_4');
+    // $('#institucion_dos_3_4');
+    // $('#institucion_uno_3_5');
+    // $('#institucion_dos_3_5');
+    // $('#institucion_uno_3_6');
+    // $('#institucion_dos_3_6');
+    // $('#institucion_uno_3_7');
+    // $('#institucion_dos_3_7');
+    // $('#institucion_uno_3_8');
+    // $('#institucion_dos_3_8');
+    // $('#institucion_uno_3_9');
+    // $('#institucion_dos_3_9');
+    // $('#institucion_uno_3_10');
+    // $('#institucion_dos_3_10');
+    // document.getElementById("institutoUnoCalendarYear").readOnly = false;
+    // document.getElementById("institutoDosCalendarYear").readOnly = false;
+    // $('#institutoUnoCalendarYear').datepicker({ changeYear: true });
+    // $('#institutoDosCalendarYear').datepicker({ changeYear: true });
+
+
+    var actual = new Date();
+    fecha = "".concat(actual.getDate(), "/").concat(actual.getMonth() + 1, "/").concat(actual.getFullYear());
+    $('#institutoUnoCalendarYear').val(fecha);
+    $('#institutoDosCalendarYear').val(fecha);
+    var html_new;
+    html_new = "_".concat(actual.getDate(), "/").concat(actual.getMonth() + 1, "/").concat(actual.getFullYear(), "_");
+    document.getElementById('fecha_dgor').innerHTML = html_new;
+    document.getElementById("inst_uno_analista").readOnly = false;
+    document.getElementById("inst_dos_analista").readOnly = false;
+    $('#myModal').modal('hide');
+  });
+  $('#btn_editar').click(function () {
+    //llama modal
+    $('#myModal').modal();
+  });
+  $('#btn_agregar_inst_l').click(function () {
+    var etiqueta_padre = document.querySelector("#inst_l_tabla"); // console.log(etiqueta_padre_rfc.parentElement);
+
+    var contenedor_tabla = etiqueta_padre.parentElement;
+    var item_tabla = document.createElement("SMALL"); //todo en mayuscula
+
+    var textDelItem_tabla = document.createTextNode("Este campo es obligatorio");
+    item_tabla.appendChild(textDelItem_tabla);
+    item_tabla.classList.add("form-text");
+    item_tabla.classList.add("form-text-error");
+    contenedor_tabla.appendChild(item_tabla); //console.log(item);
+  });
+});
+
 /***/ }),
 
 /***/ "./node_modules/lodash/lodash.js":
