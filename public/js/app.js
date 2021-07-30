@@ -2564,7 +2564,7 @@ $gmx(document).ready(function () {
       var asterisco = document.querySelector('#asterisco_analista');
 
       if (asterisco.classList.contains("form-text-error") == false) {
-        console.log(asterisco.classList.contains("form-text-error"));
+        // console.log(asterisco.classList.contains("form-text-error"));
         asterisco.classList.add("form-text-error");
 
         if ($('#inst_uno_analista').val() == "") {

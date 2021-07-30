@@ -711,7 +711,7 @@ $gmx(document).ready(function () {
 
       if (asterisco.classList.contains("form-text-error") == false) {
 
-        console.log(asterisco.classList.contains("form-text-error"));
+        // console.log(asterisco.classList.contains("form-text-error"));
         asterisco.classList.add("form-text-error");
 
         if ($('#inst_uno_analista').val() == "") {
