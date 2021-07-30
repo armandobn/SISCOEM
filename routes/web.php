@@ -20,3 +20,4 @@ Route::get('/', function () {
 
 Route::get('/formatoCompatibilidad',[FormatoCompatabilidadController::class, 'create']);
 Route::get('/estatusTramitePersonal',[FormatoCompatabilidadController::class, 'estatusPersonal']);
+Route::post('/agregarTabla',[FormatoCompatabilidadController::class, 'obtenerTabla']);
