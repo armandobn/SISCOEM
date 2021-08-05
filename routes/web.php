@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\FormatoCompatabilidadController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,5 @@ Route::get('/', function () {
 Route::get('/formatoCompatibilidad',[FormatoCompatabilidadController::class, 'create']);
 Route::get('/estatusTramitePersonal',[FormatoCompatabilidadController::class, 'estatusPersonal']);
 Route::post('/agregarTabla',[FormatoCompatabilidadController::class, 'obtenerTabla']);
+
+Route::get('/registrarDocente',[DocenteController::class,'create']);

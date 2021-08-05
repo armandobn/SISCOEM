@@ -1136,5 +1136,5 @@
 @endsection
 @section('complementos')
     <script src="https://framework-gb.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>
-    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{  asset('js/app.js') }}"></script>
 @endsection
