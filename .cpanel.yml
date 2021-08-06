@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home2/simdirne/siscoem.ddns.net/
+    - / -R laravel $DEPLOYPATH
