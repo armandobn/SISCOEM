@@ -13,5 +13,5 @@
 # yarn-error.log
 # /.idea
 # /.vscode
- /laravel/app/Providers/AppServiceProvider.php
- /laravel/serve.php
+ app/Providers/AppServiceProvider.php
+ server.php
