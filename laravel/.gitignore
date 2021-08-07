@@ -13,5 +13,5 @@
 # yarn-error.log
 # /.idea
 # /.vscode
- app/Providers/AppServiceProvider.php
- server.php
+app/Providers/AppServiceProvider.php
+server.php
