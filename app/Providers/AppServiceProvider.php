@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         $this->app->bind('path.public', function(){
-            return '/home2/simdirne/siscoem.ddns.net/public';
+            return '/home2/simdirne/siscoem.ddns.net/public/';
         });
     }
 
