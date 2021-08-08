@@ -14,9 +14,9 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //Ruta apunta en donde se encuentra el index para funcionar
-        $this->app->bind('path.public', function(){
-            return '/home2/simdirne/siscoem.ddns.net/public';
-        });
+        // $this->app->bind('path.public', function(){
+        //     return '/home2/simdirne/siscoem.ddns.net/public';
+        // });
     }
 
     /**
