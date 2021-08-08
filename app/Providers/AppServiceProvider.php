@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //Ruta a donde apunta y se encuentra el index
         $this->app->bind('path.public', function(){
-            return '/home2/simdirne/siscoem.ddns.net/public';
+            return '/home2/simdirne/siscoem.ddns.net';
         });
     }
 
