@@ -13,10 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
-        // $this->app->bind('path.public', function(){
-        //     return '/home2/simdirne/siscoem.ddns.net';
-        // });
+        
+        $this->app->bind('path.public', function(){
+            return '/home2/simdirne/siscoem.ddns.net/public';
+        });
     }
 
     /**
