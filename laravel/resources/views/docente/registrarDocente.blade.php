@@ -288,5 +288,5 @@
 @endsection
 @section('complementos')
 <script src="https://framework-gb.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>
-<script src="{{ asset('js/docente_c.js') }}"></script>
+<script src="{{ mix('js/docente_c.js') }}"></script>
 @endsection
