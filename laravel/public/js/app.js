@@ -1875,8 +1875,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 __webpack_require__(/*! ./formatoCompatibilidad.js */ "./resources/js/formatoCompatibilidad.js");
 
-__webpack_require__(/*! ./prueba.js */ "./resources/js/prueba.js");
-
 /***/ }),
 
 /***/ "./resources/js/formatoCompatibilidad.js":
@@ -1884,6 +1882,41 @@ __webpack_require__(/*! ./prueba.js */ "./resources/js/prueba.js");
   !*** ./resources/js/formatoCompatibilidad.js ***!
   \***********************************************/
 /***/ (() => {
+
+//Genera los mensajes de Error
+function alertaError(id_asterisco, id_element) {
+  var asterisco = document.querySelector(id_asterisco);
+
+  if (asterisco.classList.contains("form-text-error") == false) {
+    // console.log(asterisco.classList.contains("form-text-error"));
+    asterisco.classList.add("form-text-error");
+    var element_padre = document.querySelector(id_element);
+    element_padre.classList.add("form-control-error"); // console.log(etiqueta_padre_rfc.parentElement);
+
+    var contenedor_element = element_padre.parentElement;
+    var item_small = document.createElement("SMALL"); //todo en mayuscula
+
+    var textDelItem = document.createTextNode("Este campo es obligatorio");
+    item_small.appendChild(textDelItem);
+    item_small.classList.add("form-text");
+    item_small.classList.add("form-text-error");
+    contenedor_element.appendChild(item_small); //console.log(item);
+  }
+} //Elimina el mensaje de Error
+
+
+function limpiarError(id_asterisco, id_elemento) {
+  var asterisco = document.querySelector(id_asterisco);
+
+  if (asterisco.classList.contains("form-text-error") == true) {
+    asterisco.classList.remove("form-text-error");
+    var element_hijo = document.querySelector(id_elemento);
+    element_hijo.classList.remove("form-control-error");
+    var contenedor = element_hijo.parentElement;
+    var small = contenedor.querySelector("small");
+    contenedor.removeChild(small);
+  }
+}
 
 function obtenerDatos() {
   /*
@@ -1944,45 +1977,9 @@ function obtenerDatos() {
     }
   } // console.log(institucion);
 
-} //Genera los mensajes de Error
-
-
-function alertaError(id_asterisco, id_element) {
-  var asterisco = document.querySelector(id_asterisco);
-
-  if (asterisco.classList.contains("form-text-error") == false) {
-    // console.log(asterisco.classList.contains("form-text-error"));
-    asterisco.classList.add("form-text-error");
-    var element_padre = document.querySelector(id_element);
-    element_padre.classList.add("form-control-error"); // console.log(etiqueta_padre_rfc.parentElement);
-
-    var contenedor_element = element_padre.parentElement;
-    var item_small = document.createElement("SMALL"); //todo en mayuscula
-
-    var textDelItem = document.createTextNode("Este campo es obligatorio");
-    item_small.appendChild(textDelItem);
-    item_small.classList.add("form-text");
-    item_small.classList.add("form-text-error");
-    contenedor_element.appendChild(item_small); //console.log(item);
-  }
-} //Elimina el mensaje de Error
-
-
-function limpiarError(id_asterisco, id_elemento) {
-  var asterisco = document.querySelector(id_asterisco);
-
-  if (asterisco.classList.contains("form-text-error") == true) {
-    asterisco.classList.remove("form-text-error");
-    var element_hijo = document.querySelector(id_elemento);
-    element_hijo.classList.remove("form-control-error");
-    var contenedor = element_hijo.parentElement;
-    var small = contenedor.querySelector("small");
-    contenedor.removeChild(small);
-  }
 }
 
 $gmx(document).ready(function () {
-  alert("sss");
   $('#btn_buscar_rfc').click(function () {
     if ($('#rfc').val() == "") {
       alertaError('#asterisco_rfc', '#rfc'); // const id_asterisco_rfc = document.querySelector("#asterisco_rfc");
@@ -2625,17 +2622,6 @@ $gmx(document).ready(function () {
     }
   });
 });
-
-/***/ }),
-
-/***/ "./resources/js/prueba.js":
-/*!********************************!*\
-  !*** ./resources/js/prueba.js ***!
-  \********************************/
-/***/ (() => {
-
-alert("terminal funciono");
-console.log("si jalo");
 
 /***/ }),
 

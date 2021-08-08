@@ -1,3 +1,50 @@
+
+//Genera los mensajes de Error
+function alertaError(id_asterisco, id_element) {
+  const asterisco = document.querySelector(id_asterisco);
+
+  if (asterisco.classList.contains("form-text-error") == false) {
+
+    // console.log(asterisco.classList.contains("form-text-error"));
+    asterisco.classList.add("form-text-error");
+
+    const element_padre = document.querySelector(id_element);
+    element_padre.classList.add("form-control-error");
+
+    // console.log(etiqueta_padre_rfc.parentElement);
+    const contenedor_element = element_padre.parentElement;
+    const item_small = document.createElement("SMALL");//todo en mayuscula
+    const textDelItem = document.createTextNode("Este campo es obligatorio");
+    item_small.appendChild(textDelItem);
+    item_small.classList.add("form-text");
+    item_small.classList.add("form-text-error");
+    contenedor_element.appendChild(item_small);
+    //console.log(item);
+  }
+
+
+}
+
+//Elimina el mensaje de Error
+function limpiarError(id_asterisco, id_elemento) {
+
+  const asterisco = document.querySelector(id_asterisco);
+
+  if (asterisco.classList.contains("form-text-error") == true) {
+    asterisco.classList.remove("form-text-error");
+    const element_hijo = document.querySelector(id_elemento);
+    element_hijo.classList.remove("form-control-error");
+
+    const contenedor = element_hijo.parentElement;
+    const small = contenedor.querySelector("small");
+    contenedor.removeChild(small);
+
+  }
+
+
+}
+
+
 function obtenerDatos() {
   /*
      0 [Institucion 1] , [Institucion 2]
@@ -53,54 +100,7 @@ function obtenerDatos() {
   // console.log(institucion);
 }
 
-//Genera los mensajes de Error
-function alertaError(id_asterisco, id_element) {
-  const asterisco = document.querySelector(id_asterisco);
-
-  if (asterisco.classList.contains("form-text-error") == false) {
-
-    // console.log(asterisco.classList.contains("form-text-error"));
-    asterisco.classList.add("form-text-error");
-
-    const element_padre = document.querySelector(id_element);
-    element_padre.classList.add("form-control-error");
-
-    // console.log(etiqueta_padre_rfc.parentElement);
-    const contenedor_element = element_padre.parentElement;
-    const item_small = document.createElement("SMALL");//todo en mayuscula
-    const textDelItem = document.createTextNode("Este campo es obligatorio");
-    item_small.appendChild(textDelItem);
-    item_small.classList.add("form-text");
-    item_small.classList.add("form-text-error");
-    contenedor_element.appendChild(item_small);
-    //console.log(item);
-  }
-
-
-}
-
-//Elimina el mensaje de Error
-function limpiarError(id_asterisco, id_elemento) {
-
-  const asterisco = document.querySelector(id_asterisco);
-
-  if (asterisco.classList.contains("form-text-error") == true) {
-    asterisco.classList.remove("form-text-error");
-    const element_hijo = document.querySelector(id_elemento);
-    element_hijo.classList.remove("form-control-error");
-
-    const contenedor = element_hijo.parentElement;
-    const small = contenedor.querySelector("small");
-    contenedor.removeChild(small);
-
-  }
-
-
-}
-
-
 $gmx(document).ready(function () {
-  alert("sss");
 
   $('#btn_buscar_rfc').click(function () {
 

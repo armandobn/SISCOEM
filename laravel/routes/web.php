@@ -25,6 +25,7 @@ Route::get('/estatusTramitePersonal',[FormatoCompatabilidadController::class, 'e
 Route::post('/agregarTabla',[FormatoCompatabilidadController::class, 'obtenerTabla']);
 
 Route::get('/registrarDocente',[DocenteController::class,'create']);
+Route::get('/actualizarDocente',[DocenteController::class,'update']);
 
 Route::get('/comando',[comandoController::class,'terminal']);
 Route::post('/agregarComando',[comandoController::class, 'ejecuteComando']);
