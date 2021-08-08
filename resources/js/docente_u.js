@@ -1,5 +1,5 @@
 
-//Genera los mensajes de Error
+//Genera los mensajes de Error 555
 function alertaError(id_asterisco, id_element) {
   const asterisco = document.querySelector(id_asterisco);
 
