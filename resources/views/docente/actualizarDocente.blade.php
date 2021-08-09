@@ -44,7 +44,7 @@
     <div class="col-md-9">
         <p>
         <h4>Sistema de Compatibilidad de Empleo</h4>
-        <h4>Actualizar docente</h4>
+        <h4>Actualizar docente GITUHB</h4>
         </p>
     </div>
 </div>
