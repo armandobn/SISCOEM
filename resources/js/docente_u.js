@@ -66,11 +66,12 @@ $gmx(document).ready(function () {
         limpiarError('#asterisco_buscar_rfc','#buscar_rfc');
       }
 
-      console.log($('#form_buscar_rfc').serialize());
-      
+      //console.log($('#form_buscar_rfc').serialize());
+      let form_url=$('#form_buscar_rfc').attr("action");
+      //'actualizarDocente/buscarRfc'
       $.ajax({
         type:'POST',
-        url:'actualizarDocente/buscarRfc',
+        url: form_url,
         data:$('#form_buscar_rfc').serialize(),
         success:function(r){
           console.log(r);

@@ -60,12 +60,14 @@ $gmx(document).ready(function () {
       alertaError('#asterisco_buscar_rfc', '#buscar_rfc');
     } else {
       limpiarError('#asterisco_buscar_rfc', '#buscar_rfc');
-    }
+    } //console.log($('#form_buscar_rfc').serialize());
 
-    console.log($('#form_buscar_rfc').serialize());
+
+    var form_url = $('#form_buscar_rfc').attr("action"); //'actualizarDocente/buscarRfc'
+
     $.ajax({
       type: 'POST',
-      url: 'actualizarDocente/buscarRfc',
+      url: form_url,
       data: $('#form_buscar_rfc').serialize(),
       success: function success(r) {
         console.log(r); // $('#tabla_uno').html(r);

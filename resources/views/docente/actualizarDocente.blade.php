@@ -22,8 +22,8 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#">Crear</a></li>
                         <li><a href="#">Seguimiento</a></li>
-                        <li><a href="#">Registrar docente</a></li>
-                        <li><a href="#">Actualizar docente</a></li>
+                        <li><a href="{{route('registrarDocente.create')}}">Registrar docente</a></li>
+                        <li><a href="{{route('registrarDocente.update')}}">Actualizar docente</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Tablero</a></li>
@@ -49,7 +49,7 @@
     </div>
 </div>
 
-<form action="" id="form_buscar_rfc">
+<form action="{{route('registrarDocente.obtenerRfc')}}" method="post" id="form_buscar_rfc">
     @csrf
     <div class="row">
         <div class="col-md-4">
