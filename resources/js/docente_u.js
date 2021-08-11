@@ -74,7 +74,7 @@ $gmx(document).ready(function () {
         url: form_url,
         data:$('#form_buscar_rfc').serialize(),
         success:function(r){
-          console.log(r);
+          //console.log(r);
          // $('#tabla_uno').html(r);
         }
 

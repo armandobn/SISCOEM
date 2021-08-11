@@ -69,8 +69,8 @@ $gmx(document).ready(function () {
       type: 'POST',
       url: form_url,
       data: $('#form_buscar_rfc').serialize(),
-      success: function success(r) {
-        console.log(r); // $('#tabla_uno').html(r);
+      success: function success(r) {//console.log(r);
+        // $('#tabla_uno').html(r);
       }
     });
   });
