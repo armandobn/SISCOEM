@@ -16,4 +16,10 @@ class DocenteController extends Controller
         return view('docente.actualizarDocente');
     }
 
+    public function obtenerRfc(Request $request){
+        //esto es una prueba//
+        $rfc=$request->buscar_rfc;
+        return $request;
+    }
+
 }

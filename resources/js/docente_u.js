@@ -59,7 +59,26 @@ $gmx(document).ready(function () {
   $('#calendarYear_dgeti').datepicker({changeYear: true});
 
   $('#btn_buscar_rfc').click(function(){
-    alert('buscar');
+    
+      if($('#buscar_rfc').val()==""){
+        alertaError('#asterisco_buscar_rfc','#buscar_rfc');
+      }else{
+        limpiarError('#asterisco_buscar_rfc','#buscar_rfc');
+      }
+
+      console.log($('#form_buscar_rfc').serialize());
+      
+      $.ajax({
+        type:'POST',
+        url:'actualizarDocente/buscarRfc',
+        data:$('#form_buscar_rfc').serialize(),
+        success:function(r){
+          console.log(r);
+         // $('#tabla_uno').html(r);
+        }
+
+      });
+
   });
 
  const contenedor_tabla_uno = [

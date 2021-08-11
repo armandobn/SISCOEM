@@ -26,6 +26,7 @@ Route::post('/agregarTabla',[FormatoCompatabilidadController::class, 'obtenerTab
 
 Route::get('/registrarDocente',[DocenteController::class,'create']);
 Route::get('/actualizarDocente',[DocenteController::class,'update']);
+Route::post('/actualizarDocente/buscarRfc',[DocenteController::class, 'obtenerRfc']);
 
 Route::get('/comando',[comandoController::class,'terminal']);
 Route::post('/agregarComando',[comandoController::class, 'ejecuteComando']);

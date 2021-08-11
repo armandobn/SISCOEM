@@ -49,19 +49,22 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <div class="form-group">
-            <label class="control-label" for="buscar_rfc">R.F.C
-                <span class="form-text" id="asterisco_buscar_rfc">*</span>:
-            </label>
-            <input class="form-control" id="buscar_rfc" placeholder="Ingrese R.F.C" type="text">
-        </div>
-        <div class="pull-right">
-            <button type="button" class="btn btn-primary" id="btn_buscar_rfc">Buscar</button>
+<form action="" id="form_buscar_rfc">
+    @csrf
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label" for="buscar_rfc">R.F.C
+                    <span class="form-text" id="asterisco_buscar_rfc">*</span>:
+                </label>
+                <input class="form-control" id="buscar_rfc" name="buscar_rfc" placeholder="Ingrese R.F.C" type="text">
+            </div>
+            <div class="pull-right">
+                <button type="button" class="btn btn-primary" id="btn_buscar_rfc">Buscar</button>
+            </div>
         </div>
     </div>
-</div>
+</form>
 
 <form action="" id="form_actualizar_docente">
     @csrf
@@ -278,11 +281,11 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <label for="observaciones" class="form-label" >Observaciones
+                <label for="observaciones" class="form-label">Observaciones
                     <span class="form-text" id="asterisco_observaciones">*</span>:
                 </label>
-                <textarea class="form-control" placeholder="Ingresa observaciones" rows="5" 
-                    id="observaciones" name="observaciones"></textarea>
+                <textarea class="form-control" placeholder="Ingresa observaciones" rows="5" id="observaciones"
+                    name="observaciones"></textarea>
             </div>
         </div>
     </div>
@@ -302,5 +305,5 @@
 @endsection
 @section('complementos')
 <script src="https://framework-gb.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>
-<script src="{{ mix('js/docente_u.js') }}"></script>
+<script src="{{ asset('js/docente_u.js') }}"></script>
 @endsection

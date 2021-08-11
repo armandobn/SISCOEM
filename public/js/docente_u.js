@@ -3,7 +3,7 @@ var __webpack_exports__ = {};
 /*!***********************************!*\
   !*** ./resources/js/docente_u.js ***!
   \***********************************/
-//Genera los mensajes de Error
+//Genera los mensajes de Error 555
 function alertaError(id_asterisco, id_element) {
   var asterisco = document.querySelector(id_asterisco);
 
@@ -56,7 +56,21 @@ $gmx(document).ready(function () {
     changeYear: true
   });
   $('#btn_buscar_rfc').click(function () {
-    alert('buscar');
+    if ($('#buscar_rfc').val() == "") {
+      alertaError('#asterisco_buscar_rfc', '#buscar_rfc');
+    } else {
+      limpiarError('#asterisco_buscar_rfc', '#buscar_rfc');
+    }
+
+    console.log($('#form_buscar_rfc').serialize());
+    $.ajax({
+      type: 'POST',
+      url: 'actualizarDocente/buscarRfc',
+      data: $('#form_buscar_rfc').serialize(),
+      success: function success(r) {
+        console.log(r); // $('#tabla_uno').html(r);
+      }
+    });
   });
   var contenedor_tabla_uno = [[[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []]];
   $('#btn_agregar').click(function () {
