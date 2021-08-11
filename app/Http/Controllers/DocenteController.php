@@ -12,6 +12,7 @@ class DocenteController extends Controller
     }
     
     public function update(){
+        //esto es una prueba//
         return view('docente.actualizarDocente');
     }
 
