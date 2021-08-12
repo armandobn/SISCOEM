@@ -8,9 +8,9 @@
 
 
 
-@foreach ($cursos as $curso)
+@foreach ($docentes as $docente)
         <li>
-          <a href="#">{{$curso->nombre}}</a> 
+          <a href="#">{{$docente->nombre}}</a> 
           {{-- {{route('cursos.show','abc')}}"> --}}
           {{-- {{route('cursos.show',$curso->id)}} --}}
         </li>

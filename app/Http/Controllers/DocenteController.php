@@ -11,7 +11,7 @@ class DocenteController extends Controller
     //
     public function showCreate(){
         //$cursos = Docente::all();
-        $cursos = Docentes::orderBy('id','desc')->paginate();
+        $docentes = Docentes::orderBy('id','desc')->paginate();
         return view('docente.registrarDocente',compact('docentes'));
         //return view('docente.registrarDocente');
     }
