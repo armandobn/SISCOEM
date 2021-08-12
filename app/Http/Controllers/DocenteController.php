@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Docente;
+
+use App\Models\Docentes;
 use Illuminate\Http\Request;
 
 class DocenteController extends Controller
@@ -10,7 +11,7 @@ class DocenteController extends Controller
     //
     public function showCreate(){
         //$cursos = Docente::all();
-        $cursos = Docente::orderBy('id','desc')->paginate();
+        $cursos = Docentes::orderBy('id','desc')->paginate();
         return view('docente.registrarDocente',compact('docentes'));
         //return view('docente.registrarDocente');
     }
