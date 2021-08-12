@@ -76,6 +76,8 @@ $gmx(document).ready(function () {
     contenedor_tabla_uno[cont][0][2] = document.createTextNode(unidad);
     contenedor_tabla_uno[cont][0][1].setAttribute("id", "unidad_" + cont); //atributo,valor;
 
+    contenedor_tabla_uno[cont][0][1].setAttribute("name", "unidad_" + cont); //atributo,valor;
+
     contenedor_tabla_uno[cont][0][1].appendChild(contenedor_tabla_uno[cont][0][2]);
     contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][0][1]);
     contenedor_tabla_uno[cont][1][1] = document.createElement("TD");
@@ -123,100 +125,142 @@ $gmx(document).ready(function () {
     removerUltimoElemento("#tabla_uno");
   });
   $('#btn_registrar').click(function () {
+    var cont = 0;
+
     if ($('#nombre').val() == '') {
       alertaError('#asterisco_nombre', '#nombre');
+      cont++;
     } else {
       limpiarError('#asterisco_nombre', '#nombre');
     }
 
     if ($('#primer_apellido').val() == '') {
       alertaError('#asterisco_primer_apellido', '#primer_apellido');
+      cont++;
     } else {
       limpiarError('#asterisco_primer_apellido', '#primer_apellido');
     }
 
     if ($('#segundo_apellido').val() == '') {
       alertaError('#asterisco_segundo_apellido', '#segundo_apellido');
+      cont++;
     } else {
       limpiarError('#asterisco_segundo_apellido', '#segundo_apellido');
     }
 
     if ($('#rfc').val() == '') {
       alertaError('#asterisco_rfc', '#rfc');
+      cont++;
     } else {
       limpiarError('#asterisco_rfc', '#rfc');
     }
 
     if ($('#curp').val() == '') {
       alertaError('#asterisco_curp', '#curp');
+      cont++;
     } else {
       limpiarError('#asterisco_curp', '#curp');
     }
 
     if (document.getElementById("unidad").value == '') {
       alertaError('#asterisco_unidad', '#unidad');
+      cont++;
     } else {
       limpiarError('#asterisco_unidad', '#unidad');
     }
 
     if (document.getElementById("sub_unidad").value == '') {
       alertaError('#asterisco_sub_unidad', '#sub_unidad');
+      cont++;
     } else {
       limpiarError('#asterisco_sub_unidad', '#sub_unidad');
     }
 
     if (document.getElementById("categoria").value == '') {
       alertaError('#asterisco_categoria', '#categoria');
+      cont++;
     } else {
       limpiarError('#asterisco_categoria', '#categoria');
     }
 
     if (document.getElementById("horas").value == '') {
       alertaError('#asterisco_horas', '#horas');
+      cont++;
     } else {
       limpiarError('#asterisco_horas', '#horas');
     }
 
     if (document.getElementById("plaza").value == '') {
       alertaError('#asterisco_plaza', '#plaza');
+      cont++;
     } else {
       limpiarError('#asterisco_plaza', '#plaza');
     }
 
     if (document.getElementById("motivo").value == '') {
       alertaError('#asterisco_motivo', '#motivo');
+      cont++;
     } else {
       limpiarError('#asterisco_motivo', '#motivo');
     }
 
     if ($('#puesto').val() == '') {
       alertaError('#asterisco_puesto', '#puesto');
+      cont++;
     } else {
       limpiarError('#asterisco_puesto', '#puesto');
     }
 
     if ($('#calendarYear_gobierno').val() == '') {
       alertaError('#asterisco_calendarYear_gobierno', '#calendarYear_gobierno');
+      cont++;
     } else {
       limpiarError('#asterisco_calendarYear_gobierno', '#calendarYear_gobierno');
     }
 
     if ($('#calendarYear_sep').val() == '') {
       alertaError('#asterisco_calendarYear_sep', '#calendarYear_sep');
+      cont++;
     } else {
       limpiarError('#asterisco_calendarYear_sep', '#calendarYear_sep');
     }
 
     if ($('#calendarYear_dgeti').val() == '') {
       alertaError('#asterisco_calendarYear_dgeti', '#calendarYear_dgeti');
+      cont++;
     } else {
       limpiarError('#asterisco_calendarYear_dgeti', '#calendarYear_dgeti');
     }
 
     if ($('#observaciones').val() == '') {
       alertaError('#asterisco_observaciones', '#observaciones');
+      cont++;
     } else {
       limpiarError('#asterisco_observaciones', '#observaciones');
+    }
+
+    if (cont == 0) {
+      var form_url = $('#form_registrar_docente').attr("action");
+      var contenedor_tabla = document.querySelector("#tabla_uno");
+      var hijos = contenedor_tabla.children;
+      var _cont = hijos.length;
+      var informacion = "";
+
+      for (var i = 0; i < _cont; i++) {
+        informacion = informacion + "\n          &unidad_".concat(i, "=").concat(document.getElementById("unidad_" + i).innerHTML, "\n          &sub_unidad_").concat(i, "=").concat(document.getElementById("sub_unidad_" + i).innerHTML, "\n          &categoria_").concat(i, "=").concat(document.getElementById("categoria_" + i).innerHTML, "\n          &horas_").concat(i, "=").concat(document.getElementById("horas_" + i).innerHTML, "\n          &plaza_").concat(i, "=").concat(document.getElementById("plaza_" + i).innerHTML, "\n          &motivo_").concat(i, "=").concat(document.getElementById("motivo_" + i).innerHTML, "\n          &puesto_").concat(i, "=").concat(document.getElementById("puesto_" + i).innerHTML, "\n          ");
+      } //document.getElementById("unidad_"+0).innerHTML
+      //console.log(informacion);
+      //console.log($('#form_registrar_docente').serialize());
+
+
+      $.ajax({
+        type: 'POST',
+        url: form_url,
+        data: $('#form_registrar_docente').serialize() + informacion,
+        success: function success(r) {
+          console.log(r); // $('#tabla_uno').html(r);
+        }
+      });
     }
   });
 });

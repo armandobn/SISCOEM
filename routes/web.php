@@ -24,8 +24,9 @@ Route::get('/formatoCompatibilidad',[FormatoCompatabilidadController::class, 'cr
 Route::get('/estatusTramitePersonal',[FormatoCompatabilidadController::class, 'estatusPersonal']);
 Route::post('/agregarTabla',[FormatoCompatabilidadController::class, 'obtenerTabla']);
 
-Route::get('/registrarDocente',[DocenteController::class,'create'])->name('registrarDocente.create');
-Route::get('/actualizarDocente',[DocenteController::class,'update'])->name('registrarDocente.update');
+Route::get('/registrarDocente',[DocenteController::class,'showCreate'])->name('registrarDocente.showCreate');
+Route::post('/registrarDocente/registrar',[DocenteController::class,'create'])->name('registrarDocente.create');
+Route::get('/actualizarDocente',[DocenteController::class,'showUpdate'])->name('registrarDocente.showUpdate');
 Route::post('/actualizarDocente/buscarRfc',[DocenteController::class, 'obtenerRfc'])->name('registrarDocente.obtenerRfc');
 
 Route::get('/comando',[comandoController::class,'terminal']);
