@@ -24,14 +24,6 @@
     </div>
 </div>
 
-@foreach ($docentes as $docente)
-    <li>
-        <a href="#">{{ $docente->nombre }}</a>
-        {{-- {{route('cursos.show','abc')}}"> --}}
-        {{-- {{route('cursos.show',$curso->id)}} --}}
-    </li>
-@endforeach
-
 <form action="{{ route('registrarDocente.create') }}" method="post" id="form_registrar_docente">
     @csrf
 
@@ -93,7 +85,7 @@
                 <div class="form-label" for="unidad">Unidad
                     <span class="form-text" id="asterisco_unidad">*</span>:
                 </div>
-                <select class="form-control" id="unidad" name="unidad">
+                <select class="form-control" id="unidad">
                     <option value="">Unidad</option>
                     <option value="27">27</option>
                     <option value="2">2</option>
@@ -109,7 +101,7 @@
                 <div class="form-label" for="sub_unidad">Sub-unidad
                     <span class="form-text" id="asterisco_sub_unidad">*</span>:
                 </div>
-                <select class="form-control" id="sub_unidad" name="sub_unidad">
+                <select class="form-control" id="sub_unidad">
                     <option value="">Sub-unidad</option>
                     <option value="02">02</option>
                     <option value="2">2</option>
@@ -125,7 +117,7 @@
                 <div class="form-label" for="categoria">Categoria
                     <span class="form-text" id="asterisco_categoria">*</span>:
                 </div>
-                <select class="form-control" id="categoria" name="categoria">
+                <select class="form-control" id="categoria">
                     <option value="">Categoria</option>
                     <option value="E4523">E4523</option>
                     <option value="2">2</option>
@@ -141,7 +133,7 @@
                 <div class="form-label" for="horas">Horas
                     <span class="form-text" id="asterisco_horas">*</span>:
                 </div>
-                <select class="form-control" id="horas" name="horas">
+                <select class="form-control" id="horas">
                     <option value="">Horas</option>
                     <option value="050">050 - 5 Horas</option>
                     <option value="020">2</option>
@@ -157,7 +149,7 @@
                 <div class="form-label" for="plaza">Plaza
                     <span class="form-text" id="asterisco_plaza">*</span>:
                 </div>
-                <input type="text" class="form-control" placeholder="Ingresa la plaza" id="plaza" name="plaza">
+                <input type="text" class="form-control" placeholder="Ingresa la plaza" id="plaza" name="plaza[]">
             </div>
 
         </div>
@@ -166,7 +158,7 @@
                 <div class="form-label" for="motivo">Motivo
                     <span class="form-text" id="asterisco_motivo">*</span>:
                 </div>
-                <select class="form-control" id="motivo" name="motivo">
+                <select class="form-control" id="motivo">
                     <option value="">Motivo</option>
                     <option value="95">95</option>
                     <option value="2">2</option>
@@ -184,7 +176,7 @@
                 <div class="form-label" for="puesto">Denominacion de la categoria o puesto
                     <span class="form-text" id="asterisco_puesto">*</span>:
                 </div>
-                <input type="text" class="form-control" id="puesto" name="puesto" value="Profesor de asignatura 'C'">
+                <input type="text" class="form-control" id="puesto" value="Profesor de asignatura 'C'">
             </div>
         </div>
     </div>
@@ -268,7 +260,6 @@
             <span class="btn btn-default">Salir</span>
         </div>
     </div>
-    <button type="submit">Envirar Formulario</button>
 </form>
 
 

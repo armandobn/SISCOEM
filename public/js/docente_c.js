@@ -126,7 +126,7 @@ $gmx(document).ready(function () {
     contenedor_tabla_uno[cont][0][2] = document.createTextNode(unidad);
     contenedor_tabla_uno[cont][0][1].setAttribute("id", "unidad_" + cont); //atributo,valor;
 
-    contenedor_tabla_uno[cont][0][1].setAttribute("name", "unidad_" + cont); //atributo,valor;
+    contenedor_tabla_uno[cont][0][1].setAttribute("name", "unidad[]"); //atributo,valor;
 
     contenedor_tabla_uno[cont][0][1].appendChild(contenedor_tabla_uno[cont][0][2]);
     contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][0][1]);
@@ -248,17 +248,17 @@ $gmx(document).ready(function () {
       var informacion = "";
 
       for (var i = 0; i < _cont; i++) {
-        informacion = informacion + "\n          &unidad_".concat(i, "=").concat(document.getElementById("unidad_" + i).innerHTML, "\n          &sub_unidad_").concat(i, "=").concat(document.getElementById("sub_unidad_" + i).innerHTML, "\n          &categoria_").concat(i, "=").concat(document.getElementById("categoria_" + i).innerHTML, "\n          &horas_").concat(i, "=").concat(document.getElementById("horas_" + i).innerHTML, "\n          &plaza_").concat(i, "=").concat(document.getElementById("plaza_" + i).innerHTML, "\n          &motivo_").concat(i, "=").concat(document.getElementById("motivo_" + i).innerHTML, "\n          &puesto_").concat(i, "=").concat(document.getElementById("puesto_" + i).innerHTML, "\n          ");
+        informacion = informacion + "\n          &unidad[".concat(i, "]=").concat(document.getElementById("unidad_" + i).innerHTML, "\n          &sub_unidad[").concat(i, "]=").concat(document.getElementById("sub_unidad_" + i).innerHTML, "\n          &categoria[").concat(i, "]=").concat(document.getElementById("categoria_" + i).innerHTML, "\n          &horas[").concat(i, "]=").concat(document.getElementById("horas_" + i).innerHTML, "\n          &plaza[").concat(i, "]=").concat(document.getElementById("plaza_" + i).innerHTML, "\n          &motivo[").concat(i, "]=").concat(document.getElementById("motivo_" + i).innerHTML, "\n          &puesto[").concat(i, "]=").concat(document.getElementById("puesto_" + i).innerHTML, "\n          ");
       } //document.getElementById("unidad_"+0).innerHTML
-      //console.log(informacion);
 
 
-      console.log($('#form_registrar_docente').serialize()); //$('#form_registrar_docente').serialize()
+      console.log(informacion); //console.log($('#form_registrar_docente').serialize());
 
+      $('#form_registrar_docente').serialize();
       $.ajax({
         type: 'POST',
         url: form_url,
-        data: $('#form_registrar_docente').serialize(),
+        data: $('#form_registrar_docente').serialize() + informacion,
         success: function success(r) {
           console.log(r); // $('#tabla_uno').html(r);
         }
