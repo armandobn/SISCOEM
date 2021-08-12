@@ -53,9 +53,9 @@ function removerUltimoElemento(base){
 
 $gmx(document).ready(function () {
 
-  $('#calendarYear_gobierno').datepicker({changeYear: true});
-  $('#calendarYear_sep').datepicker({changeYear: true});
-  $('#calendarYear_dgeti').datepicker({changeYear: true});
+  $('#ingresoGob').datepicker({changeYear: true});
+  $('#ingresoSep').datepicker({changeYear: true});
+  $('#ingresoDgti').datepicker({changeYear: true});
 
  const contenedor_tabla_uno = [
     [[], [], [], [], [], [], [] ],
@@ -89,6 +89,49 @@ $gmx(document).ready(function () {
     let motivo = document.getElementById("motivo").value;
     let puesto = document.getElementById("puesto").value;
   
+    if(document.getElementById("unidad").value==''){
+      alertaError('#asterisco_unidad','#unidad');
+      cont++;
+    }else{
+      limpiarError('#asterisco_unidad','#unidad');
+    }
+    if(document.getElementById("sub_unidad").value==''){
+      alertaError('#asterisco_sub_unidad','#sub_unidad');
+      cont++;
+    }else{
+      limpiarError('#asterisco_sub_unidad','#sub_unidad');
+    }
+    if(document.getElementById("categoria").value==''){
+      alertaError('#asterisco_categoria','#categoria');
+      cont++;
+    }else{
+      limpiarError('#asterisco_categoria','#categoria');
+    }
+    if(document.getElementById("horas").value==''){
+      alertaError('#asterisco_horas','#horas');
+      cont++;
+    }else{
+      limpiarError('#asterisco_horas','#horas');
+    }
+    if(document.getElementById("plaza").value==''){
+      alertaError('#asterisco_plaza','#plaza');
+      cont++;
+    }else{
+      limpiarError('#asterisco_plaza','#plaza');
+    }
+    if(document.getElementById("motivo").value==''){
+      alertaError('#asterisco_motivo','#motivo');
+      cont++;
+    }else{
+      limpiarError('#asterisco_motivo','#motivo');
+    }
+    if($('#puesto').val()==''){
+      alertaError('#asterisco_puesto','#puesto');
+      cont++;
+    }else{
+      limpiarError('#asterisco_puesto','#puesto');
+    }
+
     const contenedor_tabla = document.querySelector("#tabla_uno");
     const hijos = contenedor_tabla.children;
     let cont = hijos.length;
@@ -165,17 +208,17 @@ $gmx(document).ready(function () {
     }else{
       limpiarError('#asterisco_nombre','#nombre');
     }
-    if($('#primer_apellido').val()==''){
-      alertaError('#asterisco_primer_apellido','#primer_apellido');
+    if($('#apePaterno').val()==''){
+      alertaError('#asterisco_apePaterno','#apePaterno');
       cont++;
     }else{
-      limpiarError('#asterisco_primer_apellido','#primer_apellido');
+      limpiarError('#asterisco_apePaterno','#apePaterno');
     }
-    if($('#segundo_apellido').val()==''){
-      alertaError('#asterisco_segundo_apellido','#segundo_apellido');
+    if($('#apeMaterno').val()==''){
+      alertaError('#asterisco_apeMaterno','#apeMaterno');
       cont++;
     }else{
-      limpiarError('#asterisco_segundo_apellido','#segundo_apellido');
+      limpiarError('#asterisco_apeMaterno','#apeMaterno');
     }
     if($('#rfc').val()==''){
       alertaError('#asterisco_rfc','#rfc');
@@ -189,65 +232,24 @@ $gmx(document).ready(function () {
     }else{
       limpiarError('#asterisco_curp','#curp');
     }
-    if(document.getElementById("unidad").value==''){
-      alertaError('#asterisco_unidad','#unidad');
+    
+    if($('#ingresoGob').val()==''){
+      alertaError('#asterisco_ingresoGob','#ingresoGob');
       cont++;
     }else{
-      limpiarError('#asterisco_unidad','#unidad');
+      limpiarError('#asterisco_ingresoGob','#ingresoGob');
     }
-    if(document.getElementById("sub_unidad").value==''){
-      alertaError('#asterisco_sub_unidad','#sub_unidad');
+    if($('#ingresoSep').val()==''){
+      alertaError('#asterisco_ingresoSep','#ingresoSep');
       cont++;
     }else{
-      limpiarError('#asterisco_sub_unidad','#sub_unidad');
+      limpiarError('#asterisco_ingresoSep','#ingresoSep');
     }
-    if(document.getElementById("categoria").value==''){
-      alertaError('#asterisco_categoria','#categoria');
+    if($('#ingresoDgti').val()==''){
+      alertaError('#asterisco_ingresoDgti','#ingresoDgti');
       cont++;
     }else{
-      limpiarError('#asterisco_categoria','#categoria');
-    }
-    if(document.getElementById("horas").value==''){
-      alertaError('#asterisco_horas','#horas');
-      cont++;
-    }else{
-      limpiarError('#asterisco_horas','#horas');
-    }
-    if(document.getElementById("plaza").value==''){
-      alertaError('#asterisco_plaza','#plaza');
-      cont++;
-    }else{
-      limpiarError('#asterisco_plaza','#plaza');
-    }
-    if(document.getElementById("motivo").value==''){
-      alertaError('#asterisco_motivo','#motivo');
-      cont++;
-    }else{
-      limpiarError('#asterisco_motivo','#motivo');
-    }
-    if($('#puesto').val()==''){
-      alertaError('#asterisco_puesto','#puesto');
-      cont++;
-    }else{
-      limpiarError('#asterisco_puesto','#puesto');
-    }
-    if($('#calendarYear_gobierno').val()==''){
-      alertaError('#asterisco_calendarYear_gobierno','#calendarYear_gobierno');
-      cont++;
-    }else{
-      limpiarError('#asterisco_calendarYear_gobierno','#calendarYear_gobierno');
-    }
-    if($('#calendarYear_sep').val()==''){
-      alertaError('#asterisco_calendarYear_sep','#calendarYear_sep');
-      cont++;
-    }else{
-      limpiarError('#asterisco_calendarYear_sep','#calendarYear_sep');
-    }
-    if($('#calendarYear_dgeti').val()==''){
-      alertaError('#asterisco_calendarYear_dgeti','#calendarYear_dgeti');
-      cont++;
-    }else{
-      limpiarError('#asterisco_calendarYear_dgeti','#calendarYear_dgeti');
+      limpiarError('#asterisco_ingresoDgti','#ingresoDgti');
     }
     if($('#observaciones').val()==''){
       alertaError('#asterisco_observaciones','#observaciones');
@@ -277,11 +279,13 @@ $gmx(document).ready(function () {
       //document.getElementById("unidad_"+0).innerHTML
       //console.log(informacion);
 
-      //console.log($('#form_registrar_docente').serialize());
+      console.log($('#form_registrar_docente').serialize());
+      
+      //$('#form_registrar_docente').serialize()
       $.ajax({
         type:'POST',
         url: form_url,
-        data:$('#form_registrar_docente').serialize()+informacion,
+        data:$('#form_registrar_docente').serialize(),
         success:function(r){
           console.log(r);
          // $('#tabla_uno').html(r);

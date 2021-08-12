@@ -8,13 +8,6 @@
 
 
 
-@foreach ($docentes as $docente)
-        <li>
-          <a href="#">{{$docente->nombre}}</a> 
-          {{-- {{route('cursos.show','abc')}}"> --}}
-          {{-- {{route('cursos.show',$curso->id)}} --}}
-        </li>
-@endforeach
 
 <div class="row top-buffer">
     <div class="col"></div>
@@ -31,8 +24,17 @@
     </div>
 </div>
 
-<form action="{{route('registrarDocente.create')}}" method="post" id="form_registrar_docente">
+@foreach ($docentes as $docente)
+    <li>
+        <a href="#">{{ $docente->nombre }}</a>
+        {{-- {{route('cursos.show','abc')}}"> --}}
+        {{-- {{route('cursos.show',$curso->id)}} --}}
+    </li>
+@endforeach
+
+<form action="{{ route('registrarDocente.create') }}" method="post" id="form_registrar_docente">
     @csrf
+
     <div class="row top-buffer">
         <div class="col-md-4">
             <div class="form-group">
@@ -42,22 +44,24 @@
                 <input type="text" class="form-control" placeholder="Ingresa nombre(s)" id="nombre" name="nombre">
             </div>
         </div>
+        {{-- <button type="submit">Envirar Formulario</button> --}}
+
         <div class="col-md-4">
             <div class="form-group">
-                <label for="" class="form-label" for="primer_apellido">Primer apellido
-                    <span class="form-text" id="asterisco_primer_apellido">*</span>:
+                <label for="" class="form-label" for="apePaterno">Primer apellido
+                    <span class="form-text" id="asterisco_apePaterno">*</span>:
                 </label>
-                <input type="text" class="form-control" placeholder="Ingresa primer apellido" id="primer_apellido"
-                    name="primer_apellido">
+                <input type="text" class="form-control" placeholder="Ingresa primer apellido" id="apePaterno"
+                    name="apePaterno">
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <label for="" class="form-label" for="segundo_apellido">Segundo apellido
-                    <span class="form-text" id="asterisco_segundo_apellido">*</span>:
+                <label for="" class="form-label" for="apeMaterno">Segundo apellido
+                    <span class="form-text" id="asterisco_apeMaterno">*</span>:
                 </label>
-                <input type="text" class="form-control" placeholder="Ingresa segundo apellido" id="segundo_apellido"
-                    name="segundo_apellido">
+                <input type="text" class="form-control" placeholder="Ingresa segundo apellido" id="apeMaterno"
+                    name="apeMaterno">
             </div>
         </div>
     </div>
@@ -216,28 +220,28 @@
     <div class="row top-buffer">
         <div class="col-md-4">
             <div class="form-group datepicker-group">
-                <label class="control-label" for="calendarYear_gobierno">Ingreso al gobierno federal
-                    <span id="asterisco_calendarYear_gobierno">*</span>:
+                <label class="control-label" for="ingresoGob">Ingreso al gobierno federal
+                    <span id="asterisco_ingresoGob">*</span>:
                 </label>
-                <input class="form-control" id="calendarYear_gobierno" name="calendarYear_gobierno" type="text">
+                <input class="form-control" id="ingresoGob" name="ingresoGob" type="text">
                 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group datepicker-group">
-                <label class="control-label" for="calendarYear_sep">Ingreso a la SEP
-                    <span id="asterisco_calendarYear_sep">*</span>:
+                <label class="control-label" for="ingresoSep">Ingreso a la SEP
+                    <span id="asterisco_ingresoSep">*</span>:
                 </label>
-                <input class="form-control" id="calendarYear_sep" name="calendarYear_sep" type="text">
+                <input class="form-control" id="ingresoSep" name="ingresoSep" type="text">
                 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group datepicker-group">
-                <label class="control-label" for="calendarYear_dgeti">Ingreso a la DGETI
-                    <span id="asterisco_calendarYear_dgeti">*</span>:
+                <label class="control-label" for="ingresoDgti">Ingreso a la DGETI
+                    <span id="asterisco_ingresoDgti">*</span>:
                 </label>
-                <input class="form-control" id="calendarYear_dgeti" name="calendarYear_dgeti" type="text">
+                <input class="form-control" id="ingresoDgti" name="ingresoDgti" type="text">
                 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
             </div>
         </div>
@@ -246,11 +250,11 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <label for="observaciones" class="form-label" >Observaciones
+                <label for="observaciones" class="form-label">Observaciones
                     <span class="form-text" id="asterisco_observaciones">*</span>:
                 </label>
-                <textarea class="form-control" placeholder="Ingresa observaciones" rows="5" 
-                    id="observaciones" name="observaciones"></textarea>
+                <textarea class="form-control" placeholder="Ingresa observaciones" rows="5" id="observaciones"
+                    name="observaciones"></textarea>
             </div>
         </div>
     </div>
@@ -264,6 +268,7 @@
             <span class="btn btn-default">Salir</span>
         </div>
     </div>
+    <button type="submit">Envirar Formulario</button>
 </form>
 
 

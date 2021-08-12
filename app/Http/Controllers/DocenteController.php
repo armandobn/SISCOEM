@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Docente;
-use App\Models\Docentes;
 use Illuminate\Http\Request;
 
 class DocenteController extends Controller
@@ -17,7 +16,12 @@ class DocenteController extends Controller
     }
     
     public function create(Request $request){
-        return $request;
+        $docente = Docente::create($request->all());
+
+        // $docente = new Docente();
+        // $docente->nombre = $request->nombre;
+        // $docente->save();
+        return $docente;
     }
     
     public function showUpdate(){
