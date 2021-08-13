@@ -113,10 +113,10 @@ $gmx(document).ready(function () {
     let sub_unidad = document.getElementById("sub_unidad").value;
     let categoria = document.getElementById("categoria").value;
     let horas = document.getElementById("horas").value;
-    let plaza = document.getElementById("plaza").value;
+    let plaza = $("#plaza").val();
     let motivo = document.getElementById("motivo").value;
     let puesto = document.getElementById("puesto").value;
-  
+    let cont=0;
     if(document.getElementById("unidad").value==''){
       alertaError('#asterisco_unidad','#unidad');
       cont++;
@@ -141,7 +141,7 @@ $gmx(document).ready(function () {
     }else{
       limpiarError('#asterisco_horas','#horas');
     }
-    if(document.getElementById("plaza").value==''){
+    if($("#plaza").val()==''){
       alertaError('#asterisco_plaza','#plaza');
       cont++;
     }else{
@@ -160,7 +160,8 @@ $gmx(document).ready(function () {
       limpiarError('#asterisco_puesto','#puesto');
     }
 
-    const contenedor_tabla = document.querySelector("#tabla_uno");
+    if(cont==0){
+      const contenedor_tabla = document.querySelector("#tabla_uno");
     const hijos = contenedor_tabla.children;
     let cont = hijos.length;
 
@@ -212,7 +213,18 @@ $gmx(document).ready(function () {
     contenedor_tabla_uno[cont][6][1].appendChild(contenedor_tabla_uno[cont][6][2]);
     contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][6][1]);
     
-    console.log(contenedor_tabla_uno);
+    //console.log(contenedor_tabla_uno);
+    
+    $('#unidad').prop('selectedIndex',0);
+    $('#sub_unidad').prop('selectedIndex',0);
+    $('#categoria').prop('selectedIndex',0);
+    $('#horas').prop('selectedIndex',0);
+    $("#plaza").val("");
+    $('#motivo').prop('selectedIndex',0);
+    $('#puesto').prop('selectedIndex',0);
+    
+    }
+    
    
 
   });
@@ -286,37 +298,67 @@ $gmx(document).ready(function () {
       limpiarError('#asterisco_observaciones','#observaciones');
     }
 
+    const contenedor_tabla = document.querySelector("#tabla_uno");
+    const hijos = contenedor_tabla.children;
+    let conta = hijos.length;
+    let informacion="";
+    for(let i=0;i<conta; i++){
+      informacion=informacion+ `
+        &unidad[${i}]=${document.getElementById("unidad_"+i).innerHTML}
+        &sub_unidad[${i}]=${document.getElementById("sub_unidad_"+i).innerHTML}
+        &categoria[${i}]=${document.getElementById("categoria_"+i).innerHTML}
+        &horas[${i}]=${document.getElementById("horas_"+i).innerHTML}
+        &plaza[${i}]=${document.getElementById("plaza_"+i).innerHTML}
+        &motivo[${i}]=${document.getElementById("motivo_"+i).innerHTML}
+        &puesto[${i}]=${document.getElementById("puesto_"+i).innerHTML}
+        `;
+      
+    }
+
+    if(informacion==""){
+      alertaError("#asterisco_tabla","#tabla");
+      const titulo = document.querySelector("#tabla_base");
+      titulo.style.borderColor="#D0021B";
+      titulo.style.borderTopWidth="2px";
+      titulo.style.borderRightWidth="2px";
+      titulo.style.borderBottomWidth="3px";
+      titulo.style.borderLeftWidth="2px";
+      cont++;
+    }else{
+      limpiarError("#asterisco_tabla","#tabla");
+      const titulo = document.querySelector("#tabla_base");
+      titulo.style.borderColor="#DDD";
+      titulo.style.borderTopWidth="1px";
+      titulo.style.borderRightWidth="1px";
+      titulo.style.borderBottomWidth="1px";
+      titulo.style.borderLeftWidth="1px";
+    }
+
     if(cont == 0){
      
       
-      const contenedor_tabla = document.querySelector("#tabla_uno");
-      const hijos = contenedor_tabla.children;
-      let cont = hijos.length;
-      let informacion="";
-      for(let i=0;i<cont; i++){
-        informacion=informacion+ `
-          &unidad[${i}]=${document.getElementById("unidad_"+i).innerHTML}
-          &sub_unidad[${i}]=${document.getElementById("sub_unidad_"+i).innerHTML}
-          &categoria[${i}]=${document.getElementById("categoria_"+i).innerHTML}
-          &horas[${i}]=${document.getElementById("horas_"+i).innerHTML}
-          &plaza[${i}]=${document.getElementById("plaza_"+i).innerHTML}
-          &motivo[${i}]=${document.getElementById("motivo_"+i).innerHTML}
-          &puesto[${i}]=${document.getElementById("puesto_"+i).innerHTML}
-          `;
-      }
+     
       //document.getElementById("unidad_"+0).innerHTML
       //console.log(informacion);
 
       //console.log($('#form_registrar_docente').serialize());
       let form_url=$('#form_registrar_docente').attr("action");
-      $('#form_registrar_docente').serialize()
+      
       $.ajax({
         type:'POST',
         url: form_url,
         data:$('#form_registrar_docente').serialize()+informacion,
         success:function(r){
-          console.log(r);
-         // $('#tabla_uno').html(r);
+          //console.log(r);
+          $('#unidad').prop('selectedIndex',0);
+          $('#sub_unidad').prop('selectedIndex',0);
+          $('#categoria').prop('selectedIndex',0);
+          $('#horas').prop('selectedIndex',0);
+          $("#plaza").val("");
+          $('#motivo').prop('selectedIndex',0);
+          $('#puesto').prop('selectedIndex',0);
+          $('#form_registrar_docente')[0].reset();
+         window.location="actualizarDocente";
         }
 
       });

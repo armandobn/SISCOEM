@@ -64,7 +64,8 @@ class DocenteController extends Controller
             $docentesTabla->puesto = $puesto[$i];
             $docentesTabla->save();
         }
-
+        //return view('docente.actualizarDocente');
+        //return redirect()->route('docente.actualizarDocente'); 
         return 1;
     }
     

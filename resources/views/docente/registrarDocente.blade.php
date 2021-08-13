@@ -40,7 +40,7 @@
 
         <div class="col-md-4">
             <div class="form-group">
-                <label for="" class="form-label" for="apePaterno">Primer apellido
+                <label for="" class="form-label" for="apePaterno">Apellido Paterno
                     <span class="form-text" id="asterisco_apePaterno">*</span>:
                 </label>
                 <input type="text" class="form-control" placeholder="Ingresa primer apellido" id="apePaterno"
@@ -49,7 +49,7 @@
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <label for="" class="form-label" for="apeMaterno">Segundo apellido
+                <label for="" class="form-label" for="apeMaterno">Apellido Materno
                     <span class="form-text" id="asterisco_apeMaterno">*</span>:
                 </label>
                 <input type="text" class="form-control" placeholder="Ingresa segundo apellido" id="apeMaterno"
@@ -209,8 +209,22 @@
         </div>
     </div>
 
-    <div class="table-responsive top-buffer">
-        <table class="table table-bordered">
+    
+    <div class="row top-buffer ">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="" class="form-label" for="tabla" id="tabla">Datos
+                    <span class="form-text" id="asterisco_tabla">*</span>:
+                </label>
+                {{-- <input class="form-control" id="tabla" type="hidden"> --}}
+            </div>        
+        </div>
+    </div>
+
+    
+    <div class="table-responsive form-group">
+
+        <table class="table table-bordered" id="tabla_base">
             <thead>
                 <tr>
                     <th scope="col">Unidad</th>
