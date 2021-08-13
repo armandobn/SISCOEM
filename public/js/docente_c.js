@@ -45,6 +45,22 @@ function removerUltimoElemento(base) {
   contenedor.removeChild(tr_antiguo);
 }
 
+var selectCategoria = document.querySelector('#categoria');
+selectCategoria.addEventListener('change', function (event) {
+  var select = event.target.value; //alert( `Te gusta el sabor ${select}`);
+
+  var token = "_token=".concat($('input[name="_token"]').val());
+  var info = "".concat(token, "&categoria=").concat(select);
+  $.ajax({
+    type: 'POST',
+    url: "registrarDocente/categoria",
+    data: info,
+    success: function success(r) {
+      //console.log(r[0]["denominacion"]);
+      $('#puesto').val(r[0]["denominacion"]);
+    }
+  });
+});
 $gmx(document).ready(function () {
   $('#ingresoGob').datepicker({
     changeYear: true
@@ -241,7 +257,6 @@ $gmx(document).ready(function () {
     }
 
     if (cont == 0) {
-      var form_url = $('#form_registrar_docente').attr("action");
       var contenedor_tabla = document.querySelector("#tabla_uno");
       var hijos = contenedor_tabla.children;
       var _cont = hijos.length;
@@ -250,10 +265,11 @@ $gmx(document).ready(function () {
       for (var i = 0; i < _cont; i++) {
         informacion = informacion + "\n          &unidad[".concat(i, "]=").concat(document.getElementById("unidad_" + i).innerHTML, "\n          &sub_unidad[").concat(i, "]=").concat(document.getElementById("sub_unidad_" + i).innerHTML, "\n          &categoria[").concat(i, "]=").concat(document.getElementById("categoria_" + i).innerHTML, "\n          &horas[").concat(i, "]=").concat(document.getElementById("horas_" + i).innerHTML, "\n          &plaza[").concat(i, "]=").concat(document.getElementById("plaza_" + i).innerHTML, "\n          &motivo[").concat(i, "]=").concat(document.getElementById("motivo_" + i).innerHTML, "\n          &puesto[").concat(i, "]=").concat(document.getElementById("puesto_" + i).innerHTML, "\n          ");
       } //document.getElementById("unidad_"+0).innerHTML
+      //console.log(informacion);
+      //console.log($('#form_registrar_docente').serialize());
 
 
-      console.log(informacion); //console.log($('#form_registrar_docente').serialize());
-
+      var form_url = $('#form_registrar_docente').attr("action");
       $('#form_registrar_docente').serialize();
       $.ajax({
         type: 'POST',

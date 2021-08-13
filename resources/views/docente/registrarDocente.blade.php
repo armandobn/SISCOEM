@@ -119,27 +119,47 @@
                 </div>
                 <select class="form-control" id="categoria">
                     <option value="">Categoria</option>
-                    <option value="E4523">E4523</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option disabled><strong>-----Docente-----</strong></option>
+                    
+                    @foreach ($docens as $docen)
+                        <option value="{{$docen->categoria}}">{{$docen->categoria}}</option>
+                    @endforeach
+                    <option disabled><strong>-----Admistrativo-----</strong></option>
+                    @foreach ($admins as $admin)
+                        <option value="{{$admin->categoria}}">{{$admin->categoria}}</option>
+                    @endforeach
                 </select>
             </div>
 
         </div>
+        
         <div class="col-md-2">
             <div class="form-group">
                 <div class="form-label" for="horas">Horas
                     <span class="form-text" id="asterisco_horas">*</span>:
                 </div>
-                <select class="form-control" id="horas">
+                <select class="form-control text-center" id="horas">
                     <option value="">Horas</option>
+                    <option value="010">010 - 1 Horas</option>
+                    <option value="020">020 - 2 Horas</option>
+                    <option value="030">030 - 3 Horas</option>
+                    <option value="040">040 - 4 Horas</option>
                     <option value="050">050 - 5 Horas</option>
-                    <option value="020">2</option>
-                    <option value="030">3</option>
-                    <option value="040">4</option>
-                    <option value="060">6</option>
+                    <option value="060">060 - 6 Horas</option>
+                    <option value="070">070 - 7 Horas</option>
+                    <option value="080">080 - 8 Horas</option>
+                    <option value="090">090 - 9 Horas</option>
+                    <option value="100">100 - 10 Horas</option>
+                    <option value="110">110 - 11 Horas</option>
+                    <option value="120">120 - 12 Horas</option>
+                    <option value="130">130 - 13 Horas</option>
+                    <option value="140">140 - 14 Horas</option>
+                    <option value="150">150 - 15 Horas</option>
+                    <option value="160">160 - 16 Horas</option>
+                    <option value="170">170 - 17 Horas</option>
+                    <option value="180">180 - 18 Horas</option>
+                    <option value="190">190 - 19 Horas</option>
+                    <option value="120">120 - 20 Horas</option>
                 </select>
             </div>
 
@@ -149,7 +169,7 @@
                 <div class="form-label" for="plaza">Plaza
                     <span class="form-text" id="asterisco_plaza">*</span>:
                 </div>
-                <input type="text" class="form-control" placeholder="Ingresa la plaza" id="plaza" name="plaza[]">
+                <input type="text" class="form-control" placeholder="Ingresa la plaza" id="plaza">
             </div>
 
         </div>
@@ -160,14 +180,13 @@
                 </div>
                 <select class="form-control" id="motivo">
                     <option value="">Motivo</option>
-                    <option value="95">95</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                    @foreach ($motivos as $motivo)
+                        <option value="{{$motivo->nick}}">{{$motivo->nick}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
+
     </div>
 
     <div class="row">
@@ -176,7 +195,7 @@
                 <div class="form-label" for="puesto">Denominacion de la categoria o puesto
                     <span class="form-text" id="asterisco_puesto">*</span>:
                 </div>
-                <input type="text" class="form-control" id="puesto" value="Profesor de asignatura 'C'">
+                <input type="text" class="form-control" id="puesto" disabled>
             </div>
         </div>
     </div>

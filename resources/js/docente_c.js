@@ -51,11 +51,38 @@ function removerUltimoElemento(base){
  contenedor.removeChild(tr_antiguo);
 }
 
+const selectCategoria = document.querySelector('#categoria');
+
+selectCategoria.addEventListener('change', (event) => {
+    let select=event.target.value;
+    //alert( `Te gusta el sabor ${select}`);
+    
+    
+    let token=`_token=${$('input[name="_token"]').val()}`;
+    let info=`${token}&categoria=${select}`;
+    $.ajax({
+      type:'POST',
+      url: "registrarDocente/categoria",
+      data: info,
+      success:function(r){
+        //console.log(r[0]["denominacion"]);
+
+       $('#puesto').val(r[0]["denominacion"]);
+      }
+
+    });
+
+});
+
+
 $gmx(document).ready(function () {
 
   $('#ingresoGob').datepicker({changeYear: true});
   $('#ingresoSep').datepicker({changeYear: true});
   $('#ingresoDgti').datepicker({changeYear: true});
+
+  
+
 
  const contenedor_tabla_uno = [
     [[], [], [], [], [], [], [] ],
@@ -79,6 +106,7 @@ $gmx(document).ready(function () {
     [[], [], [], [], [], [], [] ],
     [[], [], [], [], [], [], [] ]
   ];
+
   $('#btn_agregar').click(function(){
     
     let unidad = document.getElementById("unidad").value;
@@ -260,7 +288,7 @@ $gmx(document).ready(function () {
 
     if(cont == 0){
      
-      let form_url=$('#form_registrar_docente').attr("action");
+      
       const contenedor_tabla = document.querySelector("#tabla_uno");
       const hijos = contenedor_tabla.children;
       let cont = hijos.length;
@@ -277,10 +305,10 @@ $gmx(document).ready(function () {
           `;
       }
       //document.getElementById("unidad_"+0).innerHTML
-      console.log(informacion);
+      //console.log(informacion);
 
       //console.log($('#form_registrar_docente').serialize());
-      
+      let form_url=$('#form_registrar_docente').attr("action");
       $('#form_registrar_docente').serialize()
       $.ajax({
         type:'POST',

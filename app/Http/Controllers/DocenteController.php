@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CatAdmin;
+use App\Models\CatDocen;
+use App\Models\CatMotivo;
 use App\Models\Docente;
 use App\Models\DocentesTabla;
 use Illuminate\Http\Request;
@@ -10,12 +13,29 @@ class DocenteController extends Controller
 {
     //
     public function showCreate(){
-        
         //$docentes = Docente::all();
         //return view('docente.registrarDocente',compact('docentes'));
-        return view('docente.registrarDocente');
+        $motivos = CatMotivo::all();
+        $docens = CatDocen::all();
+        $admins = CatAdmin::all();
+        
+        return view('docente.registrarDocente',compact('motivos','docens','admins'));
     }
     
+    public function categoria(Request $request){
+        $docens = CatDocen::select('denominacion')->where('categoria',$request->categoria)->get();
+        $admins= CatAdmin::select('denominacion')->where('categoria',$request->categoria)->get();
+        
+        if($docens!="0"){
+            $denominacion=$docens;
+        }
+        if(count($admins)!="0"){
+            $denominacion=$admins;
+        }    
+        return $denominacion;
+        
+    }
+
     public function create(Request $request){
         $docente = Docente::create($request->all());
       
