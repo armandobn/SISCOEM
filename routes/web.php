@@ -28,7 +28,7 @@ Route::get('/registrarDocente',[DocenteController::class,'showCreate'])->name('r
 Route::post('/registrarDocente/categoria',[DocenteController::class,'categoria'])->name('registrarDocente.categoria');
 Route::post('/registrarDocente/registrar',[DocenteController::class,'create'])->name('registrarDocente.create');
 Route::get('/actualizarDocente',[DocenteController::class,'showUpdate'])->name('registrarDocente.showUpdate');
-Route::post('/actualizarDocente/buscarRfc',[DocenteController::class, 'obtenerRfc'])->name('registrarDocente.obtenerRfc');
+Route::post('/actualizarDocente/buscarRfc',[DocenteController::class, 'obtenerRfc'])->name('actualizarDocente.obtenerRfc');
 
 Route::get('/comando',[comandoController::class,'terminal']);
 Route::post('/agregarComando',[comandoController::class, 'ejecuteComando']);

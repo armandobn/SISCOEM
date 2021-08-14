@@ -81,10 +81,8 @@ $gmx(document).ready(function () {
   $('#ingresoSep').datepicker({changeYear: true});
   $('#ingresoDgti').datepicker({changeYear: true});
 
-  
 
-
- const contenedor_tabla_uno = [
+  const contenedor_tabla_uno = [
     [[], [], [], [], [], [], [] ],
     [[], [], [], [], [], [], [] ],
     [[], [], [], [], [], [], [] ],
@@ -241,7 +239,6 @@ $gmx(document).ready(function () {
 
   $('#btn_registrar').click(function(){
     let cont = 0;
-
     if($('#nombre').val()==''){
       alertaError('#asterisco_nombre','#nombre');
       cont++;
@@ -263,16 +260,21 @@ $gmx(document).ready(function () {
     if($('#rfc').val()==''){
       alertaError('#asterisco_rfc','#rfc');
       cont++;
-    }else{
+    }else if($('#rfc').val().length==13){
       limpiarError('#asterisco_rfc','#rfc');
+    }else{
+      alertaError('#asterisco_rfc','#rfc');
+      cont++;
     }
     if($('#curp').val()==''){
       alertaError('#asterisco_curp','#curp');
       cont++;
-    }else{
+    }else if($('#curp').val().length==18){
       limpiarError('#asterisco_curp','#curp');
+    }else{
+      alertaError('#asterisco_curp','#curp');
+      cont++;
     }
-    
     if($('#ingresoGob').val()==''){
       alertaError('#asterisco_ingresoGob','#ingresoGob');
       cont++;

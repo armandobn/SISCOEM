@@ -87,11 +87,15 @@
                 </div>
                 <select class="form-control" id="unidad">
                     <option value="">Unidad</option>
+                    <option value="13">13</option>
+                    <option value="19">19</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
                     <option value="27">27</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option value="34">34</option>
+                    <option value="35">35</option>
+                    <option value="65">65</option>
+                    <option value="68">68</option>
                 </select>
             </div>
 
@@ -103,11 +107,12 @@
                 </div>
                 <select class="form-control" id="sub_unidad">
                     <option value="">Sub-unidad</option>
+                    <option value="01">01</option>
                     <option value="02">02</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option value="03">03</option>
+                    <option value="27">27</option>
+                    <option value="52">52</option>
+                    <option value="98">98</option>
                 </select>
             </div>
 

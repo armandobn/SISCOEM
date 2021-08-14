@@ -70,20 +70,18 @@ class DocenteController extends Controller
     }
     
     public function showUpdate(){
-        //esto es una prueba//
-        return view('docente.actualizarDocente');
-    }
-
-    public function obtnerRfc(Request $request){
-        //esto es una prueba//
-        $rfc=$request->buscar_rfc;
-        return $request;
+        
+        $motivos = CatMotivo::all();
+        $docens = CatDocen::all();
+        $admins = CatAdmin::all();
+        return view('docente.actualizarDocente',compact('motivos','docens','admins'));
     }
 
     public function obtenerRfc(Request $request){
-        //esto es una prueba//
+        
         $rfc=$request->buscar_rfc;
         return $request;
     }
+
 
 }

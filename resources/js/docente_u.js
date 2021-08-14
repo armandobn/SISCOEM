@@ -1,5 +1,5 @@
 
-//Genera los mensajes de Error 555
+//Genera los mensajes de Error
 function alertaError(id_asterisco, id_element) {
   const asterisco = document.querySelector(id_asterisco);
 
@@ -51,19 +51,46 @@ function removerUltimoElemento(base){
  contenedor.removeChild(tr_antiguo);
 }
 
+const selectCategoria = document.querySelector('#categoria');
+
+selectCategoria.addEventListener('change', (event) => {
+    let select=event.target.value;
+    //alert( `Te gusta el sabor ${select}`);
+    
+    
+    let token=`_token=${$('input[name="_token"]').val()}`;
+    let info=`${token}&categoria=${select}`;
+    $.ajax({
+      type:'POST',
+      url: "registrarDocente/categoria",
+      data: info,
+      success:function(r){
+        //console.log(r[0]["denominacion"]);
+
+       $('#puesto').val(r[0]["denominacion"]);
+      }
+
+    });
+
+});
 
 $gmx(document).ready(function () {
 
-  $('#calendarYear_gobierno').datepicker({changeYear: true});
-  $('#calendarYear_sep').datepicker({changeYear: true});
-  $('#calendarYear_dgeti').datepicker({changeYear: true});
+  $('#ingresoGob').datepicker({changeYear: true});
+  $('#ingresoSep').datepicker({changeYear: true});
+  $('#ingresoDgti').datepicker({changeYear: true});
+
 
   $('#btn_buscar_rfc').click(function(){
     
       if($('#buscar_rfc').val()==""){
         alertaError('#asterisco_buscar_rfc','#buscar_rfc');
-      }else{
+        return null;
+      }else if($('#buscar_rfc').val().length==13){
         limpiarError('#asterisco_buscar_rfc','#buscar_rfc');
+      }else{
+        alertaError('#asterisco_buscar_rfc','#buscar_rfc');
+        return null;
       }
 
       //console.log($('#form_buscar_rfc').serialize());
@@ -74,15 +101,37 @@ $gmx(document).ready(function () {
         url: form_url,
         data:$('#form_buscar_rfc').serialize(),
         success:function(r){
-          //console.log(r);
-         // $('#tabla_uno').html(r);
+          console.log(r);
+          document.getElementById("nombre").disabled = false;
+          document.getElementById("apePaterno").disabled = false;
+          document.getElementById("apeMaterno").disabled = false;
+          document.getElementById("rfc").disabled = false;
+          document.getElementById("curp").disabled = false;
+          document.getElementById("unidad").disabled = false;
+          document.getElementById("sub_unidad").disabled = false;
+          document.getElementById("categoria").disabled = false;
+          document.getElementById("horas").disabled = false;
+          document.getElementById("plaza").disabled = false;
+          document.getElementById("motivo").disabled = false;
+          document.getElementById("puesto").disabled = false;
+          document.getElementById("btn_agregar").disabled = false;
+          document.getElementById("btn_eliminar").disabled = false;
+          document.getElementById("ingresoGob").disabled = false;
+          document.getElementById("ingresoSep").disabled = false;
+          document.getElementById("ingresoDgti").disabled = false;
+          document.getElementById("observaciones").disabled = false;
+          document.getElementById("btn_actualizar").disabled = false;
+          document.getElementById("btn_eliminar_registro").disabled = false;
         }
 
       });
 
+      
+      
+
   });
 
- const contenedor_tabla_uno = [
+  const contenedor_tabla_uno = [
     [[], [], [], [], [], [], [] ],
     [[], [], [], [], [], [], [] ],
     [[], [], [], [], [], [], [] ],
@@ -104,17 +153,62 @@ $gmx(document).ready(function () {
     [[], [], [], [], [], [], [] ],
     [[], [], [], [], [], [], [] ]
   ];
+
   $('#btn_agregar').click(function(){
     
     let unidad = document.getElementById("unidad").value;
     let sub_unidad = document.getElementById("sub_unidad").value;
     let categoria = document.getElementById("categoria").value;
     let horas = document.getElementById("horas").value;
-    let plaza = document.getElementById("plaza").value;
+    let plaza = $("#plaza").val();
     let motivo = document.getElementById("motivo").value;
     let puesto = document.getElementById("puesto").value;
-  
-    const contenedor_tabla = document.querySelector("#tabla_uno");
+    let cont=0;
+    if(document.getElementById("unidad").value==''){
+      alertaError('#asterisco_unidad','#unidad');
+      cont++;
+    }else{
+      limpiarError('#asterisco_unidad','#unidad');
+    }
+    if(document.getElementById("sub_unidad").value==''){
+      alertaError('#asterisco_sub_unidad','#sub_unidad');
+      cont++;
+    }else{
+      limpiarError('#asterisco_sub_unidad','#sub_unidad');
+    }
+    if(document.getElementById("categoria").value==''){
+      alertaError('#asterisco_categoria','#categoria');
+      cont++;
+    }else{
+      limpiarError('#asterisco_categoria','#categoria');
+    }
+    if(document.getElementById("horas").value==''){
+      alertaError('#asterisco_horas','#horas');
+      cont++;
+    }else{
+      limpiarError('#asterisco_horas','#horas');
+    }
+    if($("#plaza").val()==''){
+      alertaError('#asterisco_plaza','#plaza');
+      cont++;
+    }else{
+      limpiarError('#asterisco_plaza','#plaza');
+    }
+    if(document.getElementById("motivo").value==''){
+      alertaError('#asterisco_motivo','#motivo');
+      cont++;
+    }else{
+      limpiarError('#asterisco_motivo','#motivo');
+    }
+    if($('#puesto').val()==''){
+      alertaError('#asterisco_puesto','#puesto');
+      cont++;
+    }else{
+      limpiarError('#asterisco_puesto','#puesto');
+    }
+
+    if(cont==0){
+      const contenedor_tabla = document.querySelector("#tabla_uno");
     const hijos = contenedor_tabla.children;
     let cont = hijos.length;
 
@@ -125,8 +219,10 @@ $gmx(document).ready(function () {
     contenedor_tabla_uno[cont][0][1] = document.createElement("TD");
     contenedor_tabla_uno[cont][0][2] = document.createTextNode(unidad);
     contenedor_tabla_uno[cont][0][1].setAttribute("id", "unidad_" + cont );//atributo,valor;
+    contenedor_tabla_uno[cont][0][1].setAttribute("name", "unidad[]" );//atributo,valor;
     contenedor_tabla_uno[cont][0][1].appendChild(contenedor_tabla_uno[cont][0][2]);
     contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][0][1]);
+    
 
     contenedor_tabla_uno[cont][1][1] = document.createElement("TD");
     contenedor_tabla_uno[cont][1][2] = document.createTextNode(sub_unidad);
@@ -164,7 +260,18 @@ $gmx(document).ready(function () {
     contenedor_tabla_uno[cont][6][1].appendChild(contenedor_tabla_uno[cont][6][2]);
     contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][6][1]);
     
-    console.log(contenedor_tabla_uno);
+    //console.log(contenedor_tabla_uno);
+    
+    $('#unidad').prop('selectedIndex',0);
+    $('#sub_unidad').prop('selectedIndex',0);
+    $('#categoria').prop('selectedIndex',0);
+    $('#horas').prop('selectedIndex',0);
+    $("#plaza").val("");
+    $('#motivo').prop('selectedIndex',0);
+    $('#puesto').prop('selectedIndex',0);
+    
+    }
+    
    
 
   });
@@ -180,93 +287,137 @@ $gmx(document).ready(function () {
   });
 
   $('#btn_actualizar').click(function(){
-    alert('actualizar');
+    let cont = 0;
     if($('#nombre').val()==''){
       alertaError('#asterisco_nombre','#nombre');
+      cont++;
     }else{
       limpiarError('#asterisco_nombre','#nombre');
     }
-    if($('#primer_apellido').val()==''){
-      alertaError('#asterisco_primer_apellido','#primer_apellido');
+    if($('#apePaterno').val()==''){
+      alertaError('#asterisco_apePaterno','#apePaterno');
+      cont++;
     }else{
-      limpiarError('#asterisco_primer_apellido','#primer_apellido');
+      limpiarError('#asterisco_apePaterno','#apePaterno');
     }
-    if($('#segundo_apellido').val()==''){
-      alertaError('#asterisco_segundo_apellido','#segundo_apellido');
+    if($('#apeMaterno').val()==''){
+      alertaError('#asterisco_apeMaterno','#apeMaterno');
+      cont++;
     }else{
-      limpiarError('#asterisco_segundo_apellido','#segundo_apellido');
+      limpiarError('#asterisco_apeMaterno','#apeMaterno');
     }
     if($('#rfc').val()==''){
       alertaError('#asterisco_rfc','#rfc');
-    }else{
+      cont++;
+    }else if($('#rfc').val().length==13){
       limpiarError('#asterisco_rfc','#rfc');
+    }else{
+      alertaError('#asterisco_rfc','#rfc');
+      cont++;
     }
     if($('#curp').val()==''){
       alertaError('#asterisco_curp','#curp');
-    }else{
+      cont++;
+    }else if($('#curp').val().length==18){
       limpiarError('#asterisco_curp','#curp');
-    }
-    if(document.getElementById("unidad").value==''){
-      alertaError('#asterisco_unidad','#unidad');
     }else{
-      limpiarError('#asterisco_unidad','#unidad');
+      alertaError('#asterisco_curp','#curp');
+      cont++;
     }
-    if(document.getElementById("sub_unidad").value==''){
-      alertaError('#asterisco_sub_unidad','#sub_unidad');
+    if($('#ingresoGob').val()==''){
+      alertaError('#asterisco_ingresoGob','#ingresoGob');
+      cont++;
     }else{
-      limpiarError('#asterisco_sub_unidad','#sub_unidad');
+      limpiarError('#asterisco_ingresoGob','#ingresoGob');
     }
-    if(document.getElementById("categoria").value==''){
-      alertaError('#asterisco_categoria','#categoria');
+    if($('#ingresoSep').val()==''){
+      alertaError('#asterisco_ingresoSep','#ingresoSep');
+      cont++;
     }else{
-      limpiarError('#asterisco_categoria','#categoria');
+      limpiarError('#asterisco_ingresoSep','#ingresoSep');
     }
-    if(document.getElementById("horas").value==''){
-      alertaError('#asterisco_horas','#horas');
+    if($('#ingresoDgti').val()==''){
+      alertaError('#asterisco_ingresoDgti','#ingresoDgti');
+      cont++;
     }else{
-      limpiarError('#asterisco_horas','#horas');
-    }
-    if(document.getElementById("plaza").value==''){
-      alertaError('#asterisco_plaza','#plaza');
-    }else{
-      limpiarError('#asterisco_plaza','#plaza');
-    }
-    if(document.getElementById("motivo").value==''){
-      alertaError('#asterisco_motivo','#motivo');
-    }else{
-      limpiarError('#asterisco_motivo','#motivo');
-    }
-    if($('#puesto').val()==''){
-      alertaError('#asterisco_puesto','#puesto');
-    }else{
-      limpiarError('#asterisco_puesto','#puesto');
-    }
-    if($('#calendarYear_gobierno').val()==''){
-      alertaError('#asterisco_calendarYear_gobierno','#calendarYear_gobierno');
-    }else{
-      limpiarError('#asterisco_calendarYear_gobierno','#calendarYear_gobierno');
-    }
-    if($('#calendarYear_sep').val()==''){
-      alertaError('#asterisco_calendarYear_sep','#calendarYear_sep');
-    }else{
-      limpiarError('#asterisco_calendarYear_sep','#calendarYear_sep');
-    }
-    if($('#calendarYear_dgeti').val()==''){
-      alertaError('#asterisco_calendarYear_dgeti','#calendarYear_dgeti');
-    }else{
-      limpiarError('#asterisco_calendarYear_dgeti','#calendarYear_dgeti');
+      limpiarError('#asterisco_ingresoDgti','#ingresoDgti');
     }
     if($('#observaciones').val()==''){
       alertaError('#asterisco_observaciones','#observaciones');
+      cont++;
     }else{
       limpiarError('#asterisco_observaciones','#observaciones');
     }
 
+    const contenedor_tabla = document.querySelector("#tabla_uno");
+    const hijos = contenedor_tabla.children;
+    let conta = hijos.length;
+    let informacion="";
+    for(let i=0;i<conta; i++){
+      informacion=informacion+ `
+        &unidad[${i}]=${document.getElementById("unidad_"+i).innerHTML}
+        &sub_unidad[${i}]=${document.getElementById("sub_unidad_"+i).innerHTML}
+        &categoria[${i}]=${document.getElementById("categoria_"+i).innerHTML}
+        &horas[${i}]=${document.getElementById("horas_"+i).innerHTML}
+        &plaza[${i}]=${document.getElementById("plaza_"+i).innerHTML}
+        &motivo[${i}]=${document.getElementById("motivo_"+i).innerHTML}
+        &puesto[${i}]=${document.getElementById("puesto_"+i).innerHTML}
+        `;
+      
+    }
+
+    if(informacion==""){
+      alertaError("#asterisco_tabla","#tabla");
+      const titulo = document.querySelector("#tabla_base");
+      titulo.style.borderColor="#D0021B";
+      titulo.style.borderTopWidth="2px";
+      titulo.style.borderRightWidth="2px";
+      titulo.style.borderBottomWidth="3px";
+      titulo.style.borderLeftWidth="2px";
+      cont++;
+    }else{
+      limpiarError("#asterisco_tabla","#tabla");
+      const titulo = document.querySelector("#tabla_base");
+      titulo.style.borderColor="#DDD";
+      titulo.style.borderTopWidth="1px";
+      titulo.style.borderRightWidth="1px";
+      titulo.style.borderBottomWidth="1px";
+      titulo.style.borderLeftWidth="1px";
+    }
+
+    if(cont == 0){
+     
+      //document.getElementById("unidad_"+0).innerHTML
+      //console.log(informacion);
+
+      //console.log($('#form_registrar_docente').serialize());
+      let form_url=$('#form_registrar_docente').attr("action");
+      
+      // $.ajax({
+      //   type:'POST',
+      //   url: form_url,
+      //   data:$('#form_registrar_docente').serialize()+informacion,
+      //   success:function(r){
+      //     //console.log(r);
+      //     $('#unidad').prop('selectedIndex',0);
+      //     $('#sub_unidad').prop('selectedIndex',0);
+      //     $('#categoria').prop('selectedIndex',0);
+      //     $('#horas').prop('selectedIndex',0);
+      //     $("#plaza").val("");
+      //     $('#motivo').prop('selectedIndex',0);
+      //     $('#puesto').prop('selectedIndex',0);
+      //     $('#form_registrar_docente')[0].reset();
+      //    window.location="actualizarDocente";
+      //   }
+
+      // });
+
+    }
 
   });
+
  
-  $('#btn_eliminar').click(function(){
-    console.log('ddd');
+  $('#btn_eliminar_registro').click(function(){
     alert('eliminar');
   });
 

@@ -257,15 +257,21 @@ $gmx(document).ready(function () {
     if ($('#rfc').val() == '') {
       alertaError('#asterisco_rfc', '#rfc');
       cont++;
-    } else {
+    } else if ($('#rfc').val().length == 13) {
       limpiarError('#asterisco_rfc', '#rfc');
+    } else {
+      alertaError('#asterisco_rfc', '#rfc');
+      cont++;
     }
 
     if ($('#curp').val() == '') {
       alertaError('#asterisco_curp', '#curp');
       cont++;
-    } else {
+    } else if ($('#curp').val().length == 18) {
       limpiarError('#asterisco_curp', '#curp');
+    } else {
+      alertaError('#asterisco_curp', '#curp');
+      cont++;
     }
 
     if ($('#ingresoGob').val() == '') {
