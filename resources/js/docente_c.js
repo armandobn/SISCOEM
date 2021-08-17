@@ -44,6 +44,29 @@ function limpiarError(id_asterisco, id_elemento) {
 
 }
 
+//Genera mensaje principal Error
+function mensajeError(id_alerta,mensaje){
+  const alerta = document.querySelector(id_alerta);
+  if (alerta.classList.contains("alert-danger") == false) {
+    alerta.classList.add("alert-danger");
+    $(id_alerta).html(mensaje);
+    
+  }else{
+    $(id_alerta).html(mensaje);
+  }
+  
+}
+
+//Elimina el mensaje de Error principal
+function limpiaMensajeError(id_alerta){
+  const alerta = document.querySelector(id_alerta);
+  if (alerta.classList.contains("alert-danger") == true) {
+    alerta.classList.remove("alert-danger");
+    alerta.innerHTML="";
+  }
+  
+}
+
 //Elimina el ultimo elemento
 function removerUltimoElemento(base){
  const contenedor= document.querySelector(base);
@@ -74,8 +97,17 @@ selectCategoria.addEventListener('change', (event) => {
 
 });
 
-
 $gmx(document).ready(function () {
+  
+  //Scroll ir Arriba
+  const obtener_pixeles_inicio = ()=> document.documentElement.scrollTop || document.body.scrollTop
+  const irArriba = () => {
+    if(obtener_pixeles_inicio() > 0){
+      requestAnimationFrame(irArriba)
+      scrollTo(0, obtener_pixeles_inicio() - (obtener_pixeles_inicio() / 30))
+
+    }
+  }
 
   $('#ingresoGob').datepicker({changeYear: true});
   $('#ingresoSep').datepicker({changeYear: true});
@@ -160,66 +192,66 @@ $gmx(document).ready(function () {
 
     if(cont==0){
       const contenedor_tabla = document.querySelector("#tabla_uno");
-    const hijos = contenedor_tabla.children;
-    let cont = hijos.length;
+      const hijos = contenedor_tabla.children;
+      let cont = hijos.length;
 
-    contenedor_tabla_uno[cont][0][0] = document.createElement("TR");//todo en mayuscula
-    contenedor_tabla_uno[cont][0][0].setAttribute("id", "tr_" + cont);//atributo,valor;
-    contenedor_tabla.appendChild(contenedor_tabla_uno[cont][0][0]);
-    
-    contenedor_tabla_uno[cont][0][1] = document.createElement("TD");
-    contenedor_tabla_uno[cont][0][2] = document.createTextNode(unidad);
-    contenedor_tabla_uno[cont][0][1].setAttribute("id", "unidad_" + cont );//atributo,valor;
-    contenedor_tabla_uno[cont][0][1].setAttribute("name", "unidad[]" );//atributo,valor;
-    contenedor_tabla_uno[cont][0][1].appendChild(contenedor_tabla_uno[cont][0][2]);
-    contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][0][1]);
-    
+      contenedor_tabla_uno[cont][0][0] = document.createElement("TR");//todo en mayuscula
+      contenedor_tabla_uno[cont][0][0].setAttribute("id", "tr_" + cont);//atributo,valor;
+      contenedor_tabla.appendChild(contenedor_tabla_uno[cont][0][0]);
+      
+      contenedor_tabla_uno[cont][0][1] = document.createElement("TD");
+      contenedor_tabla_uno[cont][0][2] = document.createTextNode(unidad);
+      contenedor_tabla_uno[cont][0][1].setAttribute("id", "unidad_" + cont );//atributo,valor;
+      contenedor_tabla_uno[cont][0][1].setAttribute("name", "unidad[]" );//atributo,valor;
+      contenedor_tabla_uno[cont][0][1].appendChild(contenedor_tabla_uno[cont][0][2]);
+      contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][0][1]);
+      
 
-    contenedor_tabla_uno[cont][1][1] = document.createElement("TD");
-    contenedor_tabla_uno[cont][1][2] = document.createTextNode(sub_unidad);
-    contenedor_tabla_uno[cont][1][1].setAttribute("id", "sub_unidad_" + cont );//atributo,valor;
-    contenedor_tabla_uno[cont][1][1].appendChild(contenedor_tabla_uno[cont][1][2]);
-    contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][1][1]);
+      contenedor_tabla_uno[cont][1][1] = document.createElement("TD");
+      contenedor_tabla_uno[cont][1][2] = document.createTextNode(sub_unidad);
+      contenedor_tabla_uno[cont][1][1].setAttribute("id", "sub_unidad_" + cont );//atributo,valor;
+      contenedor_tabla_uno[cont][1][1].appendChild(contenedor_tabla_uno[cont][1][2]);
+      contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][1][1]);
 
-    contenedor_tabla_uno[cont][2][1] = document.createElement("TD");
-    contenedor_tabla_uno[cont][2][2] = document.createTextNode(categoria);
-    contenedor_tabla_uno[cont][2][1].setAttribute("id", "categoria_" + cont );//atributo,valor;
-    contenedor_tabla_uno[cont][2][1].appendChild(contenedor_tabla_uno[cont][2][2]);
-    contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][2][1]);
+      contenedor_tabla_uno[cont][2][1] = document.createElement("TD");
+      contenedor_tabla_uno[cont][2][2] = document.createTextNode(categoria);
+      contenedor_tabla_uno[cont][2][1].setAttribute("id", "categoria_" + cont );//atributo,valor;
+      contenedor_tabla_uno[cont][2][1].appendChild(contenedor_tabla_uno[cont][2][2]);
+      contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][2][1]);
 
-    contenedor_tabla_uno[cont][3][1] = document.createElement("TD");
-    contenedor_tabla_uno[cont][3][2] = document.createTextNode(horas);
-    contenedor_tabla_uno[cont][3][1].setAttribute("id", "horas_" + cont );//atributo,valor;
-    contenedor_tabla_uno[cont][3][1].appendChild(contenedor_tabla_uno[cont][3][2]);
-    contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][3][1]);
+      contenedor_tabla_uno[cont][3][1] = document.createElement("TD");
+      contenedor_tabla_uno[cont][3][2] = document.createTextNode(horas);
+      contenedor_tabla_uno[cont][3][1].setAttribute("id", "horas_" + cont );//atributo,valor;
+      contenedor_tabla_uno[cont][3][1].appendChild(contenedor_tabla_uno[cont][3][2]);
+      contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][3][1]);
 
-    contenedor_tabla_uno[cont][4][1] = document.createElement("TD");
-    contenedor_tabla_uno[cont][4][2] = document.createTextNode(plaza);
-    contenedor_tabla_uno[cont][4][1].setAttribute("id", "plaza_" + cont );//atributo,valor;
-    contenedor_tabla_uno[cont][4][1].appendChild(contenedor_tabla_uno[cont][4][2]);
-    contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][4][1]);
+      contenedor_tabla_uno[cont][4][1] = document.createElement("TD");
+      contenedor_tabla_uno[cont][4][2] = document.createTextNode(plaza);
+      contenedor_tabla_uno[cont][4][1].setAttribute("id", "plaza_" + cont );//atributo,valor;
+      contenedor_tabla_uno[cont][4][1].appendChild(contenedor_tabla_uno[cont][4][2]);
+      contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][4][1]);
 
-    contenedor_tabla_uno[cont][5][1] = document.createElement("TD");
-    contenedor_tabla_uno[cont][5][2] = document.createTextNode(motivo);
-    contenedor_tabla_uno[cont][5][1].setAttribute("id", "motivo_" + cont );//atributo,valor;
-    contenedor_tabla_uno[cont][5][1].appendChild(contenedor_tabla_uno[cont][5][2]);
-    contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][5][1]);
+      contenedor_tabla_uno[cont][5][1] = document.createElement("TD");
+      contenedor_tabla_uno[cont][5][2] = document.createTextNode(motivo);
+      contenedor_tabla_uno[cont][5][1].setAttribute("id", "motivo_" + cont );//atributo,valor;
+      contenedor_tabla_uno[cont][5][1].appendChild(contenedor_tabla_uno[cont][5][2]);
+      contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][5][1]);
 
-    contenedor_tabla_uno[cont][6][1] = document.createElement("TD");
-    contenedor_tabla_uno[cont][6][2] = document.createTextNode(puesto);
-    contenedor_tabla_uno[cont][6][1].setAttribute("id", "puesto_" + cont );//atributo,valor;
-    contenedor_tabla_uno[cont][6][1].appendChild(contenedor_tabla_uno[cont][6][2]);
-    contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][6][1]);
-    
-    //console.log(contenedor_tabla_uno);
-    
-    $('#unidad').prop('selectedIndex',0);
-    $('#sub_unidad').prop('selectedIndex',0);
-    $('#categoria').prop('selectedIndex',0);
-    $('#horas').prop('selectedIndex',0);
-    $("#plaza").val("");
-    $('#motivo').prop('selectedIndex',0);
-    $('#puesto').prop('selectedIndex',0);
+      contenedor_tabla_uno[cont][6][1] = document.createElement("TD");
+      contenedor_tabla_uno[cont][6][2] = document.createTextNode(puesto);
+      contenedor_tabla_uno[cont][6][1].setAttribute("id", "puesto_" + cont );//atributo,valor;
+      contenedor_tabla_uno[cont][6][1].appendChild(contenedor_tabla_uno[cont][6][2]);
+      contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][6][1]);
+      
+      //console.log(contenedor_tabla_uno);
+      
+      $('#unidad').prop('selectedIndex',0);
+      $('#sub_unidad').prop('selectedIndex',0);
+      $('#categoria').prop('selectedIndex',0);
+      $('#horas').prop('selectedIndex',0);
+      $("#plaza").val("");
+      $('#motivo').prop('selectedIndex',0);
+      $('#puesto').val("");
     
     }
     
@@ -238,7 +270,9 @@ $gmx(document).ready(function () {
   });
 
   $('#btn_registrar').click(function(){
+    
     let cont = 0;
+    let texto_error="";
     if($('#nombre').val()==''){
       alertaError('#asterisco_nombre','#nombre');
       cont++;
@@ -264,6 +298,7 @@ $gmx(document).ready(function () {
       limpiarError('#asterisco_rfc','#rfc');
     }else{
       alertaError('#asterisco_rfc','#rfc');
+      texto_error=`${texto_error} Campo RFC debe contener solamente 13 caracteres <br>`;
       cont++;
     }
     if($('#curp').val()==''){
@@ -273,6 +308,7 @@ $gmx(document).ready(function () {
       limpiarError('#asterisco_curp','#curp');
     }else{
       alertaError('#asterisco_curp','#curp');
+      texto_error=`${texto_error} Campo CURP debe contener solamente 18 caracteres <br>`;
       cont++;
     }
     if($('#ingresoGob').val()==''){
@@ -325,6 +361,7 @@ $gmx(document).ready(function () {
       titulo.style.borderRightWidth="2px";
       titulo.style.borderBottomWidth="3px";
       titulo.style.borderLeftWidth="2px";
+      texto_error=`${texto_error} Campo Tabla debe contener almenos 1 dato <br>`;
       cont++;
     }else{
       limpiarError("#asterisco_tabla","#tabla");
@@ -336,9 +373,18 @@ $gmx(document).ready(function () {
       titulo.style.borderLeftWidth="1px";
     }
 
+    if(cont!=0){
+      texto_error=`Debes llenar todos los campos <br>${texto_error}`;
+    }
+    
+    mensajeError('#alerta',texto_error);
+    if(texto_error!="" && cont!=0){
+      irArriba();
+    }
+    
     if(cont == 0){
      
-      
+      limpiaMensajeError('#alerta');
      
       //document.getElementById("unidad_"+0).innerHTML
       //console.log(informacion);

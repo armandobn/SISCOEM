@@ -20,6 +20,8 @@
     </div>
 </div>
 
+<div class="alert" id="alerta"></div>
+
 <form action="{{route('actualizarDocente.obtenerRfc')}}" method="post" id="form_buscar_rfc">
     @csrf
     <div class="row">
@@ -36,11 +38,11 @@
         </div>
     </div>
 </form>
-
-
-<form action="" method="post" id="form_actualizar_docente">
+  
+<form action="#" method="post" id="form_actualizar_docente">
     @csrf
-
+    @method('put')
+    
     <div class="row top-buffer">
         <div class="col-md-4">
             <div class="form-group">
@@ -91,175 +93,6 @@
         <div class="col-md-4"></div>
     </div>
 
-    <hr class="red">
-    <div class="row">
-        <div class="col-md-2">
-            <div class="form-group">
-                <div class="form-label" for="unidad">Unidad
-                    <span class="form-text" id="asterisco_unidad">*</span>:
-                </div>
-                <select class="form-control" id="unidad" disabled>
-                    <option value="">Unidad</option>
-                    <option value="13">13</option>
-                    <option value="19">19</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="27">27</option>
-                    <option value="34">34</option>
-                    <option value="35">35</option>
-                    <option value="65">65</option>
-                    <option value="68">68</option>
-                </select>
-            </div>
-
-        </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <div class="form-label" for="sub_unidad">Sub-unidad
-                    <span class="form-text" id="asterisco_sub_unidad">*</span>:
-                </div>
-                <select class="form-control" id="sub_unidad" disabled>
-                    <option value="">Sub-unidad</option>
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="27">27</option>
-                    <option value="52">52</option>
-                    <option value="98">98</option>
-                </select>
-            </div>
-
-        </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <div class="form-label" for="categoria">Categoria
-                    <span class="form-text" id="asterisco_categoria">*</span>:
-                </div>
-                <select class="form-control" id="categoria" disabled>
-                    <option value="">Categoria</option>
-                    <option disabled><strong>-----Docente-----</strong></option>
-                    
-                    @foreach ($docens as $docen)
-                        <option value="{{$docen->categoria}}">{{$docen->categoria}}</option>
-                    @endforeach
-                    <option disabled><strong>-----Admistrativo-----</strong></option>
-                    @foreach ($admins as $admin)
-                        <option value="{{$admin->categoria}}">{{$admin->categoria}}</option>
-                    @endforeach
-                </select>
-            </div>
-
-        </div>
-        
-        <div class="col-md-2">
-            <div class="form-group">
-                <div class="form-label" for="horas">Horas
-                    <span class="form-text" id="asterisco_horas">*</span>:
-                </div>
-                <select class="form-control text-center" id="horas" disabled>
-                    <option value="">Horas</option>
-                    <option value="010">010 - 1 Horas</option>
-                    <option value="020">020 - 2 Horas</option>
-                    <option value="030">030 - 3 Horas</option>
-                    <option value="040">040 - 4 Horas</option>
-                    <option value="050">050 - 5 Horas</option>
-                    <option value="060">060 - 6 Horas</option>
-                    <option value="070">070 - 7 Horas</option>
-                    <option value="080">080 - 8 Horas</option>
-                    <option value="090">090 - 9 Horas</option>
-                    <option value="100">100 - 10 Horas</option>
-                    <option value="110">110 - 11 Horas</option>
-                    <option value="120">120 - 12 Horas</option>
-                    <option value="130">130 - 13 Horas</option>
-                    <option value="140">140 - 14 Horas</option>
-                    <option value="150">150 - 15 Horas</option>
-                    <option value="160">160 - 16 Horas</option>
-                    <option value="170">170 - 17 Horas</option>
-                    <option value="180">180 - 18 Horas</option>
-                    <option value="190">190 - 19 Horas</option>
-                    <option value="120">120 - 20 Horas</option>
-                </select>
-            </div>
-
-        </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <div class="form-label" for="plaza">Plaza
-                    <span class="form-text" id="asterisco_plaza">*</span>:
-                </div>
-                <input type="text" class="form-control" placeholder="Ingresa la plaza" id="plaza" disabled>
-            </div>
-
-        </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <div class="form-label" for="motivo">Motivo
-                    <span class="form-text" id="asterisco_motivo">*</span>:
-                </div>
-                <select class="form-control" id="motivo" disabled>
-                    <option value="">Motivo</option>
-                    @foreach ($motivos as $motivo)
-                        <option value="{{$motivo->nick}}">{{$motivo->nick}}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="form-label" for="puesto">Denominacion de la categoria o puesto
-                    <span class="form-text" id="asterisco_puesto">*</span>:
-                </div>
-                <input type="text" class="form-control" id="puesto" disabled>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4">
-            <button type="button" id="btn_agregar" class="btn btn-primary" disabled>Agregar</button>
-        </div>
-        <div class="col-md-4">
-            <button type="button" id="btn_eliminar" class="btn btn-primary" disabled>Eliminar ultimo elemento</button>
-        </div>
-    </div>
-
-    
-    <div class="row top-buffer ">
-        <div class="col-md-8">
-            <div class="form-group">
-                <label for="" class="form-label" for="tabla" id="tabla">Datos
-                    <span class="form-text" id="asterisco_tabla">*</span>:
-                </label>
-                {{-- <input class="form-control" id="tabla" type="hidden"> --}}
-            </div>        
-        </div>
-    </div>
-
-    
-    <div class="table-responsive form-group">
-
-        <table class="table table-bordered" id="tabla_base">
-            <thead>
-                <tr>
-                    <th scope="col">Unidad</th>
-                    <th scope="col">Sub-unidad</th>
-                    <th scope="col">Categoria</th>
-                    <th scope="col">Horas</th>
-                    <th scope="col">Plaza</th>
-                    <th scope="col">Motivo</th>
-                    <th scope="col">Denominacion de la categoria o puesto</th>
-                </tr>
-            </thead>
-            <tbody id="tabla_uno">
-
-            </tbody>
-        </table>
-    </div>
-
     <div class="row top-buffer">
         <div class="col-md-4">
             <div class="form-group datepicker-group">
@@ -301,20 +134,62 @@
             </div>
         </div>
     </div>
-
-    <div class="clearfix bottom-buffer">
+</form>
+<form action="" method="post" id="form_eliminar_todo_docente">
+    <div class="bottom-buffer">
         <div class="pull-left text-muted text-vertical-align-button">
             * Campos obligatorios
         </div>
         <div class="pull-right">
             <span class="btn btn-primary" id="btn_actualizar" disabled>Actualizar</span>
-            <span class="btn btn-default" id="btn_eliminar_registro" disabled>Eliminar</span>
+
+           
+                @csrf            
+                @method('delete')               
+                <button type="submit" class="btn btn-default" id="btn_eliminar_registro" disabled>Eliminar</button>
+           
+            
         </div>
     </div>
-    
 </form>
 
 
+<a href="#" id="datosTabla" class="btn btn-primary" disabled>Actualizar tabla datos</a>
+
+
+<hr class="red">
+
+<div class="row top-buffer ">
+    <div class="col-md-8">
+        <div class="form-group">
+            <label for="" class="form-label" for="tabla" id="tabla">Datos
+                <span class="form-text" id="asterisco_tabla">*</span>:
+            </label>
+            {{-- <input class="form-control" id="tabla" type="hidden"> --}}
+        </div>        
+    </div>
+</div>
+
+
+<div class="table-responsive form-group">
+
+    <table class="table table-bordered" id="tabla_base">
+        <thead>
+            <tr>
+                <th scope="col">Unidad</th>
+                <th scope="col">Sub-unidad</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Horas</th>
+                <th scope="col">Plaza</th>
+                <th scope="col">Motivo</th>
+                <th scope="col">Denominacion de la categoria o puesto</th>
+            </tr>
+        </thead>
+        <tbody id="tabla_uno">
+
+        </tbody>
+    </table>
+</div>
 
 
 @endsection

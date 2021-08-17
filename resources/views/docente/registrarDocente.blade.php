@@ -24,6 +24,8 @@
     </div>
 </div>
 
+<div class="alert" id="alerta"></div>
+
 <form action="{{ route('registrarDocente.create') }}" method="post" id="form_registrar_docente">
     @csrf
 

@@ -36,6 +36,28 @@ function limpiarError(id_asterisco, id_elemento) {
     var small = contenedor.querySelector("small");
     contenedor.removeChild(small);
   }
+} //Genera mensaje principal Error
+
+
+function mensajeError(id_alerta, mensaje) {
+  var alerta = document.querySelector(id_alerta);
+
+  if (alerta.classList.contains("alert-danger") == false) {
+    alerta.classList.add("alert-danger");
+    $(id_alerta).html(mensaje);
+  } else {
+    $(id_alerta).html(mensaje);
+  }
+} //Elimina el mensaje de Error principal
+
+
+function limpiaMensajeError(id_alerta) {
+  var alerta = document.querySelector(id_alerta);
+
+  if (alerta.classList.contains("alert-danger") == true) {
+    alerta.classList.remove("alert-danger");
+    alerta.innerHTML = "";
+  }
 } //Elimina el ultimo elemento
 
 
@@ -62,6 +84,18 @@ selectCategoria.addEventListener('change', function (event) {
   });
 });
 $gmx(document).ready(function () {
+  //Scroll ir Arriba
+  var obtener_pixeles_inicio = function obtener_pixeles_inicio() {
+    return document.documentElement.scrollTop || document.body.scrollTop;
+  };
+
+  var irArriba = function irArriba() {
+    if (obtener_pixeles_inicio() > 0) {
+      requestAnimationFrame(irArriba);
+      scrollTo(0, obtener_pixeles_inicio() - obtener_pixeles_inicio() / 30);
+    }
+  };
+
   $('#ingresoGob').datepicker({
     changeYear: true
   });
@@ -221,7 +255,7 @@ $gmx(document).ready(function () {
       $('#horas').prop('selectedIndex', 0);
       $("#plaza").val("");
       $('#motivo').prop('selectedIndex', 0);
-      $('#puesto').prop('selectedIndex', 0);
+      $('#puesto').val("");
     }
   });
   $('#btn_eliminar').click(function () {
@@ -232,6 +266,7 @@ $gmx(document).ready(function () {
   });
   $('#btn_registrar').click(function () {
     var cont = 0;
+    var texto_error = "";
 
     if ($('#nombre').val() == '') {
       alertaError('#asterisco_nombre', '#nombre');
@@ -261,6 +296,7 @@ $gmx(document).ready(function () {
       limpiarError('#asterisco_rfc', '#rfc');
     } else {
       alertaError('#asterisco_rfc', '#rfc');
+      texto_error = "".concat(texto_error, " Campo RFC debe contener solamente 13 caracteres <br>");
       cont++;
     }
 
@@ -271,6 +307,7 @@ $gmx(document).ready(function () {
       limpiarError('#asterisco_curp', '#curp');
     } else {
       alertaError('#asterisco_curp', '#curp');
+      texto_error = "".concat(texto_error, " Campo CURP debe contener solamente 18 caracteres <br>");
       cont++;
     }
 
@@ -319,6 +356,7 @@ $gmx(document).ready(function () {
       titulo.style.borderRightWidth = "2px";
       titulo.style.borderBottomWidth = "3px";
       titulo.style.borderLeftWidth = "2px";
+      texto_error = "".concat(texto_error, " Campo Tabla debe contener almenos 1 dato <br>");
       cont++;
     } else {
       limpiarError("#asterisco_tabla", "#tabla");
@@ -332,10 +370,21 @@ $gmx(document).ready(function () {
       _titulo.style.borderLeftWidth = "1px";
     }
 
+    if (cont != 0) {
+      texto_error = "Debes llenar todos los campos <br>".concat(texto_error);
+    }
+
+    mensajeError('#alerta', texto_error);
+
+    if (texto_error != "" && cont != 0) {
+      irArriba();
+    }
+
     if (cont == 0) {
-      //document.getElementById("unidad_"+0).innerHTML
+      limpiaMensajeError('#alerta'); //document.getElementById("unidad_"+0).innerHTML
       //console.log(informacion);
       //console.log($('#form_registrar_docente').serialize());
+
       var form_url = $('#form_registrar_docente').attr("action");
       $.ajax({
         type: 'POST',

@@ -36,6 +36,28 @@ function limpiarError(id_asterisco, id_elemento) {
     var small = contenedor.querySelector("small");
     contenedor.removeChild(small);
   }
+} //Genera mensaje principal Error
+
+
+function mensajeError(id_alerta, mensaje) {
+  var alerta = document.querySelector(id_alerta);
+
+  if (alerta.classList.contains("alert-danger") == false) {
+    alerta.classList.add("alert-danger");
+    $(id_alerta).html(mensaje);
+  } else {
+    $(id_alerta).html(mensaje);
+  }
+} //Elimina el mensaje de Error principal
+
+
+function limpiaMensajeError(id_alerta) {
+  var alerta = document.querySelector(id_alerta);
+
+  if (alerta.classList.contains("alert-danger") == true) {
+    alerta.classList.remove("alert-danger");
+    alerta.innerHTML = "";
+  }
 } //Elimina el ultimo elemento
 
 
@@ -45,23 +67,19 @@ function removerUltimoElemento(base) {
   contenedor.removeChild(tr_antiguo);
 }
 
-var selectCategoria = document.querySelector('#categoria');
-selectCategoria.addEventListener('change', function (event) {
-  var select = event.target.value; //alert( `Te gusta el sabor ${select}`);
-
-  var token = "_token=".concat($('input[name="_token"]').val());
-  var info = "".concat(token, "&categoria=").concat(select);
-  $.ajax({
-    type: 'POST',
-    url: "registrarDocente/categoria",
-    data: info,
-    success: function success(r) {
-      //console.log(r[0]["denominacion"]);
-      $('#puesto').val(r[0]["denominacion"]);
-    }
-  });
-});
 $gmx(document).ready(function () {
+  //Scroll ir Arriba
+  var obtener_pixeles_inicio = function obtener_pixeles_inicio() {
+    return document.documentElement.scrollTop || document.body.scrollTop;
+  };
+
+  var irArriba = function irArriba() {
+    if (obtener_pixeles_inicio() > 0) {
+      requestAnimationFrame(irArriba);
+      scrollTo(0, obtener_pixeles_inicio() - obtener_pixeles_inicio() / 30);
+    }
+  };
+
   $('#ingresoGob').datepicker({
     changeYear: true
   });
@@ -71,6 +89,8 @@ $gmx(document).ready(function () {
   $('#ingresoDgti').datepicker({
     changeYear: true
   });
+  var contenedor_tabla_uno = [[[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []]];
+  var rfc_antiguo = "";
   $('#btn_buscar_rfc').click(function () {
     if ($('#buscar_rfc').val() == "") {
       alertaError('#asterisco_buscar_rfc', '#buscar_rfc');
@@ -90,191 +110,112 @@ $gmx(document).ready(function () {
       url: form_url,
       data: $('#form_buscar_rfc').serialize(),
       success: function success(r) {
-        console.log(r);
+        //console.log(r);
+        //console.log(r[1]);
+        //console.log(r[1].length);
+        limpiaMensajeError('#alerta');
+
+        for (var i = 0; i < r[1].length; i++) {
+          //console.log(r[1][i]);
+          var contenedor_tabla = document.querySelector("#tabla_uno");
+          contenedor_tabla_uno[i][0][0] = document.createElement("TR"); //todo en mayuscula
+
+          contenedor_tabla_uno[i][0][0].setAttribute("id", "tr_" + i); //atributo,valor;
+
+          contenedor_tabla.appendChild(contenedor_tabla_uno[i][0][0]);
+          contenedor_tabla_uno[i][0][1] = document.createElement("TD");
+          contenedor_tabla_uno[i][0][2] = document.createTextNode(r[1][i]["unidad"]);
+          contenedor_tabla_uno[i][0][1].setAttribute("id", "unidad_" + i); //atributo,valor;
+
+          contenedor_tabla_uno[i][0][1].setAttribute("name", "unidad[]"); //atributo,valor;
+
+          contenedor_tabla_uno[i][0][1].appendChild(contenedor_tabla_uno[i][0][2]);
+          contenedor_tabla_uno[i][0][0].appendChild(contenedor_tabla_uno[i][0][1]);
+          contenedor_tabla_uno[i][1][1] = document.createElement("TD");
+          contenedor_tabla_uno[i][1][2] = document.createTextNode(r[1][i]["sub_unidad"]);
+          contenedor_tabla_uno[i][1][1].setAttribute("id", "sub_unidad_" + i); //atributo,valor;
+
+          contenedor_tabla_uno[i][1][1].appendChild(contenedor_tabla_uno[i][1][2]);
+          contenedor_tabla_uno[i][0][0].appendChild(contenedor_tabla_uno[i][1][1]);
+          contenedor_tabla_uno[i][2][1] = document.createElement("TD");
+          contenedor_tabla_uno[i][2][2] = document.createTextNode(r[1][i]["categoria"]);
+          contenedor_tabla_uno[i][2][1].setAttribute("id", "categoria_" + i); //atributo,valor;
+
+          contenedor_tabla_uno[i][2][1].appendChild(contenedor_tabla_uno[i][2][2]);
+          contenedor_tabla_uno[i][0][0].appendChild(contenedor_tabla_uno[i][2][1]);
+          contenedor_tabla_uno[i][3][1] = document.createElement("TD");
+          contenedor_tabla_uno[i][3][2] = document.createTextNode(r[1][i]["horas"]);
+          contenedor_tabla_uno[i][3][1].setAttribute("id", "horas_" + i); //atributo,valor;
+
+          contenedor_tabla_uno[i][3][1].appendChild(contenedor_tabla_uno[i][3][2]);
+          contenedor_tabla_uno[i][0][0].appendChild(contenedor_tabla_uno[i][3][1]);
+          contenedor_tabla_uno[i][4][1] = document.createElement("TD");
+          contenedor_tabla_uno[i][4][2] = document.createTextNode(r[1][i]["plaza"]);
+          contenedor_tabla_uno[i][4][1].setAttribute("id", "plaza_" + i); //atributo,valor;
+
+          contenedor_tabla_uno[i][4][1].appendChild(contenedor_tabla_uno[i][4][2]);
+          contenedor_tabla_uno[i][0][0].appendChild(contenedor_tabla_uno[i][4][1]);
+          contenedor_tabla_uno[i][5][1] = document.createElement("TD");
+          contenedor_tabla_uno[i][5][2] = document.createTextNode(r[1][i]["motivo"]);
+          contenedor_tabla_uno[i][5][1].setAttribute("id", "motivo_" + i); //atributo,valor;
+
+          contenedor_tabla_uno[i][5][1].appendChild(contenedor_tabla_uno[i][5][2]);
+          contenedor_tabla_uno[i][0][0].appendChild(contenedor_tabla_uno[i][5][1]);
+          contenedor_tabla_uno[i][6][1] = document.createElement("TD");
+          contenedor_tabla_uno[i][6][2] = document.createTextNode(r[1][i]["puesto"]);
+          contenedor_tabla_uno[i][6][1].setAttribute("id", "puesto_" + i); //atributo,valor;
+
+          contenedor_tabla_uno[i][6][1].appendChild(contenedor_tabla_uno[i][6][2]);
+          contenedor_tabla_uno[i][0][0].appendChild(contenedor_tabla_uno[i][6][1]);
+        } //console.log(contenedor_tabla_uno);
+
+
+        var rangoEtario = document.querySelector("#form_actualizar_docente");
+        rangoEtario.setAttribute("action", "actualizarDocente/actualizar/".concat(r[0]['id'], ")")); //atributo,valor     
+
+        $('#nombre').val(r[0]['nombre']);
+        $('#apePaterno').val(r[0]['apePaterno']);
+        $('#apeMaterno').val(r[0]['apeMaterno']);
+        $('#rfc').val(r[0]['rfc']);
+        rfc_antiguo = "&rfc_antiguo=" + r[0]['rfc'];
+        $('#curp').val(r[0]['curp']);
+        $('#ingresoGob').val(r[0]['ingresoGob']);
+        $('#ingresoSep').val(r[0]['ingresoSep']);
+        $('#ingresoDgti').val(r[0]['ingresoDgti']);
+        $('#observaciones').val(r[0]['observaciones']);
+        $('#nombre').val(r[0]['nombre']);
+        var linkRfc = document.querySelector("#form_eliminar_todo_docente");
+        linkRfc.setAttribute("action", "actualizarDocente/actualizar/".concat(r[0]['rfc'])); //atributo,valor    
+
+        var linkTabla = document.querySelector("#datosTabla");
+        linkTabla.setAttribute("href", "actualizarDocente/datosTabla/".concat(r[0]['rfc']));
+        document.getElementById("datosTabla").removeAttribute("disabled");
+        ;
         document.getElementById("nombre").disabled = false;
         document.getElementById("apePaterno").disabled = false;
         document.getElementById("apeMaterno").disabled = false;
         document.getElementById("rfc").disabled = false;
         document.getElementById("curp").disabled = false;
-        document.getElementById("unidad").disabled = false;
-        document.getElementById("sub_unidad").disabled = false;
-        document.getElementById("categoria").disabled = false;
-        document.getElementById("horas").disabled = false;
-        document.getElementById("plaza").disabled = false;
-        document.getElementById("motivo").disabled = false;
-        document.getElementById("puesto").disabled = false;
-        document.getElementById("btn_agregar").disabled = false;
-        document.getElementById("btn_eliminar").disabled = false;
         document.getElementById("ingresoGob").disabled = false;
         document.getElementById("ingresoSep").disabled = false;
         document.getElementById("ingresoDgti").disabled = false;
         document.getElementById("observaciones").disabled = false;
-        document.getElementById("btn_actualizar").disabled = false;
-        document.getElementById("btn_eliminar_registro").disabled = false;
+        document.getElementById("btn_actualizar").removeAttribute("disabled");
+        document.getElementById("btn_eliminar_registro").removeAttribute("disabled");
+      },
+      error: function error(_error) {
+        texto_error = "No hay registros";
+        mensajeError('#alerta', texto_error);
+
+        if (texto_error != "" && cont != 0) {
+          irArriba();
+        }
       }
     });
   });
-  var contenedor_tabla_uno = [[[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []]];
-  $('#btn_agregar').click(function () {
-    var unidad = document.getElementById("unidad").value;
-    var sub_unidad = document.getElementById("sub_unidad").value;
-    var categoria = document.getElementById("categoria").value;
-    var horas = document.getElementById("horas").value;
-    var plaza = $("#plaza").val();
-    var motivo = document.getElementById("motivo").value;
-    var puesto = document.getElementById("puesto").value;
-    var cont = 0;
-
-    if (document.getElementById("unidad").value == '') {
-      alertaError('#asterisco_unidad', '#unidad');
-      cont++;
-    } else {
-      limpiarError('#asterisco_unidad', '#unidad');
-    }
-
-    if (document.getElementById("sub_unidad").value == '') {
-      alertaError('#asterisco_sub_unidad', '#sub_unidad');
-      cont++;
-    } else {
-      limpiarError('#asterisco_sub_unidad', '#sub_unidad');
-    }
-
-    if (document.getElementById("categoria").value == '') {
-      alertaError('#asterisco_categoria', '#categoria');
-      cont++;
-    } else {
-      limpiarError('#asterisco_categoria', '#categoria');
-    }
-
-    if (document.getElementById("horas").value == '') {
-      alertaError('#asterisco_horas', '#horas');
-      cont++;
-    } else {
-      limpiarError('#asterisco_horas', '#horas');
-    }
-
-    if ($("#plaza").val() == '') {
-      alertaError('#asterisco_plaza', '#plaza');
-      cont++;
-    } else {
-      limpiarError('#asterisco_plaza', '#plaza');
-    }
-
-    if (document.getElementById("motivo").value == '') {
-      alertaError('#asterisco_motivo', '#motivo');
-      cont++;
-    } else {
-      limpiarError('#asterisco_motivo', '#motivo');
-    }
-
-    if ($('#puesto').val() == '') {
-      alertaError('#asterisco_puesto', '#puesto');
-      cont++;
-    } else {
-      limpiarError('#asterisco_puesto', '#puesto');
-    }
-
-    if (cont == 0) {
-      var contenedor_tabla = document.querySelector("#tabla_uno");
-      var hijos = contenedor_tabla.children;
-      var _cont = hijos.length;
-      contenedor_tabla_uno[_cont][0][0] = document.createElement("TR"); //todo en mayuscula
-
-      contenedor_tabla_uno[_cont][0][0].setAttribute("id", "tr_" + _cont); //atributo,valor;
-
-
-      contenedor_tabla.appendChild(contenedor_tabla_uno[_cont][0][0]);
-      contenedor_tabla_uno[_cont][0][1] = document.createElement("TD");
-      contenedor_tabla_uno[_cont][0][2] = document.createTextNode(unidad);
-
-      contenedor_tabla_uno[_cont][0][1].setAttribute("id", "unidad_" + _cont); //atributo,valor;
-
-
-      contenedor_tabla_uno[_cont][0][1].setAttribute("name", "unidad[]"); //atributo,valor;
-
-
-      contenedor_tabla_uno[_cont][0][1].appendChild(contenedor_tabla_uno[_cont][0][2]);
-
-      contenedor_tabla_uno[_cont][0][0].appendChild(contenedor_tabla_uno[_cont][0][1]);
-
-      contenedor_tabla_uno[_cont][1][1] = document.createElement("TD");
-      contenedor_tabla_uno[_cont][1][2] = document.createTextNode(sub_unidad);
-
-      contenedor_tabla_uno[_cont][1][1].setAttribute("id", "sub_unidad_" + _cont); //atributo,valor;
-
-
-      contenedor_tabla_uno[_cont][1][1].appendChild(contenedor_tabla_uno[_cont][1][2]);
-
-      contenedor_tabla_uno[_cont][0][0].appendChild(contenedor_tabla_uno[_cont][1][1]);
-
-      contenedor_tabla_uno[_cont][2][1] = document.createElement("TD");
-      contenedor_tabla_uno[_cont][2][2] = document.createTextNode(categoria);
-
-      contenedor_tabla_uno[_cont][2][1].setAttribute("id", "categoria_" + _cont); //atributo,valor;
-
-
-      contenedor_tabla_uno[_cont][2][1].appendChild(contenedor_tabla_uno[_cont][2][2]);
-
-      contenedor_tabla_uno[_cont][0][0].appendChild(contenedor_tabla_uno[_cont][2][1]);
-
-      contenedor_tabla_uno[_cont][3][1] = document.createElement("TD");
-      contenedor_tabla_uno[_cont][3][2] = document.createTextNode(horas);
-
-      contenedor_tabla_uno[_cont][3][1].setAttribute("id", "horas_" + _cont); //atributo,valor;
-
-
-      contenedor_tabla_uno[_cont][3][1].appendChild(contenedor_tabla_uno[_cont][3][2]);
-
-      contenedor_tabla_uno[_cont][0][0].appendChild(contenedor_tabla_uno[_cont][3][1]);
-
-      contenedor_tabla_uno[_cont][4][1] = document.createElement("TD");
-      contenedor_tabla_uno[_cont][4][2] = document.createTextNode(plaza);
-
-      contenedor_tabla_uno[_cont][4][1].setAttribute("id", "plaza_" + _cont); //atributo,valor;
-
-
-      contenedor_tabla_uno[_cont][4][1].appendChild(contenedor_tabla_uno[_cont][4][2]);
-
-      contenedor_tabla_uno[_cont][0][0].appendChild(contenedor_tabla_uno[_cont][4][1]);
-
-      contenedor_tabla_uno[_cont][5][1] = document.createElement("TD");
-      contenedor_tabla_uno[_cont][5][2] = document.createTextNode(motivo);
-
-      contenedor_tabla_uno[_cont][5][1].setAttribute("id", "motivo_" + _cont); //atributo,valor;
-
-
-      contenedor_tabla_uno[_cont][5][1].appendChild(contenedor_tabla_uno[_cont][5][2]);
-
-      contenedor_tabla_uno[_cont][0][0].appendChild(contenedor_tabla_uno[_cont][5][1]);
-
-      contenedor_tabla_uno[_cont][6][1] = document.createElement("TD");
-      contenedor_tabla_uno[_cont][6][2] = document.createTextNode(puesto);
-
-      contenedor_tabla_uno[_cont][6][1].setAttribute("id", "puesto_" + _cont); //atributo,valor;
-
-
-      contenedor_tabla_uno[_cont][6][1].appendChild(contenedor_tabla_uno[_cont][6][2]);
-
-      contenedor_tabla_uno[_cont][0][0].appendChild(contenedor_tabla_uno[_cont][6][1]); //console.log(contenedor_tabla_uno);
-
-
-      $('#unidad').prop('selectedIndex', 0);
-      $('#sub_unidad').prop('selectedIndex', 0);
-      $('#categoria').prop('selectedIndex', 0);
-      $('#horas').prop('selectedIndex', 0);
-      $("#plaza").val("");
-      $('#motivo').prop('selectedIndex', 0);
-      $('#puesto').prop('selectedIndex', 0);
-    }
-  });
-  $('#btn_eliminar').click(function () {
-    // z=document.getElementById("unidad_0").innerHTML;
-    // console.log(z);
-    // alert(z);
-    removerUltimoElemento("#tabla_uno");
-  });
   $('#btn_actualizar').click(function () {
     var cont = 0;
+    var texto_error = "";
 
     if ($('#nombre').val() == '') {
       alertaError('#asterisco_nombre', '#nombre');
@@ -304,6 +245,7 @@ $gmx(document).ready(function () {
       limpiarError('#asterisco_rfc', '#rfc');
     } else {
       alertaError('#asterisco_rfc', '#rfc');
+      texto_error = "".concat(texto_error, " Campo RFC debe contener solamente 13 caracteres <br>");
       cont++;
     }
 
@@ -314,6 +256,7 @@ $gmx(document).ready(function () {
       limpiarError('#asterisco_curp', '#curp');
     } else {
       alertaError('#asterisco_curp', '#curp');
+      texto_error = "".concat(texto_error, " Campo CURP debe contener solamente 18 caracteres <br>");
       cont++;
     }
 
@@ -345,61 +288,40 @@ $gmx(document).ready(function () {
       limpiarError('#asterisco_observaciones', '#observaciones');
     }
 
-    var contenedor_tabla = document.querySelector("#tabla_uno");
-    var hijos = contenedor_tabla.children;
-    var conta = hijos.length;
-    var informacion = "";
-
-    for (var i = 0; i < conta; i++) {
-      informacion = informacion + "\n        &unidad[".concat(i, "]=").concat(document.getElementById("unidad_" + i).innerHTML, "\n        &sub_unidad[").concat(i, "]=").concat(document.getElementById("sub_unidad_" + i).innerHTML, "\n        &categoria[").concat(i, "]=").concat(document.getElementById("categoria_" + i).innerHTML, "\n        &horas[").concat(i, "]=").concat(document.getElementById("horas_" + i).innerHTML, "\n        &plaza[").concat(i, "]=").concat(document.getElementById("plaza_" + i).innerHTML, "\n        &motivo[").concat(i, "]=").concat(document.getElementById("motivo_" + i).innerHTML, "\n        &puesto[").concat(i, "]=").concat(document.getElementById("puesto_" + i).innerHTML, "\n        ");
+    if (cont != 0) {
+      texto_error = "Debes llenar todos los campos <br>".concat(texto_error);
     }
 
-    if (informacion == "") {
-      alertaError("#asterisco_tabla", "#tabla");
-      var titulo = document.querySelector("#tabla_base");
-      titulo.style.borderColor = "#D0021B";
-      titulo.style.borderTopWidth = "2px";
-      titulo.style.borderRightWidth = "2px";
-      titulo.style.borderBottomWidth = "3px";
-      titulo.style.borderLeftWidth = "2px";
-      cont++;
-    } else {
-      limpiarError("#asterisco_tabla", "#tabla");
+    mensajeError('#alerta', texto_error);
 
-      var _titulo = document.querySelector("#tabla_base");
-
-      _titulo.style.borderColor = "#DDD";
-      _titulo.style.borderTopWidth = "1px";
-      _titulo.style.borderRightWidth = "1px";
-      _titulo.style.borderBottomWidth = "1px";
-      _titulo.style.borderLeftWidth = "1px";
+    if (texto_error != "" && cont != 0) {
+      irArriba();
     }
 
     if (cont == 0) {
-      //document.getElementById("unidad_"+0).innerHTML
+      limpiaMensajeError('#alerta'); //document.getElementById("unidad_"+0).innerHTML
       //console.log(informacion);
-      //console.log($('#form_registrar_docente').serialize());
-      var form_url = $('#form_registrar_docente').attr("action"); // $.ajax({
-      //   type:'POST',
-      //   url: form_url,
-      //   data:$('#form_registrar_docente').serialize()+informacion,
-      //   success:function(r){
-      //     //console.log(r);
-      //     $('#unidad').prop('selectedIndex',0);
-      //     $('#sub_unidad').prop('selectedIndex',0);
-      //     $('#categoria').prop('selectedIndex',0);
-      //     $('#horas').prop('selectedIndex',0);
-      //     $("#plaza").val("");
-      //     $('#motivo').prop('selectedIndex',0);
-      //     $('#puesto').prop('selectedIndex',0);
-      //     $('#form_registrar_docente')[0].reset();
-      //    window.location="actualizarDocente";
-      //   }
-      // });
+      //console.log($('#form_actualizar_docente').serialize());
+
+      var form_url = $('#form_actualizar_docente').attr("action");
+      $.ajax({
+        type: 'PUT',
+        url: form_url,
+        data: $('#form_actualizar_docente').serialize() + rfc_antiguo,
+        success: function success(r) {
+          //console.log(r);
+          $('#nombre').val(r['nombre']);
+          $('#apePaterno').val(r['apePaterno']);
+          $('#apeMaterno').val(r['apeMaterno']);
+          $('#rfc').val(r['rfc']);
+          $('#curp').val(r['curp']);
+          $('#ingresoGob').val(r['ingresoGob']);
+          $('#ingresoSep').val(r['ingresoSep']);
+          $('#ingresoDgti').val(r['ingresoDgti']);
+          $('#observaciones').val(r['observaciones']); //  window.location="actualizarDocente";
+        }
+      });
     }
-  });
-  $('#btn_eliminar_registro').click(function () {
-    alert('eliminar');
   });
 });
 /******/ })()
