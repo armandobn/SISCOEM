@@ -67,6 +67,22 @@ function removerUltimoElemento(base) {
   contenedor.removeChild(tr_antiguo);
 }
 
+var selectCategoria = document.querySelector('#categoria');
+selectCategoria.addEventListener('change', function (event) {
+  var select = event.target.value; //alert( `Te gusta el sabor ${select}`);
+
+  var token = "_token=".concat($('input[name="_token"]').val());
+  var info = "".concat(token, "&categoria=").concat(select);
+  $.ajax({
+    type: 'POST',
+    url: "../registrarDocente/categoria",
+    data: info,
+    success: function success(r) {
+      //console.log(r[0]["denominacion"]);
+      $('#puesto').val(r[0]["denominacion"]);
+    }
+  });
+});
 $gmx(document).ready(function () {
   //Scroll ir Arriba
   var obtener_pixeles_inicio = function obtener_pixeles_inicio() {
@@ -89,130 +105,8 @@ $gmx(document).ready(function () {
   $('#ingresoDgti').datepicker({
     changeYear: true
   });
-  var contenedor_tabla_uno = [[[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []], [[], [], [], [], [], [], []]];
   var rfc_antiguo = "";
-  $('#btn_buscar_rfc').click(function () {
-    if ($('#buscar_rfc').val() == "") {
-      alertaError('#asterisco_buscar_rfc', '#buscar_rfc');
-      return null;
-    } else if ($('#buscar_rfc').val().length == 13) {
-      limpiarError('#asterisco_buscar_rfc', '#buscar_rfc');
-    } else {
-      alertaError('#asterisco_buscar_rfc', '#buscar_rfc');
-      return null;
-    } //console.log($('#form_buscar_rfc').serialize());
-
-
-    var form_url = $('#form_buscar_rfc').attr("action"); //'actualizarDocente/buscarRfc'
-
-    $.ajax({
-      type: 'POST',
-      url: form_url,
-      data: $('#form_buscar_rfc').serialize(),
-      success: function success(r) {
-        //console.log(r);
-        //console.log(r[1]);
-        //console.log(r[1].length);
-        limpiaMensajeError('#alerta');
-
-        for (var i = 0; i < r[1].length; i++) {
-          //console.log(r[1][i]);
-          var contenedor_tabla = document.querySelector("#tabla_uno");
-          contenedor_tabla_uno[i][0][0] = document.createElement("TR"); //todo en mayuscula
-
-          contenedor_tabla_uno[i][0][0].setAttribute("id", "tr_" + i); //atributo,valor;
-
-          contenedor_tabla.appendChild(contenedor_tabla_uno[i][0][0]);
-          contenedor_tabla_uno[i][0][1] = document.createElement("TD");
-          contenedor_tabla_uno[i][0][2] = document.createTextNode(r[1][i]["unidad"]);
-          contenedor_tabla_uno[i][0][1].setAttribute("id", "unidad_" + i); //atributo,valor;
-
-          contenedor_tabla_uno[i][0][1].setAttribute("name", "unidad[]"); //atributo,valor;
-
-          contenedor_tabla_uno[i][0][1].appendChild(contenedor_tabla_uno[i][0][2]);
-          contenedor_tabla_uno[i][0][0].appendChild(contenedor_tabla_uno[i][0][1]);
-          contenedor_tabla_uno[i][1][1] = document.createElement("TD");
-          contenedor_tabla_uno[i][1][2] = document.createTextNode(r[1][i]["sub_unidad"]);
-          contenedor_tabla_uno[i][1][1].setAttribute("id", "sub_unidad_" + i); //atributo,valor;
-
-          contenedor_tabla_uno[i][1][1].appendChild(contenedor_tabla_uno[i][1][2]);
-          contenedor_tabla_uno[i][0][0].appendChild(contenedor_tabla_uno[i][1][1]);
-          contenedor_tabla_uno[i][2][1] = document.createElement("TD");
-          contenedor_tabla_uno[i][2][2] = document.createTextNode(r[1][i]["categoria"]);
-          contenedor_tabla_uno[i][2][1].setAttribute("id", "categoria_" + i); //atributo,valor;
-
-          contenedor_tabla_uno[i][2][1].appendChild(contenedor_tabla_uno[i][2][2]);
-          contenedor_tabla_uno[i][0][0].appendChild(contenedor_tabla_uno[i][2][1]);
-          contenedor_tabla_uno[i][3][1] = document.createElement("TD");
-          contenedor_tabla_uno[i][3][2] = document.createTextNode(r[1][i]["horas"]);
-          contenedor_tabla_uno[i][3][1].setAttribute("id", "horas_" + i); //atributo,valor;
-
-          contenedor_tabla_uno[i][3][1].appendChild(contenedor_tabla_uno[i][3][2]);
-          contenedor_tabla_uno[i][0][0].appendChild(contenedor_tabla_uno[i][3][1]);
-          contenedor_tabla_uno[i][4][1] = document.createElement("TD");
-          contenedor_tabla_uno[i][4][2] = document.createTextNode(r[1][i]["plaza"]);
-          contenedor_tabla_uno[i][4][1].setAttribute("id", "plaza_" + i); //atributo,valor;
-
-          contenedor_tabla_uno[i][4][1].appendChild(contenedor_tabla_uno[i][4][2]);
-          contenedor_tabla_uno[i][0][0].appendChild(contenedor_tabla_uno[i][4][1]);
-          contenedor_tabla_uno[i][5][1] = document.createElement("TD");
-          contenedor_tabla_uno[i][5][2] = document.createTextNode(r[1][i]["motivo"]);
-          contenedor_tabla_uno[i][5][1].setAttribute("id", "motivo_" + i); //atributo,valor;
-
-          contenedor_tabla_uno[i][5][1].appendChild(contenedor_tabla_uno[i][5][2]);
-          contenedor_tabla_uno[i][0][0].appendChild(contenedor_tabla_uno[i][5][1]);
-          contenedor_tabla_uno[i][6][1] = document.createElement("TD");
-          contenedor_tabla_uno[i][6][2] = document.createTextNode(r[1][i]["puesto"]);
-          contenedor_tabla_uno[i][6][1].setAttribute("id", "puesto_" + i); //atributo,valor;
-
-          contenedor_tabla_uno[i][6][1].appendChild(contenedor_tabla_uno[i][6][2]);
-          contenedor_tabla_uno[i][0][0].appendChild(contenedor_tabla_uno[i][6][1]);
-        } //console.log(contenedor_tabla_uno);
-
-
-        var rangoEtario = document.querySelector("#form_actualizar_docente");
-        rangoEtario.setAttribute("action", "actualizarDocente/actualizar/".concat(r[0]['id'], ")")); //atributo,valor     
-
-        $('#nombre').val(r[0]['nombre']);
-        $('#apePaterno').val(r[0]['apePaterno']);
-        $('#apeMaterno').val(r[0]['apeMaterno']);
-        $('#rfc').val(r[0]['rfc']);
-        rfc_antiguo = "&rfc_antiguo=" + r[0]['rfc'];
-        $('#curp').val(r[0]['curp']);
-        $('#ingresoGob').val(r[0]['ingresoGob']);
-        $('#ingresoSep').val(r[0]['ingresoSep']);
-        $('#ingresoDgti').val(r[0]['ingresoDgti']);
-        $('#observaciones').val(r[0]['observaciones']);
-        $('#nombre').val(r[0]['nombre']);
-        var linkRfc = document.querySelector("#form_eliminar_todo_docente");
-        linkRfc.setAttribute("action", "actualizarDocente/actualizar/".concat(r[0]['rfc'])); //atributo,valor    
-
-        var linkTabla = document.querySelector("#datosTabla");
-        linkTabla.setAttribute("href", "actualizarDocente/datosTabla/".concat(r[0]['rfc']));
-        document.getElementById("datosTabla").removeAttribute("disabled");
-        ;
-        document.getElementById("nombre").disabled = false;
-        document.getElementById("apePaterno").disabled = false;
-        document.getElementById("apeMaterno").disabled = false;
-        document.getElementById("rfc").disabled = false;
-        document.getElementById("curp").disabled = false;
-        document.getElementById("ingresoGob").disabled = false;
-        document.getElementById("ingresoSep").disabled = false;
-        document.getElementById("ingresoDgti").disabled = false;
-        document.getElementById("observaciones").disabled = false;
-        document.getElementById("btn_actualizar").removeAttribute("disabled");
-        document.getElementById("btn_eliminar_registro").removeAttribute("disabled");
-      },
-      error: function error(_error) {
-        texto_error = "No hay registros";
-        mensajeError('#alerta', texto_error);
-
-        if (texto_error != "" && cont != 0) {
-          irArriba();
-        }
-      }
-    });
-  });
+  rfc_antiguo = "&rfc_antiguo=" + $('#rfc').val();
   $('#btn_actualizar').click(function () {
     var cont = 0;
     var texto_error = "";
@@ -305,11 +199,11 @@ $gmx(document).ready(function () {
 
       var form_url = $('#form_actualizar_docente').attr("action");
       $.ajax({
-        type: 'PUT',
+        type: 'POST',
         url: form_url,
         data: $('#form_actualizar_docente').serialize() + rfc_antiguo,
         success: function success(r) {
-          //console.log(r);
+          console.log(r);
           $('#nombre').val(r['nombre']);
           $('#apePaterno').val(r['apePaterno']);
           $('#apeMaterno').val(r['apeMaterno']);
@@ -322,6 +216,23 @@ $gmx(document).ready(function () {
         }
       });
     }
+  });
+  $('#btn_agregar').click(function () {
+    var pathname = window.location.pathname; //console.log($('#form_agrega_datosTabla').serialize());
+
+    var form_url = $('#form_agrega_datosTabla').attr("action");
+    var puesto = "&puesto=".concat($('#puesto').val());
+    $.ajax({
+      type: 'POST',
+      url: form_url,
+      data: $('#form_agrega_datosTabla').serialize() + puesto,
+      success: function success(r) {
+        console.log(r); // console.log(r['datos'][1]);
+        // console.log(r['datos'][0]);
+
+        window.location = "".concat(pathname);
+      }
+    });
   });
 });
 /******/ })()

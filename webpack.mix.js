@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/docente_c.js', 'public/js')
+    .js('resources/js/docente_rfc.js', 'public/js')
     .js('resources/js/docente_u.js', 'public/js')
     .js('resources/js/datosTabla.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [

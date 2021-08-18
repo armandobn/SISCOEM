@@ -69,12 +69,8 @@ class DocenteController extends Controller
         return 1;
     }
     
-    public function showUpdate(){
-        
-        $motivos = CatMotivo::all();
-        $docens = CatDocen::all();
-        $admins = CatAdmin::all();
-        return view('docente.actualizarDocente',compact('motivos','docens','admins'));
+    public function showRfc(){
+        return view('docente.obtener_rfc');
     }
 
     public function obtenerRfc(Request $request){
@@ -85,6 +81,18 @@ class DocenteController extends Controller
         $datos=[$id[0],$tabla,1];
         return $datos+compact('datos');
     }
+    
+    public function showUpdate($rfc){
+ 
+        $docentes=Docente::select('*')->where('rfc',$rfc)->get();
+        $docentesTabla=DocentesTabla::select('*')->where('rfc',$rfc)->get();
+        $motivos = CatMotivo::all();
+        $docens = CatDocen::all();
+        $admins = CatAdmin::all();
+        
+        return view('docente.actualizarDocente',compact('motivos','docens','admins','docentes','docentesTabla','rfc'));
+    }
+
 
     public function update(Request $request,Docente $docente){
         
@@ -95,15 +103,6 @@ class DocenteController extends Controller
         $docente->update($request->all());
                 
         return $request;
-    }
-
-    public function showUpdateTabla($rfc){
-        $motivos = CatMotivo::all();
-        $docens = CatDocen::all();
-        $admins = CatAdmin::all();
-        $docentesTabla = DocentesTabla::select('*')->where('rfc',$rfc)->get();
-
-        return view('docente.datosTabla',compact('motivos','docens','admins','rfc','docentesTabla'));
     }
 
     public function edit($id){
@@ -129,8 +128,8 @@ class DocenteController extends Controller
             ]
         );
         $rfc=DocentesTabla::select('rfc')->where('id',$request->id)->get();
-        $datos=[$rfc,1];
-        return compact('datos');
+        
+        return $rfc;
     }
 
     public function destroyDocente($rfc){
@@ -150,14 +149,14 @@ class DocenteController extends Controller
         $docente->motivo = $request->motivo;
         $docente->puesto = $request->puesto;
         $docente->save();
-        $datos=[$request->rfc,1];
-        return compact('datos');
+        
+        return compact('docente');
     }
 
     public function destroyTabla($id,$rfc){
         DocentesTabla::where('id',$id)->delete();
         
-        return redirect()->route('actualizarDocente.showUpdateTabla',$rfc);
+        return redirect()->route('actualizarDocente.showUpdate',$rfc);
     }
  
 

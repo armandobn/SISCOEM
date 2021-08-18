@@ -18,7 +18,7 @@
                       <li><a href="#">Crear</a></li>
                       <li><a href="#">Seguimiento</a></li>
                       <li><a href="{{route('registrarDocente.showCreate')}}">Registrar docente</a></li>
-                      <li><a href="{{route('registrarDocente.showUpdate')}}">Actualizar docente</a></li>
+                      <li><a href="{{route('actualizarDocente.showRfc')}}">Actualizar docente</a></li>
                   </ul>
               </li>
               <li><a href="#">Tablero</a></li>

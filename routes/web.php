@@ -28,17 +28,18 @@ Route::post('/agregarTabla',[FormatoCompatabilidadController::class, 'obtenerTab
 Route::get('/registrarDocente',[DocenteController::class,'showCreate'])->name('registrarDocente.showCreate');
 Route::post('/registrarDocente/categoria',[DocenteController::class,'categoria'])->name('registrarDocente.categoria');
 Route::post('/registrarDocente/registrar',[DocenteController::class,'create'])->name('registrarDocente.create');
-Route::get('/actualizarDocente',[DocenteController::class,'showUpdate'])->name('registrarDocente.showUpdate');
+
+Route::get('/actualizarDocente',[DocenteController::class,'showRfc'])->name('actualizarDocente.showRfc');
 Route::post('/actualizarDocente/buscarRfc',[DocenteController::class, 'obtenerRfc'])->name('actualizarDocente.obtenerRfc');
+Route::get('/actualizarDocente/{rfc}',[DocenteController::class,'showUpdate'])->name('actualizarDocente.showUpdate');
+
 Route::put('/actualizarDocente/actualizar/{docente}',[DocenteController::class, 'update'])->name('actualizarDocente.update');
 Route::delete('/actualizarDocente/actualizar/{rfc}',[DocenteController::class, 'destroyDocente'])->name('actualizarDocente.destroyDocente');
 
-
-Route::get('/actualizarDocente/datosTabla/{rfc}',[DocenteController::class, 'showUpdateTabla'])->name('actualizarDocente.showUpdateTabla');
 Route::get('/actualizarDocente/datosTabla/{rfc}/edit', [DocenteController::class, 'edit'])->name('actualizarDocente.editTabla');
 
 Route::put('/actualizarDocente/datosTabla/update',[DocenteController::class, 'updateTabla'])->name('actualizarDocente.updateTabla');
-Route::post('/actualizarDocente/datosTabla/create',[DocenteController::class, 'createTabla'])->name('actualizarDocente.createTabla');
+Route::post('/actualizarDocente/datosTabla/{rfc}/create',[DocenteController::class, 'createTabla'])->name('actualizarDocente.createTabla');
 Route::delete('/actualizarDocente/datosTabla/{id}/{rfc}',[DocenteController::class, 'destroyTabla'])->name('actualizarDocente.destroyTabla');
 
 Route::get('/comando',[comandoController::class,'terminal']);
