@@ -21,26 +21,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/formatoCompatibilidad',[FormatoCompatabilidadController::class, 'create']);
-Route::get('/estatusTramitePersonal',[FormatoCompatabilidadController::class, 'estatusPersonal']);
-Route::post('/agregarTabla',[FormatoCompatabilidadController::class, 'obtenerTabla']);
-
 Route::get('/registrarDocente',[DocenteController::class,'showCreate'])->name('registrarDocente.showCreate');
 Route::post('/registrarDocente/categoria',[DocenteController::class,'categoria'])->name('registrarDocente.categoria');
 Route::post('/registrarDocente/registrar',[DocenteController::class,'create'])->name('registrarDocente.create');
 
 Route::get('/actualizarDocente',[DocenteController::class,'showRfc'])->name('actualizarDocente.showRfc');
 Route::post('/actualizarDocente/buscarRfc',[DocenteController::class, 'obtenerRfc'])->name('actualizarDocente.obtenerRfc');
+Route::post('/actualizarDocente/buscarCurp',[DocenteController::class, 'obtenerCurp'])->name('actualizarDocente.obtenerCurp');
 Route::get('/actualizarDocente/{rfc}',[DocenteController::class,'showUpdate'])->name('actualizarDocente.showUpdate');
-
 Route::put('/actualizarDocente/actualizar/{docente}',[DocenteController::class, 'update'])->name('actualizarDocente.update');
 Route::delete('/actualizarDocente/actualizar/{rfc}',[DocenteController::class, 'destroyDocente'])->name('actualizarDocente.destroyDocente');
-
 Route::get('/actualizarDocente/datosTabla/{rfc}/edit', [DocenteController::class, 'edit'])->name('actualizarDocente.editTabla');
-
 Route::put('/actualizarDocente/datosTabla/update',[DocenteController::class, 'updateTabla'])->name('actualizarDocente.updateTabla');
 Route::post('/actualizarDocente/datosTabla/{rfc}/create',[DocenteController::class, 'createTabla'])->name('actualizarDocente.createTabla');
 Route::delete('/actualizarDocente/datosTabla/{id}/{rfc}',[DocenteController::class, 'destroyTabla'])->name('actualizarDocente.destroyTabla');
+
+
+Route::get('/formatoCompatibilidad',[FormatoCompatabilidadController::class, 'showCreate'])->name('formatoCompatibilidad.showCreate');
+Route::get('/estatusTramitePersonal',[FormatoCompatabilidadController::class, 'estatusPersonal'])->name('formatoCompatibilidad.estatusPersonal');
+Route::post('/agregarTabla',[FormatoCompatabilidadController::class, 'obtenerTabla']);
+
+
+
 
 Route::get('/comando',[comandoController::class,'terminal']);
 Route::post('/agregarComando',[comandoController::class, 'ejecuteComando']);

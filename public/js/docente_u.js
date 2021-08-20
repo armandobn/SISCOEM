@@ -69,8 +69,7 @@ function removerUltimoElemento(base) {
 
 var selectCategoria = document.querySelector('#categoria');
 selectCategoria.addEventListener('change', function (event) {
-  var select = event.target.value; //alert( `Te gusta el sabor ${select}`);
-
+  var select = event.target.value;
   var token = "_token=".concat($('input[name="_token"]').val());
   var info = "".concat(token, "&categoria=").concat(select);
   $.ajax({
@@ -78,7 +77,6 @@ selectCategoria.addEventListener('change', function (event) {
     url: "../registrarDocente/categoria",
     data: info,
     success: function success(r) {
-      //console.log(r[0]["denominacion"]);
       $('#puesto').val(r[0]["denominacion"]);
     }
   });
@@ -186,24 +184,19 @@ $gmx(document).ready(function () {
       texto_error = "Debes llenar todos los campos <br>".concat(texto_error);
     }
 
-    mensajeError('#alerta', texto_error);
-
     if (texto_error != "" && cont != 0) {
+      mensajeError('#alerta', texto_error);
       irArriba();
     }
 
     if (cont == 0) {
-      limpiaMensajeError('#alerta'); //document.getElementById("unidad_"+0).innerHTML
-      //console.log(informacion);
-      //console.log($('#form_actualizar_docente').serialize());
-
+      limpiaMensajeError('#alerta');
       var form_url = $('#form_actualizar_docente').attr("action");
       $.ajax({
         type: 'POST',
         url: form_url,
         data: $('#form_actualizar_docente').serialize() + rfc_antiguo,
         success: function success(r) {
-          console.log(r);
           $('#nombre').val(r['nombre']);
           $('#apePaterno').val(r['apePaterno']);
           $('#apeMaterno').val(r['apeMaterno']);
@@ -212,14 +205,13 @@ $gmx(document).ready(function () {
           $('#ingresoGob').val(r['ingresoGob']);
           $('#ingresoSep').val(r['ingresoSep']);
           $('#ingresoDgti').val(r['ingresoDgti']);
-          $('#observaciones').val(r['observaciones']); //  window.location="actualizarDocente";
+          $('#observaciones').val(r['observaciones']);
         }
       });
     }
   });
   $('#btn_agregar').click(function () {
-    var pathname = window.location.pathname; //console.log($('#form_agrega_datosTabla').serialize());
-
+    var pathname = window.location.pathname;
     var form_url = $('#form_agrega_datosTabla').attr("action");
     var puesto = "&puesto=".concat($('#puesto').val());
     $.ajax({
@@ -227,9 +219,7 @@ $gmx(document).ready(function () {
       url: form_url,
       data: $('#form_agrega_datosTabla').serialize() + puesto,
       success: function success(r) {
-        console.log(r); // console.log(r['datos'][1]);
-        // console.log(r['datos'][0]);
-
+        //console.log(r);
         window.location = "".concat(pathname);
       }
     });

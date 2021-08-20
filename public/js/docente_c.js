@@ -69,8 +69,7 @@ function removerUltimoElemento(base) {
 
 var selectCategoria = document.querySelector('#categoria');
 selectCategoria.addEventListener('change', function (event) {
-  var select = event.target.value; //alert( `Te gusta el sabor ${select}`);
-
+  var select = event.target.value;
   var token = "_token=".concat($('input[name="_token"]').val());
   var info = "".concat(token, "&categoria=").concat(select);
   $.ajax({
@@ -78,7 +77,6 @@ selectCategoria.addEventListener('change', function (event) {
     url: "registrarDocente/categoria",
     data: info,
     success: function success(r) {
-      //console.log(r[0]["denominacion"]);
       $('#puesto').val(r[0]["denominacion"]);
     }
   });
@@ -169,20 +167,17 @@ $gmx(document).ready(function () {
       var contenedor_tabla = document.querySelector("#tabla_uno");
       var hijos = contenedor_tabla.children;
       var _cont = hijos.length;
-      contenedor_tabla_uno[_cont][0][0] = document.createElement("TR"); //todo en mayuscula
+      contenedor_tabla_uno[_cont][0][0] = document.createElement("TR");
 
-      contenedor_tabla_uno[_cont][0][0].setAttribute("id", "tr_" + _cont); //atributo,valor;
-
+      contenedor_tabla_uno[_cont][0][0].setAttribute("id", "tr_" + _cont);
 
       contenedor_tabla.appendChild(contenedor_tabla_uno[_cont][0][0]);
       contenedor_tabla_uno[_cont][0][1] = document.createElement("TD");
       contenedor_tabla_uno[_cont][0][2] = document.createTextNode(unidad);
 
-      contenedor_tabla_uno[_cont][0][1].setAttribute("id", "unidad_" + _cont); //atributo,valor;
+      contenedor_tabla_uno[_cont][0][1].setAttribute("id", "unidad_" + _cont);
 
-
-      contenedor_tabla_uno[_cont][0][1].setAttribute("name", "unidad[]"); //atributo,valor;
-
+      contenedor_tabla_uno[_cont][0][1].setAttribute("name", "unidad[]");
 
       contenedor_tabla_uno[_cont][0][1].appendChild(contenedor_tabla_uno[_cont][0][2]);
 
@@ -191,8 +186,7 @@ $gmx(document).ready(function () {
       contenedor_tabla_uno[_cont][1][1] = document.createElement("TD");
       contenedor_tabla_uno[_cont][1][2] = document.createTextNode(sub_unidad);
 
-      contenedor_tabla_uno[_cont][1][1].setAttribute("id", "sub_unidad_" + _cont); //atributo,valor;
-
+      contenedor_tabla_uno[_cont][1][1].setAttribute("id", "sub_unidad_" + _cont);
 
       contenedor_tabla_uno[_cont][1][1].appendChild(contenedor_tabla_uno[_cont][1][2]);
 
@@ -201,8 +195,7 @@ $gmx(document).ready(function () {
       contenedor_tabla_uno[_cont][2][1] = document.createElement("TD");
       contenedor_tabla_uno[_cont][2][2] = document.createTextNode(categoria);
 
-      contenedor_tabla_uno[_cont][2][1].setAttribute("id", "categoria_" + _cont); //atributo,valor;
-
+      contenedor_tabla_uno[_cont][2][1].setAttribute("id", "categoria_" + _cont);
 
       contenedor_tabla_uno[_cont][2][1].appendChild(contenedor_tabla_uno[_cont][2][2]);
 
@@ -211,8 +204,7 @@ $gmx(document).ready(function () {
       contenedor_tabla_uno[_cont][3][1] = document.createElement("TD");
       contenedor_tabla_uno[_cont][3][2] = document.createTextNode(horas);
 
-      contenedor_tabla_uno[_cont][3][1].setAttribute("id", "horas_" + _cont); //atributo,valor;
-
+      contenedor_tabla_uno[_cont][3][1].setAttribute("id", "horas_" + _cont);
 
       contenedor_tabla_uno[_cont][3][1].appendChild(contenedor_tabla_uno[_cont][3][2]);
 
@@ -221,8 +213,7 @@ $gmx(document).ready(function () {
       contenedor_tabla_uno[_cont][4][1] = document.createElement("TD");
       contenedor_tabla_uno[_cont][4][2] = document.createTextNode(plaza);
 
-      contenedor_tabla_uno[_cont][4][1].setAttribute("id", "plaza_" + _cont); //atributo,valor;
-
+      contenedor_tabla_uno[_cont][4][1].setAttribute("id", "plaza_" + _cont);
 
       contenedor_tabla_uno[_cont][4][1].appendChild(contenedor_tabla_uno[_cont][4][2]);
 
@@ -231,8 +222,7 @@ $gmx(document).ready(function () {
       contenedor_tabla_uno[_cont][5][1] = document.createElement("TD");
       contenedor_tabla_uno[_cont][5][2] = document.createTextNode(motivo);
 
-      contenedor_tabla_uno[_cont][5][1].setAttribute("id", "motivo_" + _cont); //atributo,valor;
-
+      contenedor_tabla_uno[_cont][5][1].setAttribute("id", "motivo_" + _cont);
 
       contenedor_tabla_uno[_cont][5][1].appendChild(contenedor_tabla_uno[_cont][5][2]);
 
@@ -241,13 +231,11 @@ $gmx(document).ready(function () {
       contenedor_tabla_uno[_cont][6][1] = document.createElement("TD");
       contenedor_tabla_uno[_cont][6][2] = document.createTextNode(puesto);
 
-      contenedor_tabla_uno[_cont][6][1].setAttribute("id", "puesto_" + _cont); //atributo,valor;
-
+      contenedor_tabla_uno[_cont][6][1].setAttribute("id", "puesto_" + _cont);
 
       contenedor_tabla_uno[_cont][6][1].appendChild(contenedor_tabla_uno[_cont][6][2]);
 
-      contenedor_tabla_uno[_cont][0][0].appendChild(contenedor_tabla_uno[_cont][6][1]); //console.log(contenedor_tabla_uno);
-
+      contenedor_tabla_uno[_cont][0][0].appendChild(contenedor_tabla_uno[_cont][6][1]);
 
       $('#unidad').prop('selectedIndex', 0);
       $('#sub_unidad').prop('selectedIndex', 0);
@@ -259,9 +247,6 @@ $gmx(document).ready(function () {
     }
   });
   $('#btn_eliminar').click(function () {
-    // z=document.getElementById("unidad_0").innerHTML;
-    // console.log(z);
-    // alert(z);
     removerUltimoElemento("#tabla_uno");
   });
   $('#btn_registrar').click(function () {
@@ -374,24 +359,19 @@ $gmx(document).ready(function () {
       texto_error = "Debes llenar todos los campos <br>".concat(texto_error);
     }
 
-    mensajeError('#alerta', texto_error);
-
     if (texto_error != "" && cont != 0) {
+      mensajeError('#alerta', texto_error);
       irArriba();
     }
 
     if (cont == 0) {
-      limpiaMensajeError('#alerta'); //document.getElementById("unidad_"+0).innerHTML
-      //console.log(informacion);
-      //console.log($('#form_registrar_docente').serialize());
-
+      limpiaMensajeError('#alerta');
       var form_url = $('#form_registrar_docente').attr("action");
       $.ajax({
         type: 'POST',
         url: form_url,
         data: $('#form_registrar_docente').serialize() + informacion,
         success: function success(r) {
-          //console.log(r);
           $('#unidad').prop('selectedIndex', 0);
           $('#sub_unidad').prop('selectedIndex', 0);
           $('#categoria').prop('selectedIndex', 0);

@@ -74,19 +74,28 @@ $gmx(document).ready(function () {
   };
 
   $('#btn_buscar_rfc').click(function () {
+    var texto_error = "";
+
     if ($('#buscar_rfc').val() == "") {
       alertaError('#asterisco_buscar_rfc', '#buscar_rfc');
       return null;
     } else if ($('#buscar_rfc').val().length == 13) {
       limpiarError('#asterisco_buscar_rfc', '#buscar_rfc');
+      texto_error = "";
     } else {
       alertaError('#asterisco_buscar_rfc', '#buscar_rfc');
-      return null;
-    } //console.log($('#form_buscar_rfc').serialize());
+      texto_error = "".concat(texto_error, " Campo RFC debe contener solamente 13 caracteres <br>");
+    }
 
+    if (texto_error != "") {
+      mensajeError('#alerta', texto_error);
+      irArriba();
+      return false;
+    } else {
+      limpiaMensajeError('#alerta');
+    }
 
-    var form_url = $('#form_buscar_rfc').attr("action"); //'actualizarDocente/buscarRfc'
-
+    var form_url = $('#form_buscar_rfc').attr("action");
     $.ajax({
       type: 'POST',
       url: form_url,
@@ -96,6 +105,46 @@ $gmx(document).ready(function () {
         window.location = "actualizarDocente/".concat(r[0]['rfc']);
       },
       error: function error(_error) {
+        texto_error = "No hay registros";
+        mensajeError('#alerta', texto_error);
+
+        if (texto_error != "") {
+          irArriba();
+        }
+      }
+    });
+  });
+  $('#btn_buscar_curp').click(function () {
+    var texto_error = "";
+
+    if ($('#buscar_curp').val() == "") {
+      alertaError('#asterisco_buscar_curp', '#buscar_curp');
+      return null;
+    } else if ($('#buscar_curp').val().length == 18) {
+      limpiarError('#asterisco_buscar_curp', '#buscar_curp');
+      texto_error = "";
+    } else {
+      alertaError('#asterisco_buscar_curp', '#buscar_curp');
+      texto_error = "".concat(texto_error, " Campo CURP debe contener solamente 18 caracteres <br>");
+    }
+
+    if (texto_error != "") {
+      mensajeError('#alerta', texto_error);
+      irArriba();
+      return false;
+    } else {
+      limpiaMensajeError('#alerta');
+    }
+
+    var form_url = $('#form_buscar_curp').attr("action");
+    $.ajax({
+      type: 'POST',
+      url: form_url,
+      data: $('#form_buscar_curp').serialize(),
+      success: function success(r) {
+        window.location = "actualizarDocente/".concat(r[0]['rfc']);
+      },
+      error: function error(_error2) {
         texto_error = "No hay registros";
         mensajeError('#alerta', texto_error);
 

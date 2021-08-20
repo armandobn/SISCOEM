@@ -119,7 +119,7 @@
   </div>
 </form>
 
-<form action="{{route('actualizarDocente.destroyDocente',$rfc)}}" method="post" id="form_eliminar_todo_docente">
+<form action="{{route('actualizarDocente.destroyDocente',$docentes[0]->rfc)}}" method="post" id="form_eliminar_todo_docente">
     @csrf            
     @method('delete') 
 
@@ -137,7 +137,7 @@
 <br>
 <br>
 <hr class="red">
-<form action="{{route('actualizarDocente.createTabla',$rfc)}}" method="POST" id="form_agrega_datosTabla" class="top-buffer">
+<form action="{{route('actualizarDocente.createTabla',$docentes[0]->rfc)}}" method="POST" id="form_agrega_datosTabla" class="top-buffer">
   @csrf
   <input type="hidden" id="cat" value="0">
   <div class="row top-buffer">
@@ -206,6 +206,7 @@
               </div>
               <select class="form-control text-center" id="horas" name="horas">
                   <option value="">Horas</option>
+                  <option value="000">000 - 0 Horas</option>
                   <option value="010">010 - 1 Horas</option>
                   <option value="020">020 - 2 Horas</option>
                   <option value="030">030 - 3 Horas</option>
@@ -225,7 +226,6 @@
                   <option value="170">170 - 17 Horas</option>
                   <option value="180">180 - 18 Horas</option>
                   <option value="190">190 - 19 Horas</option>
-                  <option value="120">120 - 20 Horas</option>
               </select>
           </div>
 
@@ -249,7 +249,6 @@
 
                   @foreach ($motivos as $motivo)
                       <option value="{{ $motivo->nick }}">{{ $motivo->nick }}</option>
-                      {{-- <option value="{{ $motivo->nick }}" @if ($motivo->nick == '02') ? selected : null @endif>{{ $motivo->nick }}</option> --}}
                   @endforeach
               </select>
           </div>
@@ -268,7 +267,7 @@
       </div>
   </div>
 
-  <input type="hidden" name="rfc" id="rfc" value="{{$rfc}}">
+  <input type="hidden" name="rfc" id="rfc" value="{{$docentes[0]->rfc}}">
 
   <div class="row">
       <div class="col-md-4">
@@ -276,8 +275,7 @@
       </div>
   </div>
 </form>
-{{-- {{$rfc}}
-{{$docentesTabla}} --}}
+
 <div class="table-responsive form-group">
 
   <table class="table table-bordered" id="tabla_base">

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class FormatoCompatabilidadController extends Controller
 {
     //
-    public function create(){
+    public function showCreate(){
         return view('compatibilidad.formatoCompatibilidad');
     }
 

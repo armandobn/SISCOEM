@@ -13,8 +13,6 @@ class DocenteController extends Controller
 {
     //
     public function showCreate(){
-        //$docentes = Docente::all();
-        //return view('docente.registrarDocente',compact('docentes'));
         $motivos = CatMotivo::all();
         $docens = CatDocen::all();
         $admins = CatAdmin::all();
@@ -81,6 +79,12 @@ class DocenteController extends Controller
         $datos=[$id[0],$tabla,1];
         return $datos+compact('datos');
     }
+
+    public function obtenerCurp(Request $request){
+        
+        $id=Docente::select('*')->where('curp',$request->buscar_curp)->get();
+        return $id;
+    }
     
     public function showUpdate($rfc){
  
@@ -90,7 +94,7 @@ class DocenteController extends Controller
         $docens = CatDocen::all();
         $admins = CatAdmin::all();
         
-        return view('docente.actualizarDocente',compact('motivos','docens','admins','docentes','docentesTabla','rfc'));
+        return view('docente.actualizarDocente',compact('motivos','docens','admins','docentes','docentesTabla'));
     }
 
 

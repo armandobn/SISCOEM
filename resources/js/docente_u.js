@@ -77,9 +77,6 @@ function removerUltimoElemento(base) {
 const selectCategoria = document.querySelector('#categoria');
 selectCategoria.addEventListener('change', (event) => {
     let select=event.target.value;
-    //alert( `Te gusta el sabor ${select}`);
-    
-    
     let token=`_token=${$('input[name="_token"]').val()}`;
     let info=`${token}&categoria=${select}`;
     $.ajax({
@@ -87,8 +84,6 @@ selectCategoria.addEventListener('change', (event) => {
       url: "../registrarDocente/categoria",
       data: info,
       success:function(r){
-        //console.log(r[0]["denominacion"]);
-
        $('#puesto').val(r[0]["denominacion"]);
       }
 
@@ -184,18 +179,15 @@ $gmx(document).ready(function () {
       texto_error = `Debes llenar todos los campos <br>${texto_error}`;
     }
 
-    mensajeError('#alerta', texto_error);
+    
     if (texto_error != "" && cont != 0) {
+      mensajeError('#alerta', texto_error);
       irArriba();
     }
 
     if (cont == 0) {
 
       limpiaMensajeError('#alerta');
-      //document.getElementById("unidad_"+0).innerHTML
-      //console.log(informacion);
-
-      //console.log($('#form_actualizar_docente').serialize());
       let form_url = $('#form_actualizar_docente').attr("action");
 
       $.ajax({
@@ -203,7 +195,6 @@ $gmx(document).ready(function () {
         url: form_url,
         data: $('#form_actualizar_docente').serialize() + rfc_antiguo,
         success: function (r) {
-          console.log(r);
           $('#nombre').val(r['nombre']);
           $('#apePaterno').val(r['apePaterno']);
           $('#apeMaterno').val(r['apeMaterno']);
@@ -214,9 +205,6 @@ $gmx(document).ready(function () {
           $('#ingresoSep').val(r['ingresoSep']);
           $('#ingresoDgti').val(r['ingresoDgti']);
           $('#observaciones').val(r['observaciones']);
-
-
-          //  window.location="actualizarDocente";
         }
 
       });
@@ -227,7 +215,6 @@ $gmx(document).ready(function () {
 
   $('#btn_agregar').click(function(){
     let pathname = window.location.pathname;
-    //console.log($('#form_agrega_datosTabla').serialize());
     let form_url=$('#form_agrega_datosTabla').attr("action");
     let puesto=`&puesto=${$('#puesto').val()}`;
     $.ajax({
@@ -235,9 +222,7 @@ $gmx(document).ready(function () {
       url: form_url,
       data: $('#form_agrega_datosTabla').serialize()+puesto,
       success:function(r){
-        console.log(r);
-        // console.log(r['datos'][1]);
-        // console.log(r['datos'][0]);
+        //console.log(r);
         window.location=`${pathname}`;
         
 

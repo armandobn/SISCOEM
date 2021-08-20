@@ -78,9 +78,6 @@ const selectCategoria = document.querySelector('#categoria');
 
 selectCategoria.addEventListener('change', (event) => {
     let select=event.target.value;
-    //alert( `Te gusta el sabor ${select}`);
-    
-    
     let token=`_token=${$('input[name="_token"]').val()}`;
     let info=`${token}&categoria=${select}`;
     $.ajax({
@@ -88,8 +85,6 @@ selectCategoria.addEventListener('change', (event) => {
       url: "registrarDocente/categoria",
       data: info,
       success:function(r){
-        //console.log(r[0]["denominacion"]);
-
        $('#puesto').val(r[0]["denominacion"]);
       }
 
@@ -195,55 +190,53 @@ $gmx(document).ready(function () {
       const hijos = contenedor_tabla.children;
       let cont = hijos.length;
 
-      contenedor_tabla_uno[cont][0][0] = document.createElement("TR");//todo en mayuscula
-      contenedor_tabla_uno[cont][0][0].setAttribute("id", "tr_" + cont);//atributo,valor;
+      contenedor_tabla_uno[cont][0][0] = document.createElement("TR");
+      contenedor_tabla_uno[cont][0][0].setAttribute("id", "tr_" + cont);
       contenedor_tabla.appendChild(contenedor_tabla_uno[cont][0][0]);
       
       contenedor_tabla_uno[cont][0][1] = document.createElement("TD");
       contenedor_tabla_uno[cont][0][2] = document.createTextNode(unidad);
-      contenedor_tabla_uno[cont][0][1].setAttribute("id", "unidad_" + cont );//atributo,valor;
-      contenedor_tabla_uno[cont][0][1].setAttribute("name", "unidad[]" );//atributo,valor;
+      contenedor_tabla_uno[cont][0][1].setAttribute("id", "unidad_" + cont );
+      contenedor_tabla_uno[cont][0][1].setAttribute("name", "unidad[]" );
       contenedor_tabla_uno[cont][0][1].appendChild(contenedor_tabla_uno[cont][0][2]);
       contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][0][1]);
       
 
       contenedor_tabla_uno[cont][1][1] = document.createElement("TD");
       contenedor_tabla_uno[cont][1][2] = document.createTextNode(sub_unidad);
-      contenedor_tabla_uno[cont][1][1].setAttribute("id", "sub_unidad_" + cont );//atributo,valor;
+      contenedor_tabla_uno[cont][1][1].setAttribute("id", "sub_unidad_" + cont );
       contenedor_tabla_uno[cont][1][1].appendChild(contenedor_tabla_uno[cont][1][2]);
       contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][1][1]);
 
       contenedor_tabla_uno[cont][2][1] = document.createElement("TD");
       contenedor_tabla_uno[cont][2][2] = document.createTextNode(categoria);
-      contenedor_tabla_uno[cont][2][1].setAttribute("id", "categoria_" + cont );//atributo,valor;
+      contenedor_tabla_uno[cont][2][1].setAttribute("id", "categoria_" + cont );
       contenedor_tabla_uno[cont][2][1].appendChild(contenedor_tabla_uno[cont][2][2]);
       contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][2][1]);
 
       contenedor_tabla_uno[cont][3][1] = document.createElement("TD");
       contenedor_tabla_uno[cont][3][2] = document.createTextNode(horas);
-      contenedor_tabla_uno[cont][3][1].setAttribute("id", "horas_" + cont );//atributo,valor;
+      contenedor_tabla_uno[cont][3][1].setAttribute("id", "horas_" + cont );
       contenedor_tabla_uno[cont][3][1].appendChild(contenedor_tabla_uno[cont][3][2]);
       contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][3][1]);
 
       contenedor_tabla_uno[cont][4][1] = document.createElement("TD");
       contenedor_tabla_uno[cont][4][2] = document.createTextNode(plaza);
-      contenedor_tabla_uno[cont][4][1].setAttribute("id", "plaza_" + cont );//atributo,valor;
+      contenedor_tabla_uno[cont][4][1].setAttribute("id", "plaza_" + cont );
       contenedor_tabla_uno[cont][4][1].appendChild(contenedor_tabla_uno[cont][4][2]);
       contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][4][1]);
 
       contenedor_tabla_uno[cont][5][1] = document.createElement("TD");
       contenedor_tabla_uno[cont][5][2] = document.createTextNode(motivo);
-      contenedor_tabla_uno[cont][5][1].setAttribute("id", "motivo_" + cont );//atributo,valor;
+      contenedor_tabla_uno[cont][5][1].setAttribute("id", "motivo_" + cont );
       contenedor_tabla_uno[cont][5][1].appendChild(contenedor_tabla_uno[cont][5][2]);
       contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][5][1]);
 
       contenedor_tabla_uno[cont][6][1] = document.createElement("TD");
       contenedor_tabla_uno[cont][6][2] = document.createTextNode(puesto);
-      contenedor_tabla_uno[cont][6][1].setAttribute("id", "puesto_" + cont );//atributo,valor;
+      contenedor_tabla_uno[cont][6][1].setAttribute("id", "puesto_" + cont );
       contenedor_tabla_uno[cont][6][1].appendChild(contenedor_tabla_uno[cont][6][2]);
       contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][6][1]);
-      
-      //console.log(contenedor_tabla_uno);
       
       $('#unidad').prop('selectedIndex',0);
       $('#sub_unidad').prop('selectedIndex',0);
@@ -260,13 +253,7 @@ $gmx(document).ready(function () {
   });
 
   $('#btn_eliminar').click(function(){
-
-    
-    // z=document.getElementById("unidad_0").innerHTML;
-    // console.log(z);
-    // alert(z);
     removerUltimoElemento("#tabla_uno");
-  
   });
 
   $('#btn_registrar').click(function(){
@@ -377,19 +364,15 @@ $gmx(document).ready(function () {
       texto_error=`Debes llenar todos los campos <br>${texto_error}`;
     }
     
-    mensajeError('#alerta',texto_error);
+    
     if(texto_error!="" && cont!=0){
+      mensajeError('#alerta',texto_error);
       irArriba();
     }
     
     if(cont == 0){
      
       limpiaMensajeError('#alerta');
-     
-      //document.getElementById("unidad_"+0).innerHTML
-      //console.log(informacion);
-
-      //console.log($('#form_registrar_docente').serialize());
       let form_url=$('#form_registrar_docente').attr("action");
       
       $.ajax({
@@ -397,7 +380,6 @@ $gmx(document).ready(function () {
         url: form_url,
         data:$('#form_registrar_docente').serialize()+informacion,
         success:function(r){
-          //console.log(r);
           $('#unidad').prop('selectedIndex',0);
           $('#sub_unidad').prop('selectedIndex',0);
           $('#categoria').prop('selectedIndex',0);
