@@ -2,14 +2,49 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CatAdmin;
+use App\Models\CatDocen;
+use App\Models\CatMotivo;
+use App\Models\Docente;
+use App\Models\DocentesTabla;
 use Illuminate\Http\Request;
 
 class FormatoCompatabilidadController extends Controller
 {
     //
     public function showCreate(){
-        return view('compatibilidad.formatoCompatibilidad');
+        $motivos = CatMotivo::all();
+        $docens = CatDocen::all();
+        $admins = CatAdmin::all();
+
+        return view('compatibilidad.formatoCompatibilidad', compact('motivos','docens','admins'));
     }
+
+    public function obtenerRfc(Request $request){
+        $docentes=Docente::select('*')->where('rfc',$request->rfc)->get();
+        $docentesTabla=DocentesTabla::select('*')->where('rfc',$request->rfc)->get();
+        return compact('docentes', 'docentesTabla');
+    }
+
+    public function categoria(Request $request){
+        $docens = CatDocen::select('denominacion')->where('categoria',$request->categoria)->get();
+        $admins= CatAdmin::select('denominacion')->where('categoria',$request->categoria)->get();
+        
+        if($docens!="0"){
+            $denominacion=$docens;
+        }
+        if(count($admins)!="0"){
+            $denominacion=$admins;
+        }    
+        return $denominacion;
+        
+    }
+
+    public function motivos(Request $request){
+        $motivos = CatMotivo::all();
+        return $motivos;
+    }
+
 
     public function estatusPersonal(){
         return view('compatibilidad.estatusTramitePersonal');

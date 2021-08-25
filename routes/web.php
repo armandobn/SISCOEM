@@ -38,6 +38,13 @@ Route::delete('/actualizarDocente/datosTabla/{id}/{rfc}',[DocenteController::cla
 
 
 Route::get('/formatoCompatibilidad',[FormatoCompatabilidadController::class, 'showCreate'])->name('formatoCompatibilidad.showCreate');
+Route::post('/formatoCompatibilidad/buscarRfc',[FormatoCompatabilidadController::class, 'obtenerRfc'])->name('formatoCompatibilidad.obtenerRfc');
+
+
+Route::post('/categoria',[FormatoCompatabilidadController::class,'categoria'])->name('formatoComatabilidad.categoria');
+Route::post('/motivos',[FormatoCompatabilidadController::class,'motivos'])->name('formatoComatabilidad.motivos');
+
+
 Route::get('/estatusTramitePersonal',[FormatoCompatabilidadController::class, 'estatusPersonal'])->name('formatoCompatibilidad.estatusPersonal');
 Route::post('/agregarTabla',[FormatoCompatabilidadController::class, 'obtenerTabla']);
 

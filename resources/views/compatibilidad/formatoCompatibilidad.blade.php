@@ -37,14 +37,14 @@
     </div>
 
     <div class="alert" id="alerta"></div>
-
-    <form class="form-inline top-buffer" role="form" id="form_buscar_rfc">
+    
+    <form action="{{route('formatoCompatibilidad.obtenerRfc')}}" method="POST" class="form-inline top-buffer" role="form" id="form_buscar_rfc">
         @csrf
         <div class="form-group">
             <label class="control-label" for="buscar_rfc">Registro Federal de Contribuyentes(R.F.C)
                 <span class="form-text" id="asterisco_buscar_rfc">*</span>:
             </label>
-            <input class="form-control" id="buscar_rfc" placeholder="Ingresa el RFC" type="text" disabled>
+            <input class="form-control" id="buscar_rfc"name="rfc"  placeholder="Ingresa el RFC" type="text" disabled>
         </div>
         <button type="button" class="btn btn-primary" id="btn_buscar_rfc" disabled>Buscar</button>
     </form>
@@ -90,20 +90,22 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <label class="control-label" for="">Institucion 1 que certifica los datos del puesto
+                <label class="control-label" for="certifica_inst_uno">Institucion 1 que certifica los datos del puesto
                     actual:</label>
-                <input class="form-control" id="inst_uno" placeholder="" type="text" disabled>
+                <input class="form-control" id="certifica_inst_uno" placeholder="" type="text" disabled>
             </div>
         </div>
     </div>
 
+
+
     <div class="row">
         <div class="col-md-2">
             <div class="form-group">
-                <div class="form-label" for="unidad">Unidad
-                    <span class="form-text" id="asterisco_unidad">*</span>:
+                <div class="form-label" for="unidad_inst_uno">Unidad
+                    <span class="form-text" id="asterisco_unidad_inst_uno">*</span>:
                 </div>
-                <select class="form-control" id="unidad">
+                <select class="form-control" id="unidad_inst_uno">
                     <option value="">Unidad</option>
                     <option value="13">13</option>
                     <option value="19">19</option>
@@ -120,10 +122,10 @@
         </div>
         <div class="col-md-2">
             <div class="form-group">
-                <div class="form-label" for="sub_unidad">Sub-unidad
-                    <span class="form-text" id="asterisco_sub_unidad">*</span>:
+                <div class="form-label" for="sub_unidad_inst_uno">Sub-unidad
+                    <span class="form-text" id="asterisco_sub_unidad_inst_uno">*</span>:
                 </div>
-                <select class="form-control" id="sub_unidad">
+                <select class="form-control" id="sub_unidad_inst_uno">
                     <option value="">Sub-unidad</option>
                     <option value="01">01</option>
                     <option value="02">02</option>
@@ -137,19 +139,19 @@
         </div>
         <div class="col-md-2">
             <div class="form-group">
-                <div class="form-label" for="categoria">Categoria
-                    <span class="form-text" id="asterisco_categoria">*</span>:
+                <div class="form-label" for="categoria_inst_uno">Categoria
+                    <span class="form-text" id="asterisco_categoria_inst_uno">*</span>:
                 </div>
-                <select class="form-control" id="categoria">
+                <select class="form-control" id="categoria_inst_uno">
                     <option value="">Categoria</option>
                     <option disabled><strong>-----Docente-----</strong></option>
-                    {{-- @foreach ($docens as $docen)
+                    @foreach ($docens as $docen)
                         <option value="{{ $docen->categoria }}">{{ $docen->categoria }}</option>
                     @endforeach
                     <option disabled><strong>-----Admistrativo-----</strong></option>
                     @foreach ($admins as $admin)
                         <option value="{{ $admin->categoria }}">{{ $admin->categoria }}</option>
-                    @endforeach --}}
+                    @endforeach
                 </select>
             </div>
 
@@ -157,10 +159,10 @@
 
         <div class="col-md-2">
             <div class="form-group">
-                <div class="form-label" for="horas">Horas
-                    <span class="form-text" id="asterisco_horas">*</span>:
+                <div class="form-label" for="horas_inst_uno">Horas
+                    <span class="form-text" id="asterisco_horas_inst_uno">*</span>:
                 </div>
-                <select class="form-control text-center" id="horas">
+                <select class="form-control text-center" id="horas_inst_uno">
                     <option value="">Horas</option>
                     <option value="000">000 - 0 Horas</option>
                     <option value="010">010 - 1 Horas</option>
@@ -188,23 +190,23 @@
         </div>
         <div class="col-md-2">
             <div class="form-group">
-                <div class="form-label" for="plaza">Plaza
-                    <span class="form-text" id="asterisco_plaza">*</span>:
+                <div class="form-label" for="plaza_inst_uno">Plaza
+                    <span class="form-text" id="asterisco_plaza_inst_uno">*</span>:
                 </div>
-                <input type="text" class="form-control" placeholder="Ingresa la plaza" id="plaza">
+                <input type="text" class="form-control" placeholder="Ingresa la plaza" id="plaza_inst_uno">
             </div>
 
         </div>
         <div class="col-md-2">
             <div class="form-group">
-                <div class="form-label" for="motivo">Motivo
-                    <span class="form-text" id="asterisco_motivo">*</span>:
+                <div class="form-label" for="motivo_inst_uno">Motivo
+                    <span class="form-text" id="asterisco_motivo_inst_uno">*</span>:
                 </div>
-                <select class="form-control" id="motivo">
+                <select class="form-control" id="motivo_inst_uno">
                     <option value="">Motivo</option>
-                    {{-- @foreach ($motivos as $motivo)
+                    @foreach ($motivos as $motivo)
                         <option value="{{ $motivo->nick }}">{{ $motivo->nick }}</option>
-                    @endforeach --}}
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -214,10 +216,10 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <div class="form-label" for="puesto">Denominacion de la categoria o puesto
-                    <span class="form-text" id="asterisco_puesto">*</span>:
+                <div class="form-label" for="puesto_inst_uno">Denominacion de la categoria o puesto
+                    <span class="form-text" id="asterisco_puesto_inst_uno">*</span>:
                 </div>
-                <input type="text" class="form-control" id="puesto" disabled>
+                <input type="text" class="form-control" id="puesto_inst_uno" disabled>
             </div>
         </div>
     </div>
@@ -250,7 +252,6 @@
 
     </div>
 
-
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead>
@@ -281,19 +282,19 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <label class="control-label" for="">Institucion 2 que valida los datos del puesto o contrato a
+                <label class="control-label" for="certifica_inst_dos">Institucion 2 que valida los datos del puesto o contrato a
                     desempeñar:</label>
-                <input class="form-control" id="" placeholder="" type="text" disabled>
+                <input class="form-control" id="certifica_inst_dos" placeholder="" type="text" disabled>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-2">
             <div class="form-group">
-                <div class="form-label" for="unidad">Unidad
-                    <span class="form-text" id="asterisco_unidad">*</span>:
+                <div class="form-label" for="unidad_inst_dos">Unidad
+                    <span class="form-text" id="asterisco_unidad_inst_dos">*</span>:
                 </div>
-                <select class="form-control" id="unidad">
+                <select class="form-control" id="unidad_inst_dos">
                     <option value="">Unidad</option>
                     <option value="13">13</option>
                     <option value="19">19</option>
@@ -310,10 +311,10 @@
         </div>
         <div class="col-md-2">
             <div class="form-group">
-                <div class="form-label" for="sub_unidad">Sub-unidad
-                    <span class="form-text" id="asterisco_sub_unidad">*</span>:
+                <div class="form-label" for="sub_unidad_inst_dos">Sub-unidad
+                    <span class="form-text" id="asterisco_sub_unidad_inst_dos">*</span>:
                 </div>
-                <select class="form-control" id="sub_unidad">
+                <select class="form-control" id="sub_unidad_inst_dos">
                     <option value="">Sub-unidad</option>
                     <option value="01">01</option>
                     <option value="02">02</option>
@@ -327,8 +328,8 @@
         </div>
         <div class="col-md-2">
             <div class="form-group">
-                <div class="form-label" for="categoria">Categoria
-                    <span class="form-text" id="asterisco_categoria">*</span>:
+                <div class="form-label" for="categoria_inst_dos">Categoria
+                    <span class="form-text" id="asterisco_categoria_inst_dos">*</span>:
                 </div>
                 <select class="form-control" id="categoria">
                     <option value="">Categoria</option>
@@ -347,10 +348,10 @@
 
         <div class="col-md-2">
             <div class="form-group">
-                <div class="form-label" for="horas">Horas
-                    <span class="form-text" id="asterisco_horas">*</span>:
+                <div class="form-label" for="horas_inst_dos">Horas
+                    <span class="form-text" id="asterisco_horas_inst_dos">*</span>:
                 </div>
-                <select class="form-control text-center" id="horas">
+                <select class="form-control text-center" id="horas_inst_dos">
                     <option value="">Horas</option>
                     <option value="000">000 - 0 Horas</option>
                     <option value="010">010 - 1 Horas</option>
@@ -387,10 +388,10 @@
         </div>
         <div class="col-md-2">
             <div class="form-group">
-                <div class="form-label" for="motivo">Motivo
-                    <span class="form-text" id="asterisco_motivo">*</span>:
+                <div class="form-label" for="motivo_inst_dos">Motivo
+                    <span class="form-text" id="asterisco_motivo_inst_dos">*</span>:
                 </div>
-                <select class="form-control" id="motivo">
+                <select class="form-control" id="motivo_inst_dos">
                     <option value="">Motivo</option>
                     {{-- @foreach ($motivos as $motivo)
                         <option value="{{ $motivo->nick }}">{{ $motivo->nick }}</option>
@@ -404,10 +405,10 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <div class="form-label" for="puesto">Denominacion de la categoria o puesto
-                    <span class="form-text" id="asterisco_puesto">*</span>:
+                <div class="form-label" for="puesto_inst_dos">Denominacion de la categoria o puesto
+                    <span class="form-text" id="asterisco_puesto_inst_dos">*</span>:
                 </div>
-                <input type="text" class="form-control" id="puesto" disabled>
+                <input type="text" class="form-control" id="puesto_inst_dos" disabled>
             </div>
         </div>
     </div>
