@@ -65,6 +65,18 @@ function removerUltimoElemento(base) {
   var contenedor = document.querySelector(base);
   var tr_antiguo = contenedor.lastChild;
   contenedor.removeChild(tr_antiguo);
+} //Evento teclado, solamente mayusculas
+
+
+function eventoTeclado(id_elemento) {
+  var entradaInput = document.getElementById(id_elemento);
+  entradaInput.addEventListener('keyup', cambiarMayusculas);
+}
+
+function cambiarMayusculas(elemento) {
+  var texto = elemento.target.value;
+  elemento.target.value = texto.toUpperCase(); // console.log(texto);
+  // console.log(`TIPO DE EVENTO: ${elemento.type}` );
 }
 
 var selectCategoria = document.querySelector('#categoria');
@@ -82,7 +94,14 @@ selectCategoria.addEventListener('change', function (event) {
   });
 });
 $gmx(document).ready(function () {
-  //Scroll ir Arriba
+  eventoTeclado('nombre');
+  eventoTeclado('apeMaterno');
+  eventoTeclado('apePaterno');
+  eventoTeclado('rfc');
+  eventoTeclado('curp');
+  eventoTeclado('plaza');
+  eventoTeclado('observaciones'); //Scroll ir Arriba
+
   var obtener_pixeles_inicio = function obtener_pixeles_inicio() {
     return document.documentElement.scrollTop || document.body.scrollTop;
   };

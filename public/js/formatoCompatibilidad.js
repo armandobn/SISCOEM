@@ -58,10 +58,24 @@ function limpiaMensajeError(id_alerta) {
     alerta.classList.remove("alert-danger");
     alerta.innerHTML = "";
   }
+} //Evento teclado, solamente mayusculas
+
+
+function eventoTeclado(id_elemento) {
+  var entradaInput = document.getElementById(id_elemento);
+  entradaInput.value = '';
+  entradaInput.addEventListener('keyup', cambiarMayusculas);
+}
+
+function cambiarMayusculas(elemento) {
+  var texto = elemento.target.value;
+  elemento.target.value = texto.toUpperCase(); // console.log(texto);
+  // console.log(`TIPO DE EVENTO: ${elemento.type}` );
 }
 
 $gmx(document).ready(function () {
-  //Scroll ir Arriba
+  eventoTeclado('buscar_rfc'); //Scroll ir Arriba
+
   var obtener_pixeles_inicio = function obtener_pixeles_inicio() {
     return document.documentElement.scrollTop || document.body.scrollTop;
   };
@@ -291,11 +305,10 @@ $gmx(document).ready(function () {
         url: "motivos",
         data: token,
         success: function success(r) {
-          console.log(r);
-
+          // console.log(r);
           for (var i = 0; i < r.length; i++) {
             if (r[i]['nick'] == motivo) {
-              console.log(r[i]['nick']);
+              // console.log(r[i]['nick']);
               contenedor_tabla_uno[cont][6][1] = document.createElement("TD");
               contenedor_tabla_uno[cont][6][2] = document.createTextNode(r[i]['nick']);
               contenedor_tabla_uno[cont][6][3] = document.createTextNode(r[i]['descripcion']);

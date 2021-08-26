@@ -66,8 +66,22 @@ function limpiaMensajeError(id_alerta) {
 
 }
 
-$gmx(document).ready(function () {
+//Evento teclado, solamente mayusculas
+function eventoTeclado(id_elemento){
+  const entradaInput = document.getElementById(id_elemento);
+  entradaInput.value='';
+  entradaInput.addEventListener('keyup',cambiarMayusculas);
+}
 
+function cambiarMayusculas(elemento){
+ let texto = elemento.target.value;
+ elemento.target.value=texto.toUpperCase();
+  // console.log(texto);
+  // console.log(`TIPO DE EVENTO: ${elemento.type}` );
+}
+
+$gmx(document).ready(function () {
+  eventoTeclado('buscar_rfc');
   //Scroll ir Arriba
   const obtener_pixeles_inicio = () => document.documentElement.scrollTop || document.body.scrollTop
   const irArriba = () => {
@@ -132,7 +146,9 @@ $gmx(document).ready(function () {
 
   });
 
+  
 
+  
   $('#btn_buscar_rfc').click(function () {
     let texto_error = "";
     if ($('#buscar_rfc').val() == "") {
@@ -307,11 +323,11 @@ $gmx(document).ready(function () {
         url: "motivos",
         data: token,
         success: function (r) {
-          console.log(r);
+          // console.log(r);
 
           for (let i = 0; i < r.length; i++) {
             if (r[i]['nick'] == motivo) {
-              console.log(r[i]['nick']);
+              // console.log(r[i]['nick']);
               contenedor_tabla_uno[cont][6][1] = document.createElement("TD");
               contenedor_tabla_uno[cont][6][2] = document.createTextNode(r[i]['nick']);
               contenedor_tabla_uno[cont][6][3] = document.createTextNode(r[i]['descripcion']);
@@ -327,22 +343,26 @@ $gmx(document).ready(function () {
               contenedor_tabla_uno[cont][7][1].setAttribute("id", "tabla_uno_" + cont + "_c_8");
               contenedor_tabla_uno[cont][7][1].appendChild(contenedor_tabla_uno[cont][7][2]);
               contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][7][1]);
-
+        
               contenedor_tabla_uno[cont][8][1] = document.createElement("TD");
               contenedor_tabla_uno[cont][8][2] = document.createTextNode($('#add_7').val());
               contenedor_tabla_uno[cont][8][1].setAttribute("id", "tabla_uno_" + cont + "_c_9");
               contenedor_tabla_uno[cont][8][1].appendChild(contenedor_tabla_uno[cont][8][2]);
               contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][8][1]);
-
+        
               contenedor_tabla_uno[cont][9][1] = document.createElement("TD");
               contenedor_tabla_uno[cont][9][2] = document.createTextNode($('#add_8').val());
               contenedor_tabla_uno[cont][9][1].setAttribute("id", "tabla_uno_" + cont + "_c_10");
               contenedor_tabla_uno[cont][9][1].appendChild(contenedor_tabla_uno[cont][9][2]);
               contenedor_tabla_uno[cont][0][0].appendChild(contenedor_tabla_uno[cont][9][1]);
+             
             }
           }
         }
       });
+
+
+     
 
 
 

@@ -74,6 +74,18 @@ function removerUltimoElemento(base) {
   contenedor.removeChild(tr_antiguo);
 }
 
+//Evento teclado, solamente mayusculas
+function eventoTeclado(id_elemento) {
+  const entradaInput = document.getElementById(id_elemento);
+  entradaInput.addEventListener('keyup', cambiarMayusculas);
+}
+function cambiarMayusculas(elemento) {
+  let texto = elemento.target.value;
+  elemento.target.value = texto.toUpperCase();
+  // console.log(texto);
+  // console.log(`TIPO DE EVENTO: ${elemento.type}` );
+}
+
 const selectCategoria = document.querySelector('#categoria');
 selectCategoria.addEventListener('change', (event) => {
     let select=event.target.value;
@@ -92,7 +104,13 @@ selectCategoria.addEventListener('change', (event) => {
 });
 
 $gmx(document).ready(function () {
-
+  eventoTeclado('nombre');
+  eventoTeclado('apeMaterno');
+  eventoTeclado('apePaterno');
+  eventoTeclado('rfc');
+  eventoTeclado('curp');
+  eventoTeclado('plaza');
+  eventoTeclado('observaciones');
 
   //Scroll ir Arriba
   const obtener_pixeles_inicio = () => document.documentElement.scrollTop || document.body.scrollTop
@@ -195,6 +213,7 @@ $gmx(document).ready(function () {
         url: form_url,
         data: $('#form_actualizar_docente').serialize() + rfc_antiguo,
         success: function (r) {
+          
           $('#nombre').val(r['nombre']);
           $('#apePaterno').val(r['apePaterno']);
           $('#apeMaterno').val(r['apeMaterno']);
@@ -205,6 +224,8 @@ $gmx(document).ready(function () {
           $('#ingresoSep').val(r['ingresoSep']);
           $('#ingresoDgti').val(r['ingresoDgti']);
           $('#observaciones').val(r['observaciones']);
+          
+        
         }
 
       });

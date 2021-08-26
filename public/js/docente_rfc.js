@@ -58,10 +58,24 @@ function limpiaMensajeError(id_alerta) {
     alerta.classList.remove("alert-danger");
     alerta.innerHTML = "";
   }
+} //Evento teclado, solamente mayusculas
+
+
+function eventoTeclado(id_elemento) {
+  var entradaInput = document.getElementById(id_elemento);
+  entradaInput.addEventListener('keyup', cambiarMayusculas);
+}
+
+function cambiarMayusculas(elemento) {
+  var texto = elemento.target.value;
+  elemento.target.value = texto.toUpperCase(); // console.log(texto);
+  // console.log(`TIPO DE EVENTO: ${elemento.type}` );
 }
 
 $gmx(document).ready(function () {
-  //Scroll ir Arriba
+  eventoTeclado('buscar_rfc');
+  eventoTeclado('buscar_curp'); //Scroll ir Arriba
+
   var obtener_pixeles_inicio = function obtener_pixeles_inicio() {
     return document.documentElement.scrollTop || document.body.scrollTop;
   };

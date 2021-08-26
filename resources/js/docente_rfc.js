@@ -66,7 +66,23 @@ function limpiaMensajeError(id_alerta){
   
 }
 
+//Evento teclado, solamente mayusculas
+function eventoTeclado(id_elemento) {
+  const entradaInput = document.getElementById(id_elemento);
+  entradaInput.addEventListener('keyup', cambiarMayusculas);
+}
+function cambiarMayusculas(elemento) {
+  let texto = elemento.target.value;
+  elemento.target.value = texto.toUpperCase();
+  // console.log(texto);
+  // console.log(`TIPO DE EVENTO: ${elemento.type}` );
+}
+
+
 $gmx(document).ready(function () {
+
+  eventoTeclado('buscar_rfc');
+  eventoTeclado('buscar_curp');
 
   //Scroll ir Arriba
   const obtener_pixeles_inicio = ()=> document.documentElement.scrollTop || document.body.scrollTop
