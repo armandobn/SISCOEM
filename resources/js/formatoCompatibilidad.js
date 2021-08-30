@@ -69,7 +69,6 @@ function limpiaMensajeError(id_alerta) {
 //Evento teclado, solamente mayusculas
 function eventoTeclado(id_elemento){
   const entradaInput = document.getElementById(id_elemento);
-  entradaInput.value='';
   entradaInput.addEventListener('keyup',cambiarMayusculas);
 }
 
@@ -100,26 +99,57 @@ $gmx(document).ready(function () {
       // document.getElementById("select_institucion").disabled = true;
       document.getElementById("buscar_rfc").disabled = false;
       document.getElementById("btn_buscar_rfc").disabled = false;
-      document.getElementById("btn_agregar_inst_uno").disabled = false;
+
+      document.getElementById("unidad_inst_uno").disabled = true;
+      document.getElementById("sub_unidad_inst_uno").disabled = true;
+      document.getElementById("categoria_inst_uno").disabled = true;
+      document.getElementById("horas_inst_uno").disabled = true;
+      document.getElementById("plaza_inst_uno").disabled = true;
+      document.getElementById("motivo_inst_uno").disabled = true;
+
+      document.getElementById("btn_agregar_inst_uno").disabled = true;
+      document.getElementById("fecha_inicio_inst_uno").disabled = true;
+      document.getElementById("fecha_termino_inst_uno").disabled = true;
+    
+      document.getElementById("unidad_inst_dos").disabled = false;
+      document.getElementById("sub_unidad_inst_dos").disabled = false;
+      document.getElementById("categoria_inst_dos").disabled = false;
+      document.getElementById("horas_inst_dos").disabled = false;
+      document.getElementById("plaza_inst_dos").disabled = false;
+      document.getElementById("motivo_inst_dos").disabled = false;
+      
       document.getElementById("btn_agregar_inst_dos").disabled = false;
-      document.getElementById("fecha_inicio_inst_uno").disabled = false;
-      $('#fecha_inicio_inst_uno').datepicker({ changeYear: true });
-      document.getElementById("fecha_termino_inst_uno").disabled = false;
-      $('#fecha_termino_inst_uno').datepicker({ changeYear: true });
       document.getElementById("fecha_inicio_inst_dos").disabled = false;
       $('#fecha_inicio_inst_dos').datepicker({ changeYear: true });
       document.getElementById("fecha_termino_inst_dos").disabled = false;
       $('#fecha_termino_inst_dos').datepicker({ changeYear: true });
+
     } else {
       // document.getElementById("select_institucion").disabled = true;
       document.getElementById("buscar_rfc").disabled = false;
       document.getElementById("btn_buscar_rfc").disabled = false;
+
+      document.getElementById("unidad_inst_uno").disabled = false;
+      document.getElementById("sub_unidad_inst_uno").disabled = false;
+      document.getElementById("categoria_inst_uno").disabled = false;
+      document.getElementById("horas_inst_uno").disabled = false;
+      document.getElementById("plaza_inst_uno").disabled = false;
+      document.getElementById("motivo_inst_uno").disabled = false;
+
       document.getElementById("btn_agregar_inst_uno").disabled = false;
-      document.getElementById("btn_agregar_inst_dos").disabled = false;
       document.getElementById("fecha_inicio_inst_uno").disabled = false;
       $('#fecha_inicio_inst_uno').datepicker({ changeYear: true });
       document.getElementById("fecha_termino_inst_uno").disabled = false;
       $('#fecha_termino_inst_uno').datepicker({ changeYear: true });
+      
+      document.getElementById("unidad_inst_dos").disabled = false;
+      document.getElementById("sub_unidad_inst_dos").disabled = false;
+      document.getElementById("categoria_inst_dos").disabled = false;
+      document.getElementById("horas_inst_dos").disabled = false;
+      document.getElementById("plaza_inst_dos").disabled = false;
+      document.getElementById("motivo_inst_dos").disabled = false;
+
+      document.getElementById("btn_agregar_inst_dos").disabled = false;
       document.getElementById("fecha_inicio_inst_dos").disabled = false;
       $('#fecha_inicio_inst_dos').datepicker({ changeYear: true });
       document.getElementById("fecha_termino_inst_dos").disabled = false;
@@ -178,12 +208,37 @@ $gmx(document).ready(function () {
       url: form_url,
       data: $('#form_buscar_rfc').serialize(),
       success: function (r) {
-        // console.log(r);
+        console.log(r);
         $('#curp').val(r['docentes'][0]['curp']);
         $('#nombre').val(r['docentes'][0]['nombre']);
         $('#apePaterno').val(r['docentes'][0]['apePaterno']);
         $('#apeMaterno').val(r['docentes'][0]['apeMaterno']);
-
+        var informacion="";
+        let hoy = new Date()
+        for(let i=0; i<r['docentesTabla'].length; i++){
+          
+          informacion=`${informacion}
+            <tr>
+              <td class="text-center">${r['docentesTabla'][i]['puesto']}</td>
+              <td class="text-center">${r['docentesTabla'][i]['categoria']}</td>
+              <td class="text-center">Ubicacion</td>
+              <td class="text-center">${hoy.getDate()}</td>
+              <td class="text-center">${hoy.getMonth()+1}</td>
+              <td class="text-center">${hoy.getFullYear()}</td>
+              <td class="text-center">
+                ${r['docentesTabla'][i]['motivo']} <br>
+                ${r['motivos'][i][0]['descripcion']}
+              </td>
+              <td class="text-center">Ubicacion</td>
+              <td class="text-center">Ubicacion</td>
+              <td class="text-center">Ubicacion</td>
+              
+            </tr>
+          `;
+          
+        }
+        
+        $('#tabla_inst_uno').html(informacion);
       }, error: function (error) {
         texto_error = "No hay registros"
         mensajeError('#alerta', texto_error);

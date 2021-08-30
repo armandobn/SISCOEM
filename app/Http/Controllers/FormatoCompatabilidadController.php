@@ -23,28 +23,12 @@ class FormatoCompatabilidadController extends Controller
     public function obtenerRfc(Request $request){
         $docentes=Docente::select('*')->where('rfc',$request->rfc)->get();
         $docentesTabla=DocentesTabla::select('*')->where('rfc',$request->rfc)->get();
-        return compact('docentes', 'docentesTabla');
-    }
-
-    public function categoria(Request $request){
-        $docens = CatDocen::select('denominacion')->where('categoria',$request->categoria)->get();
-        $admins= CatAdmin::select('denominacion')->where('categoria',$request->categoria)->get();
-        
-        if($docens!="0"){
-            $denominacion=$docens;
+        $motivos=array();
+        for($i=0; $i<count($docentesTabla); $i++){
+            $motivos[$i] = CatMotivo::select('descripcion')->where('nick',$docentesTabla[$i]['motivo'])->get();
         }
-        if(count($admins)!="0"){
-            $denominacion=$admins;
-        }    
-        return $denominacion;
-        
+        return compact('docentes', 'docentesTabla','motivos');
     }
-
-    public function motivos(Request $request){
-        $motivos = CatMotivo::all();
-        return $motivos;
-    }
-
 
     public function estatusPersonal(){
         return view('compatibilidad.estatusTramitePersonal');

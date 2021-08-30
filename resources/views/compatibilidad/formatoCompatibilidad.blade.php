@@ -37,14 +37,15 @@
     </div>
 
     <div class="alert" id="alerta"></div>
-    
-    <form action="{{route('formatoCompatibilidad.obtenerRfc')}}" method="POST" class="form-inline top-buffer" role="form" id="form_buscar_rfc">
+
+    <form action="{{ route('formatoCompatibilidad.obtenerRfc') }}" method="POST" class="form-inline top-buffer"
+        role="form" id="form_buscar_rfc">
         @csrf
         <div class="form-group">
             <label class="control-label" for="buscar_rfc">Registro Federal de Contribuyentes(R.F.C)
                 <span class="form-text" id="asterisco_buscar_rfc">*</span>:
             </label>
-            <input class="form-control" id="buscar_rfc"name="rfc"  placeholder="Ingresa el RFC" type="text" disabled>
+            <input class="form-control" id="buscar_rfc" name="rfc" placeholder="Ingresa el RFC" type="text" disabled>
         </div>
         <button type="button" class="btn btn-primary" id="btn_buscar_rfc" disabled>Buscar</button>
     </form>
@@ -105,7 +106,7 @@
                 <div class="form-label" for="unidad_inst_uno">Unidad
                     <span class="form-text" id="asterisco_unidad_inst_uno">*</span>:
                 </div>
-                <select class="form-control" id="unidad_inst_uno">
+                <select class="form-control" id="unidad_inst_uno" disabled>
                     <option value="">Unidad</option>
                     <option value="13">13</option>
                     <option value="19">19</option>
@@ -125,7 +126,7 @@
                 <div class="form-label" for="sub_unidad_inst_uno">Sub-unidad
                     <span class="form-text" id="asterisco_sub_unidad_inst_uno">*</span>:
                 </div>
-                <select class="form-control" id="sub_unidad_inst_uno">
+                <select class="form-control" id="sub_unidad_inst_uno" disabled>
                     <option value="">Sub-unidad</option>
                     <option value="01">01</option>
                     <option value="02">02</option>
@@ -142,7 +143,7 @@
                 <div class="form-label" for="categoria_inst_uno">Categoria
                     <span class="form-text" id="asterisco_categoria_inst_uno">*</span>:
                 </div>
-                <select class="form-control" id="categoria_inst_uno">
+                <select class="form-control" id="categoria_inst_uno" disabled>
                     <option value="">Categoria</option>
                     <option disabled><strong>-----Docente-----</strong></option>
                     @foreach ($docens as $docen)
@@ -162,7 +163,7 @@
                 <div class="form-label" for="horas_inst_uno">Horas
                     <span class="form-text" id="asterisco_horas_inst_uno">*</span>:
                 </div>
-                <select class="form-control text-center" id="horas_inst_uno">
+                <select class="form-control text-center" id="horas_inst_uno" disabled>
                     <option value="">Horas</option>
                     <option value="000">000 - 0 Horas</option>
                     <option value="010">010 - 1 Horas</option>
@@ -193,7 +194,7 @@
                 <div class="form-label" for="plaza_inst_uno">Plaza
                     <span class="form-text" id="asterisco_plaza_inst_uno">*</span>:
                 </div>
-                <input type="text" class="form-control" placeholder="Ingresa la plaza" id="plaza_inst_uno">
+                <input type="text" class="form-control" placeholder="Ingresa la plaza" id="plaza_inst_uno" disabled>
             </div>
 
         </div>
@@ -202,7 +203,7 @@
                 <div class="form-label" for="motivo_inst_uno">Motivo
                     <span class="form-text" id="asterisco_motivo_inst_uno">*</span>:
                 </div>
-                <select class="form-control" id="motivo_inst_uno">
+                <select class="form-control" id="motivo_inst_uno" disabled>
                     <option value="">Motivo</option>
                     @foreach ($motivos as $motivo)
                         <option value="{{ $motivo->nick }}">{{ $motivo->nick }}</option>
@@ -282,7 +283,8 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <label class="control-label" for="certifica_inst_dos">Institucion 2 que valida los datos del puesto o contrato a
+                <label class="control-label" for="certifica_inst_dos">Institucion 2 que valida los datos del puesto o
+                    contrato a
                     desempeñar:</label>
                 <input class="form-control" id="certifica_inst_dos" placeholder="" type="text" disabled>
             </div>
@@ -294,7 +296,7 @@
                 <div class="form-label" for="unidad_inst_dos">Unidad
                     <span class="form-text" id="asterisco_unidad_inst_dos">*</span>:
                 </div>
-                <select class="form-control" id="unidad_inst_dos">
+                <select class="form-control" id="unidad_inst_dos" disabled>
                     <option value="">Unidad</option>
                     <option value="13">13</option>
                     <option value="19">19</option>
@@ -314,7 +316,7 @@
                 <div class="form-label" for="sub_unidad_inst_dos">Sub-unidad
                     <span class="form-text" id="asterisco_sub_unidad_inst_dos">*</span>:
                 </div>
-                <select class="form-control" id="sub_unidad_inst_dos">
+                <select class="form-control" id="sub_unidad_inst_dos" disabled>
                     <option value="">Sub-unidad</option>
                     <option value="01">01</option>
                     <option value="02">02</option>
@@ -331,7 +333,7 @@
                 <div class="form-label" for="categoria_inst_dos">Categoria
                     <span class="form-text" id="asterisco_categoria_inst_dos">*</span>:
                 </div>
-                <select class="form-control" id="categoria">
+                <select class="form-control" id="categoria_inst_dos" disabled>
                     <option value="">Categoria</option>
                     <option disabled><strong>-----Docente-----</strong></option>
                     {{-- @foreach ($docens as $docen)
@@ -351,7 +353,7 @@
                 <div class="form-label" for="horas_inst_dos">Horas
                     <span class="form-text" id="asterisco_horas_inst_dos">*</span>:
                 </div>
-                <select class="form-control text-center" id="horas_inst_dos">
+                <select class="form-control text-center" id="horas_inst_dos" disabled>
                     <option value="">Horas</option>
                     <option value="000">000 - 0 Horas</option>
                     <option value="010">010 - 1 Horas</option>
@@ -379,10 +381,10 @@
         </div>
         <div class="col-md-2">
             <div class="form-group">
-                <div class="form-label" for="plaza">Plaza
-                    <span class="form-text" id="asterisco_plaza">*</span>:
+                <div class="form-label" for="plaza_inst_dos">Plaza
+                    <span class="form-text" id="asterisco_plaza_inst_dos">*</span>:
                 </div>
-                <input type="text" class="form-control" placeholder="Ingresa la plaza" id="plaza">
+                <input type="text" class="form-control" placeholder="Ingresa la plaza" id="plaza_inst_dos" disabled>
             </div>
 
         </div>
@@ -391,7 +393,7 @@
                 <div class="form-label" for="motivo_inst_dos">Motivo
                     <span class="form-text" id="asterisco_motivo_inst_dos">*</span>:
                 </div>
-                <select class="form-control" id="motivo_inst_dos">
+                <select class="form-control" id="motivo_inst_dos" disabled>
                     <option value="">Motivo</option>
                     {{-- @foreach ($motivos as $motivo)
                         <option value="{{ $motivo->nick }}">{{ $motivo->nick }}</option>
@@ -464,6 +466,38 @@
 
             </tbody>
         </table>
+    </div>
+    <h3>Datos de institució externa</h3>
+    <hr class="red">
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="denominacion">Denominacion de la institucion:</label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="denominacion" placeholder="Ingresa denominacion de la institucion" type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="puesto">Puesto del servidor público:</label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="puesto" placeholder="Ingresa puesto del servidor publico" type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="certifica">Nombre del servidor público que certifica:</label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="certifica" placeholder="Ingresa nombre del servidor publico que certifica" type="text">
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="clearfix bottom-buffer">

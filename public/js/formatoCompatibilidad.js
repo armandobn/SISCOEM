@@ -63,7 +63,6 @@ function limpiaMensajeError(id_alerta) {
 
 function eventoTeclado(id_elemento) {
   var entradaInput = document.getElementById(id_elemento);
-  entradaInput.value = '';
   entradaInput.addEventListener('keyup', cambiarMayusculas);
 }
 
@@ -96,16 +95,22 @@ $gmx(document).ready(function () {
       // document.getElementById("select_institucion").disabled = true;
       document.getElementById("buscar_rfc").disabled = false;
       document.getElementById("btn_buscar_rfc").disabled = false;
-      document.getElementById("btn_agregar_inst_uno").disabled = false;
+      document.getElementById("unidad_inst_uno").disabled = true;
+      document.getElementById("sub_unidad_inst_uno").disabled = true;
+      document.getElementById("categoria_inst_uno").disabled = true;
+      document.getElementById("horas_inst_uno").disabled = true;
+      document.getElementById("plaza_inst_uno").disabled = true;
+      document.getElementById("motivo_inst_uno").disabled = true;
+      document.getElementById("btn_agregar_inst_uno").disabled = true;
+      document.getElementById("fecha_inicio_inst_uno").disabled = true;
+      document.getElementById("fecha_termino_inst_uno").disabled = true;
+      document.getElementById("unidad_inst_dos").disabled = false;
+      document.getElementById("sub_unidad_inst_dos").disabled = false;
+      document.getElementById("categoria_inst_dos").disabled = false;
+      document.getElementById("horas_inst_dos").disabled = false;
+      document.getElementById("plaza_inst_dos").disabled = false;
+      document.getElementById("motivo_inst_dos").disabled = false;
       document.getElementById("btn_agregar_inst_dos").disabled = false;
-      document.getElementById("fecha_inicio_inst_uno").disabled = false;
-      $('#fecha_inicio_inst_uno').datepicker({
-        changeYear: true
-      });
-      document.getElementById("fecha_termino_inst_uno").disabled = false;
-      $('#fecha_termino_inst_uno').datepicker({
-        changeYear: true
-      });
       document.getElementById("fecha_inicio_inst_dos").disabled = false;
       $('#fecha_inicio_inst_dos').datepicker({
         changeYear: true
@@ -118,8 +123,13 @@ $gmx(document).ready(function () {
       // document.getElementById("select_institucion").disabled = true;
       document.getElementById("buscar_rfc").disabled = false;
       document.getElementById("btn_buscar_rfc").disabled = false;
+      document.getElementById("unidad_inst_uno").disabled = false;
+      document.getElementById("sub_unidad_inst_uno").disabled = false;
+      document.getElementById("categoria_inst_uno").disabled = false;
+      document.getElementById("horas_inst_uno").disabled = false;
+      document.getElementById("plaza_inst_uno").disabled = false;
+      document.getElementById("motivo_inst_uno").disabled = false;
       document.getElementById("btn_agregar_inst_uno").disabled = false;
-      document.getElementById("btn_agregar_inst_dos").disabled = false;
       document.getElementById("fecha_inicio_inst_uno").disabled = false;
       $('#fecha_inicio_inst_uno').datepicker({
         changeYear: true
@@ -128,6 +138,13 @@ $gmx(document).ready(function () {
       $('#fecha_termino_inst_uno').datepicker({
         changeYear: true
       });
+      document.getElementById("unidad_inst_dos").disabled = false;
+      document.getElementById("sub_unidad_inst_dos").disabled = false;
+      document.getElementById("categoria_inst_dos").disabled = false;
+      document.getElementById("horas_inst_dos").disabled = false;
+      document.getElementById("plaza_inst_dos").disabled = false;
+      document.getElementById("motivo_inst_dos").disabled = false;
+      document.getElementById("btn_agregar_inst_dos").disabled = false;
       document.getElementById("fecha_inicio_inst_dos").disabled = false;
       $('#fecha_inicio_inst_dos').datepicker({
         changeYear: true
@@ -181,11 +198,19 @@ $gmx(document).ready(function () {
       url: form_url,
       data: $('#form_buscar_rfc').serialize(),
       success: function success(r) {
-        // console.log(r);
+        console.log(r);
         $('#curp').val(r['docentes'][0]['curp']);
         $('#nombre').val(r['docentes'][0]['nombre']);
         $('#apePaterno').val(r['docentes'][0]['apePaterno']);
         $('#apeMaterno').val(r['docentes'][0]['apeMaterno']);
+        var informacion = "";
+        var hoy = new Date();
+
+        for (var i = 0; i < r['docentesTabla'].length; i++) {
+          informacion = "".concat(informacion, "\n            <tr>\n              <td class=\"text-center\">").concat(r['docentesTabla'][i]['puesto'], "</td>\n              <td class=\"text-center\">").concat(r['docentesTabla'][i]['categoria'], "</td>\n              <td class=\"text-center\">Ubicacion</td>\n              <td class=\"text-center\">").concat(hoy.getDate(), "</td>\n              <td class=\"text-center\">").concat(hoy.getMonth() + 1, "</td>\n              <td class=\"text-center\">").concat(hoy.getFullYear(), "</td>\n              <td class=\"text-center\">\n                ").concat(r['docentesTabla'][i]['motivo'], " <br>\n                ").concat(r['motivos'][i][0]['descripcion'], "\n              </td>\n              <td class=\"text-center\">Ubicacion</td>\n              <td class=\"text-center\">Ubicacion</td>\n              <td class=\"text-center\">Ubicacion</td>\n              \n            </tr>\n          ");
+        }
+
+        $('#tabla_inst_uno').html(informacion);
       },
       error: function error(_error) {
         texto_error = "No hay registros";

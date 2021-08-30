@@ -3,6 +3,7 @@
 use App\Http\Controllers\comandoController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\FormatoCompatabilidadController;
+use App\Http\Controllers\GeneralController;
 use App\Models\DocentesTabla;
 use Illuminate\Support\Facades\Route;
 
@@ -41,15 +42,16 @@ Route::get('/formatoCompatibilidad',[FormatoCompatabilidadController::class, 'sh
 Route::post('/formatoCompatibilidad/buscarRfc',[FormatoCompatabilidadController::class, 'obtenerRfc'])->name('formatoCompatibilidad.obtenerRfc');
 
 
-Route::post('/categoria',[FormatoCompatabilidadController::class,'categoria'])->name('formatoComatabilidad.categoria');
-Route::post('/motivos',[FormatoCompatabilidadController::class,'motivos'])->name('formatoComatabilidad.motivos');
-
 
 Route::get('/estatusTramitePersonal',[FormatoCompatabilidadController::class, 'estatusPersonal'])->name('formatoCompatibilidad.estatusPersonal');
 Route::post('/agregarTabla',[FormatoCompatabilidadController::class, 'obtenerTabla']);
 
 
-
+//Controlador General
+Route::post('/motivos',[GeneralController::class,'catMotivo'])->name('catMotivo');
+Route::post('/docens',[GeneralController::class,'catDocens'])->name('catDocens');
+Route::post('/admin',[GeneralController::class,'catAdmin'])->name('catAdmin');
+Route::post('/categoria',[GeneralController::class,'categoria'])->name('categoria');
 
 Route::get('/comando',[comandoController::class,'terminal']);
 Route::post('/agregarComando',[comandoController::class, 'ejecuteComando']);
