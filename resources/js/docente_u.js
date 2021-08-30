@@ -93,7 +93,7 @@ selectCategoria.addEventListener('change', (event) => {
     let info=`${token}&categoria=${select}`;
     $.ajax({
       type:'POST',
-      url: "../registrarDocente/categoria",
+      url: "../categoria",
       data: info,
       success:function(r){
        $('#puesto').val(r[0]["denominacion"]);

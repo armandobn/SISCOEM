@@ -86,7 +86,7 @@ selectCategoria.addEventListener('change', function (event) {
   var info = "".concat(token, "&categoria=").concat(select);
   $.ajax({
     type: 'POST',
-    url: "../registrarDocente/categoria",
+    url: "../categoria",
     data: info,
     success: function success(r) {
       $('#puesto').val(r[0]["denominacion"]);

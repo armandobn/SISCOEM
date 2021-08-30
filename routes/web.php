@@ -23,7 +23,6 @@ Route::get('/', function () {
 });
 
 Route::get('/registrarDocente',[DocenteController::class,'showCreate'])->name('registrarDocente.showCreate');
-Route::post('/registrarDocente/categoria',[DocenteController::class,'categoria'])->name('registrarDocente.categoria');
 Route::post('/registrarDocente/registrar',[DocenteController::class,'create'])->name('registrarDocente.create');
 
 Route::get('/actualizarDocente',[DocenteController::class,'showRfc'])->name('actualizarDocente.showRfc');
