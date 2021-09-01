@@ -4,6 +4,7 @@ use App\Http\Controllers\comandoController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\FormatoCompatabilidadController;
 use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\LoginController;
 use App\Models\DocentesTabla;
 use Illuminate\Support\Facades\Route;
 
@@ -17,10 +18,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/',[LoginController::class,'login'])->name('login.login');
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/registrarDocente',[DocenteController::class,'showCreate'])->name('registrarDocente.showCreate');
 Route::post('/registrarDocente/registrar',[DocenteController::class,'create'])->name('registrarDocente.create');
