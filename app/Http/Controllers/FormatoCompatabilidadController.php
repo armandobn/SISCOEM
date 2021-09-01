@@ -7,6 +7,9 @@ use App\Models\CatDocen;
 use App\Models\CatMotivo;
 use App\Models\Docente;
 use App\Models\DocentesTabla;
+use App\Models\Hora;
+use App\Models\SubUnidad;
+use App\Models\Unidad;
 use Illuminate\Http\Request;
 
 class FormatoCompatabilidadController extends Controller
@@ -16,8 +19,11 @@ class FormatoCompatabilidadController extends Controller
         $motivos = CatMotivo::all();
         $docens = CatDocen::all();
         $admins = CatAdmin::all();
+        $unidads = Unidad::all();
+        $subUnidads = SubUnidad::all();
+        $horas = Hora::All();
 
-        return view('compatibilidad.formatoCompatibilidad', compact('motivos','docens','admins'));
+        return view('compatibilidad.formatoCompatibilidad', compact('motivos','docens','admins','unidads','subUnidads','horas'));
     }
 
     public function obtenerRfc(Request $request){

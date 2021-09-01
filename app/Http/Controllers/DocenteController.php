@@ -7,6 +7,9 @@ use App\Models\CatDocen;
 use App\Models\CatMotivo;
 use App\Models\Docente;
 use App\Models\DocentesTabla;
+use App\Models\Hora;
+use App\Models\SubUnidad;
+use App\Models\Unidad;
 use Illuminate\Http\Request;
 
 class DocenteController extends Controller
@@ -16,8 +19,11 @@ class DocenteController extends Controller
         $motivos = CatMotivo::all();
         $docens = CatDocen::all();
         $admins = CatAdmin::all();
+        $unidads = Unidad::all();
+        $subUnidads = SubUnidad::all();
+        $horas = Hora::All();
         
-        return view('docente.registrarDocente',compact('motivos','docens','admins'));
+        return view('docente.registrarDocente',compact('motivos','docens','admins','unidads','subUnidads','horas'));
     }
     
     public function categoria(Request $request){
@@ -113,9 +119,12 @@ class DocenteController extends Controller
         $motivos = CatMotivo::all();
         $docens = CatDocen::all();
         $admins = CatAdmin::all();
+        $unidads = Unidad::all();
+        $subUnidads = SubUnidad::all();
+        $horas = Hora::All();
         $tabla=DocentesTabla::select('*')->where('id',$id)->get();
 
-        return view('docente.editTabla',compact('motivos','docens','admins','id','tabla'));
+        return view('docente.editTabla',compact('motivos','docens','admins','id','tabla','unidads','subUnidads','horas'));
     }
 
     public function updateTabla(Request $request){

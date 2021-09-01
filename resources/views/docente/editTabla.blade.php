@@ -18,15 +18,9 @@
                     </div>
                     <select class="form-control" id="unidad" name="unidad">
                         <option value="">Unidad</option>
-                        <option value="13">13</option>
-                        <option value="19">19</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="27">27</option>
-                        <option value="34">34</option>
-                        <option value="35">35</option>
-                        <option value="65">65</option>
-                        <option value="68">68</option>
+                        @foreach ($unidads as $unidad)
+                            <option value="{{$unidad->unidad}}" @if ($unidad->unidad == $tabla[0]->unidad) ? selected : null @endif>{{$unidad->unidad}}</option>
+                        @endforeach
                     </select>
                 </div>
 
@@ -38,12 +32,9 @@
                     </div>
                     <select class="form-control" id="sub_unidad" name="sub_unidad">
                         <option value="">Sub-unidad</option>
-                        <option value="01">01</option>
-                        <option value="02">02</option>
-                        <option value="03">03</option>
-                        <option value="27">27</option>
-                        <option value="52">52</option>
-                        <option value="98">98</option>
+                        @foreach ($subUnidads as $subUnidad)
+                            <option value="{{$subUnidad->subUnidad}}" @if ($subUnidad->subUnidad == $tabla[0]->sub_unidad) ? selected : null @endif>{{$subUnidad->subUnidad}}</option>    
+                        @endforeach
                     </select>
                 </div>
 
@@ -79,26 +70,10 @@
                     </div>
                     <select class="form-control text-center" id="horas" name="horas">
                         <option value="">Horas</option>
-                        <option value="000">000 - 0 Horas</option>
-                        <option value="010">010 - 1 Horas</option>
-                        <option value="020">020 - 2 Horas</option>
-                        <option value="030">030 - 3 Horas</option>
-                        <option value="040">040 - 4 Horas</option>
-                        <option value="050">050 - 5 Horas</option>
-                        <option value="060">060 - 6 Horas</option>
-                        <option value="070">070 - 7 Horas</option>
-                        <option value="080">080 - 8 Horas</option>
-                        <option value="090">090 - 9 Horas</option>
-                        <option value="100">100 - 10 Horas</option>
-                        <option value="110">110 - 11 Horas</option>
-                        <option value="120">120 - 12 Horas</option>
-                        <option value="130">130 - 13 Horas</option>
-                        <option value="140">140 - 14 Horas</option>
-                        <option value="150">150 - 15 Horas</option>
-                        <option value="160">160 - 16 Horas</option>
-                        <option value="170">170 - 17 Horas</option>
-                        <option value="180">180 - 18 Horas</option>
-                        <option value="190">190 - 19 Horas</option>
+                        {{$i=0;}}
+                        @foreach ($horas as $hora)
+                            <option class="text-center" value="{{$hora->horas}}" @if ($hora->horas == $tabla[0]->horas) ? selected : null @endif>{{$hora->horas}} - {{$i++}} Horas</option>    
+                        @endforeach
                     </select>
                 </div>
 
