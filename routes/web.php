@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/',[LoginController::class,'login'])->name('login.login');
+//LOGIN
+Route::get('/login',[LoginController::class,'login'])->name('login.login');
 
 
 Route::get('/registrarDocente',[DocenteController::class,'showCreate'])->name('registrarDocente.showCreate');
