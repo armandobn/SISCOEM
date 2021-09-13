@@ -7,19 +7,23 @@
         <h4>Sistema de Compatibilidad de Empleado</h4>
     </div>
 </div>
+<div class="alert" id="alerta"></div>
 <div class="row top-buffer">
-    <div class="col-md-6">
-        <form id="frmlogin" method="POST" class="form-horizontal" role="form" onsubmit="return logear()">
+    <div class="col-md-8">
+        <form id="frmlogin" method="POST" class="form-horizontal" role="form">
             <div class="form-group">
-                <label class="col-sm-3 control-label" for="email">Usuario</label>
+                <label class="col-sm-3 control-label" for="email">Usuario 
+                    <span class="form-text" id="asterisco_usuario">*</span>:
+                </label>
                 <div class="col-sm-9">
-                    <input class="form-control" id="usuario" placeholder="Ingresa tu usuario" type="text">
+                    <input class="form-control" id="usuario"  name="usuario" placeholder="Ingresa tu usuario" type="text">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label" for="password">Contraseña:</label>
+                <label class="col-sm-3 control-label" for="password">Contraseña
+                    <span class="form-text" id="asterisco_password">*</span>:</label>
                 <div class="col-sm-9">
-                    <input class="form-control" id="password" placeholder="Contraseña" type="password">
+                    <input class="form-control" id="password" name="password" placeholder="Contraseña" type="password">
                 </div>
             </div>
             <div class="form-group">
@@ -39,7 +43,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-9">
-                    <button class="btn btn-primary pull-right" type="submit">Enviar</button>
+                    <span class="btn btn-primary pull-right" id="enviar">Enviar</span>
                 </div>
             </div>
         </form>
@@ -47,5 +51,7 @@
 </div>
 @endsection
 @section('complementos')
+<script src="{{ asset('/js/login.js') }}"></script>
+
 
 @endsection
