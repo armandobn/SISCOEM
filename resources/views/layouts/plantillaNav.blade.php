@@ -23,7 +23,8 @@
               </li>
               <li><a href="#">Tablero</a></li>
               <li><a href="#">Ayuda</a></li>
-              <li><a href="#">Cerrar sesión</a></li>
+              <li><a href="{{route('registrarLogin')}}">Registrarse</a></li>
+              <li><a href="{{route('login')}}">Cerrar sesión</a></li>
           </ul>
       </div>
   </div>

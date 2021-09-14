@@ -5,6 +5,7 @@ use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\FormatoCompatabilidadController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SesionController;
 use App\Models\DocentesTabla;
 use Illuminate\Support\Facades\Route;
 
