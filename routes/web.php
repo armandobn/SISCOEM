@@ -20,7 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //LOGIN
-Route::get('/',[LoginController::class,'login'])->name('login.login');
+Route::get('/login',[LoginController::class,'create'])->name('login.show');
+Route::post('/registrarLogin',[LoginController::class,'register'])->name('registrarLogin.register');
+Route::get('/registrarLogin',[SesionController::class,'create'])->name('registrarLogin.show');
 
 
 Route::get('/registrarDocente',[DocenteController::class,'showCreate'])->name('registrarDocente.showCreate');

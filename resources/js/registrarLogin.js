@@ -77,30 +77,46 @@ function alertaError(id_asterisco, id_element) {
     // console.log(texto);
     // console.log(`TIPO DE EVENTO: ${elemento.type}` );
     }
-    //validacion de login 
-    $gmx(document).ready(function (){
-        
-            $('#enviar').click(function () {
-                let texto_error="";
-                if ($('#usuario').val() == "") {
-                    alertaError('#asterisco_usuario', '#usuario');
-                    texto_error = texto_error + 'El campo del Usuario esta vacio <br>';
-                    }else{
-                        limpiarError('#asterisco_usuario', '#usuario');
-                        texto_error = "";
-                    }if($('#password').val() == ""){
-                        alertaError('#asterisco_password', '#password');
-                        texto_error = texto_error + 'El campo Password esta vacio <br>';
-                    }else{
-                        limpiarError('#asterisco_password', '#password');
-                        texto_error = "";
-                    }if(texto_error!=""){
-                        mensajeError('#alerta',texto_error);
-                        return false;
-                        }else{
-                        limpiaMensajeError('#alerta');
-                        }
-            });
-    });
 
-   
+$gmx(document).ready(function (){
+        
+    $('#registrar').click(function () {
+        let texto_error="";
+        if ($('#nombre').val() == "") {
+            alertaError('#asterisco_nombre', '#nombre');
+            texto_error = texto_error + 'El campo del Nombre esta vacio <br>';
+            }else{
+                limpiarError('#asterisco_nombre', '#nombre');
+                texto_error = "";
+                 if ($('#primerApellido').val() == "") {
+            alertaError('#asterisco_primerApellido', '#primerApellido');
+            texto_error = texto_error + 'El campo del Primer Apellido esta vacio <br>';
+            }else{
+                limpiarError('#asterisco_primerApellido', '#primerApellido');
+                texto_error = "";
+                 if ($('#segundoApellido').val() == "") {
+            alertaError('#asterisco_segundoApellido', '#segundoApellido');
+            texto_error = texto_error + 'El campo del Segundo Apellido esta vacio <br>';
+            }else{
+                limpiarError('#asterisco_segundoApellido', '#segundoApellido');
+                texto_error = "";
+                 if ($('#email').val() == "") {
+            alertaError('#asterisco_email', 'email');
+            texto_error = texto_error + 'El campo del Email esta vacio <br>';
+            }else{
+                limpiarError('#asterisco_email', '#email');
+                texto_error = "";
+            }if($('#password').val() == ""){
+                alertaError('#asterisco_password', '#password');
+                texto_error = texto_error + 'El campo Password esta vacio <br>';
+            }else{
+                limpiarError('#asterisco_password', '#password');
+                texto_error = "";
+            }if(texto_error!=""){
+                mensajeError('#alerta',texto_error);
+                return false;
+                }else{
+                limpiaMensajeError('#alerta');
+                }
+    });
+});
