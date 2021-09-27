@@ -24,7 +24,7 @@ Route::get('/',[LoginController::class,'create'])->name('login.show');
 Route::post('/registrarLogin',[LoginController::class,'register'])->name('registrarLogin.register');
 Route::get('/registrarLogin',[SesionController::class,'create'])->name('registrarLogin.show');
 
-
+//Docente
 Route::get('/registrarDocente',[DocenteController::class,'showCreate'])->name('registrarDocente.showCreate');
 Route::post('/registrarDocente/registrar',[DocenteController::class,'create'])->name('registrarDocente.create');
 
@@ -39,11 +39,12 @@ Route::put('/actualizarDocente/datosTabla/update',[DocenteController::class, 'up
 Route::post('/actualizarDocente/datosTabla/{rfc}/create',[DocenteController::class, 'createTabla'])->name('actualizarDocente.createTabla');
 Route::delete('/actualizarDocente/datosTabla/{id}/{rfc}',[DocenteController::class, 'destroyTabla'])->name('actualizarDocente.destroyTabla');
 
-
+//Formato Compatibilidad
 Route::get('/formatoCompatibilidad',[FormatoCompatabilidadController::class, 'showCreate'])->name('formatoCompatibilidad.showCreate');
 Route::post('/formatoCompatibilidad/buscarRfc',[FormatoCompatabilidadController::class, 'obtenerRfc'])->name('formatoCompatibilidad.obtenerRfc');
-
-
+Route::post('/formatoCompatibilidad/registrar',[FormatoCompatabilidadController::class, 'create'])->name('formatoCompatibilidad.create');
+Route::get('/formatoCompatibilidad/checkList',[FormatoCompatabilidadController::class, 'showCheckList'])->name('formatoCompatibilidad.showCheckList');
+Route::post('/formatoCompatibilidad/checkList',[FormatoCompatabilidadController::class, 'createCheckList'])->name('formatoCompatibilidad.createCheckList');
 
 Route::get('/estatusTramitePersonal',[FormatoCompatabilidadController::class, 'estatusPersonal'])->name('formatoCompatibilidad.estatusPersonal');
 Route::post('/agregarTabla',[FormatoCompatabilidadController::class, 'obtenerTabla']);

@@ -30,10 +30,30 @@ class FormatoCompatabilidadController extends Controller
         $docentes=Docente::select('*')->where('rfc',$request->rfc)->get();
         $docentesTabla=DocentesTabla::select('*')->where('rfc',$request->rfc)->get();
         $motivos=array();
+        $sueldoDocen=array();
+        $sueldoAdmin=array();
         for($i=0; $i<count($docentesTabla); $i++){
             $motivos[$i] = CatMotivo::select('descripcion')->where('nick',$docentesTabla[$i]['motivo'])->get();
+            $sueldoDocen[$i] = CatDocen::select('categoria','ze2c07')->where('categoria',$docentesTabla[$i]['categoria'])->get();
+            $sueldoAdmin[$i] = CatAdmin::select('categoria','ze2c07')->where('categoria',$docentesTabla[$i]['categoria'])->get();
+
         }
-        return compact('docentes', 'docentesTabla','motivos');
+
+        return compact('docentes', 'docentesTabla','motivos','sueldoDocen','sueldoAdmin');
+        // return $sueldoDocen;
+    }
+
+    public function create(Request $request){
+
+        return $request;
+    }
+
+    public function showCheckList(){
+        return view('compatibilidad.listaChecable');
+    }
+    
+    public function createCheckList(Request $request){
+        return $request;
     }
 
     public function estatusPersonal(){

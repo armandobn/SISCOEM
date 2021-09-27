@@ -74,7 +74,8 @@ function cambiarMayusculas(elemento) {
   var texto = elemento.target.value;
   elemento.target.value = texto.toUpperCase(); // console.log(texto);
   // console.log(`TIPO DE EVENTO: ${elemento.type}` );
-}
+} //validacion de login 
+
 
 $gmx(document).ready(function () {
   $('#enviar').click(function () {

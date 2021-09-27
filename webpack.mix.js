@@ -18,6 +18,7 @@ mix.js('resources/js/login.js','public/js')
     .js('resources/js/docente_u.js', 'public/js')
     .js('resources/js/datosTabla.js', 'public/js')
     .js('resources/js/formatoCompatibilidad.js', 'public/js')
+    .js('resources/js/listaChecable.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);
