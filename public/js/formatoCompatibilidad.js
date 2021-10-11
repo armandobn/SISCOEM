@@ -553,43 +553,60 @@ $gmx(document).ready(function () {
     inst_uno_informacion = inst_uno_informacion + "&fecha_termino_inst_uno=".concat($('#fecha_termino_inst_uno').val());
 
     for (var i = 0; i < conta_uno; i++) {
-      inst_uno_informacion = inst_uno_informacion + "\n        &inst_uno_puesto[".concat(i, "]=").concat(document.getElementById("inst_uno_puesto_" + i).innerHTML, "\n        &inst_uno_codi_pesu[").concat(i, "]=").concat(document.getElementById("inst_uno_codigo_" + i).innerHTML, "\n        &inst_uno_unidad_descripcion[").concat(i, "]=").concat(document.getElementById("inst_uno_unidad_adscripcion_" + i).innerHTML, "\n        &inst_uno_fecha_alta[").concat(i, "]=").concat(document.getElementById("inst_uno_dia_" + i).innerHTML, "/").concat(document.getElementById("inst_uno_mes_" + i).innerHTML, "\n                          /").concat(document.getElementById("inst_uno_ano_" + i).innerHTML, "\n        &inst_uno_tipo_nom[").concat(i, "]=").concat(document.getElementById("inst_uno_tipo_nombramiento_" + i).innerHTML, "\n        &inst_uno_renumeracion[").concat(i, "]=").concat(document.getElementById("inst_uno_remuneracion_" + i).innerHTML, "\n        &inst_uno_partida[").concat(i, "]=").concat(document.getElementById("inst_uno_presupuestal_" + i).innerHTML, "\n        &inst_uno_ubicacion_centro[").concat(i, "]=").concat(document.getElementById("inst_uno_ubicacion_trabajo_" + i).innerHTML, "\n        ");
+      inst_uno_informacion = inst_uno_informacion + "\n        &inst_uno_puesto[".concat(i, "]=").concat(document.getElementById("inst_uno_puesto_" + i).innerHTML, "\n        &inst_uno_codi_pesu[").concat(i, "]=").concat(document.getElementById("inst_uno_codigo_" + i).innerHTML, "\n        &inst_uno_unidad_descripcion[").concat(i, "]=").concat(document.getElementById("inst_uno_unidad_adscripcion_" + i).innerHTML, "\n        &inst_uno_fecha_alta[").concat(i, "]=").concat(document.getElementById("inst_uno_dia_" + i).innerHTML.trim(), "/").concat(document.getElementById("inst_uno_mes_" + i).innerHTML.trim(), "/").concat(document.getElementById("inst_uno_ano_" + i).innerHTML.trim(), "\n        &inst_uno_tipo_nom[").concat(i, "]=").concat(document.getElementById("inst_uno_tipo_nombramiento_" + i).innerHTML, "\n        &inst_uno_renumeracion[").concat(i, "]=").concat(document.getElementById("inst_uno_remuneracion_" + i).innerHTML, "\n        &inst_uno_partida[").concat(i, "]=").concat(document.getElementById("inst_uno_presupuestal_" + i).innerHTML, "\n        &inst_uno_ubicacion_centro[").concat(i, "]=").concat(document.getElementById("inst_uno_ubicacion_trabajo_" + i).innerHTML, "\n        ");
     }
 
     var contenedor_tabla_dos = document.querySelector("#tabla_inst_dos");
     var hijos_dos = contenedor_tabla_dos.children;
     var conta_dos = hijos_dos.length;
     var inst_dos_informacion = "";
-    inst_dos_informacion = inst_uno_informacion + "&certifica_inst_dos=".concat($('#certifica_inst_dos').val());
-    inst_dos_informacion = inst_uno_informacion + "&fecha_inicio_inst_dos=".concat($('#fecha_inicio_inst_dos').val());
-    inst_dos_informacion = inst_uno_informacion + "&fecha_termino_inst_dos=".concat($('#fecha_termino_inst_dos').val());
+    inst_dos_informacion = inst_dos_informacion + "&certifica_inst_dos=".concat($('#certifica_inst_dos').val());
+    inst_dos_informacion = inst_dos_informacion + "&fecha_inicio_inst_dos=".concat($('#fecha_inicio_inst_dos').val());
+    inst_dos_informacion = inst_dos_informacion + "&fecha_termino_inst_dos=".concat($('#fecha_termino_inst_dos').val());
 
     for (var _i = 0; _i < conta_dos; _i++) {
-      inst_dos_informacion = inst_dos_informacion + "\n        &inst_dos_puesto[".concat(_i, "]=").concat(document.getElementById("inst_dos_puesto_" + _i).innerHTML, "\n        &inst_dos_codi_pesu[").concat(_i, "]=").concat(document.getElementById("inst_dos_codigo_" + _i).innerHTML, "\n        &inst_dos_unidad_descripcion[").concat(_i, "]=").concat(document.getElementById("inst_dos_unidad_adscripcion_" + _i).innerHTML, "\n        &inst_dos_fecha_alta[").concat(_i, "]=").concat(document.getElementById("inst_dos_dia_" + _i).innerHTML, "/").concat(document.getElementById("inst_dos_mes_" + _i).innerHTML, "\n                          /").concat(document.getElementById("inst_dos_ano_" + _i).innerHTML, "\n        &inst_dos_tipo_nom[").concat(_i, "]=").concat(document.getElementById("inst_dos_tipo_nombramiento_" + _i).innerHTML, "\n        &inst_dos_renumeracion[").concat(_i, "]=").concat(document.getElementById("inst_dos_remuneracion_actual_" + _i).innerHTML, "\n        &inst_dos_partida[").concat(_i, "]=").concat(document.getElementById("inst_dos_presupuestal_" + _i).innerHTML, "\n        &inst_dos_ubicacion_centro[").concat(_i, "]=").concat(document.getElementById("inst_dos_ubicacion_trabajo_" + _i).innerHTML, "\n        ");
-    }
+      inst_dos_informacion = inst_dos_informacion + "\n        &inst_dos_puesto[".concat(_i, "]=").concat(document.getElementById("inst_dos_puesto_" + _i).innerHTML, "\n        &inst_dos_codi_pesu[").concat(_i, "]=").concat(document.getElementById("inst_dos_codigo_" + _i).innerHTML, "\n        &inst_dos_unidad_descripcion[").concat(_i, "]=").concat(document.getElementById("inst_dos_unidad_adscripcion_" + _i).innerHTML, "\n        &inst_dos_fecha_alta[").concat(_i, "]=").concat(document.getElementById("inst_dos_dia_" + _i).innerHTML, "/").concat(document.getElementById("inst_dos_mes_" + _i).innerHTML, "/").concat(document.getElementById("inst_dos_ano_" + _i).innerHTML, "\n        &inst_dos_tipo_nom[").concat(_i, "]=").concat(document.getElementById("inst_dos_tipo_nombramiento_" + _i).innerHTML, "\n        &inst_dos_renumeracion[").concat(_i, "]=").concat(document.getElementById("inst_dos_remuneracion_actual_" + _i).innerHTML, "\n        &inst_dos_partida[").concat(_i, "]=").concat(document.getElementById("inst_dos_presupuestal_" + _i).innerHTML, "\n        &inst_dos_ubicacion_centro[").concat(_i, "]=").concat(document.getElementById("inst_dos_ubicacion_trabajo_" + _i).innerHTML, "\n        ");
+    } // console.log($('#denominacion').val());
+    // console.log($('#puesto').val());
+    // console.log($('#certifica').val());
+    // console.log(inst_dos_informacion);
+    // let datos=`
+    //   &rfc=${$('#buscar_rfc').val()}
+    //   &curp=${$('#curp').val()}
+    //   &nombre=${$('#nombre').val()}
+    //   &apePaterno=${$('#apePaterno').val()}
+    //   &apeMaterno=${$('#apeMaterno').val()}
+    // `;
 
-    console.log($('#denominacion').val());
-    console.log($('#puesto').val());
-    console.log($('#certifica').val());
-    var datos = "\n      &rfc=".concat($('#buscar_rfc').val(), "\n      &curp=").concat($('#curp').val(), "\n      &nombre=").concat($('#nombre').val(), "\n      &apePaterno=").concat($('#apePaterno').val(), "\n      &apeMaterno=").concat($('#apeMaterno').val(), "\n    ");
+
     var inst_externa;
 
     if (institucion == 1) {
-      inst_externa = "\n      &denominacion=".concat($('#denominacion').val(), "\n      &puesto=").concat($('#puesto').val(), "\n      &certifica=").concat($('#certifica').val(), "\n    ");
+      inst_externa = "\n      &inst_externa=1\n      &denominacion=".concat($('#denominacion').val(), "\n      &puesto=").concat($('#puesto').val(), "\n      &certifica=").concat($('#certifica').val(), "\n    ");
     } else {
-      inst_externa = "";
+      inst_externa = "&inst_externa=0";
     } // console.log(inst_uno_informacion);
     // console.log(inst_dos_informacion);
 
 
+    var trabajador = "&nombre=".concat($('#nombre').val(), "\n                &apePaterno=").concat($('#apePaterno').val(), "\n                &apeMaterno=").concat($('#apeMaterno').val(), "\n                &rfc=").concat($('#buscar_rfc').val(), "\n                &curp=").concat($('#curp').val());
     var form_url = $('#form_formatoCompatibilidad').attr("action");
     var token = "_token=".concat($('input[name="_token"]').val());
     $.ajax({
       type: "post",
-      data: token + inst_uno_informacion + inst_dos_informacion + inst_externa,
+      data: token + trabajador + inst_uno_informacion + inst_dos_informacion + inst_externa,
       url: form_url,
       success: function success(r) {
-        console.log(r);
+        //console.log(r);
+        window.location = "formatoCompatibilidad/checkList";
+      },
+      error: function error(_error2) {
+        texto_error = "Algo Salio Mal";
+        mensajeError('#alerta', texto_error);
+
+        if (texto_error != "") {
+          irArriba();
+        }
       }
     });
   });

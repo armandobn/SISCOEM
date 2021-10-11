@@ -692,8 +692,7 @@ $gmx(document).ready(function () {
         &inst_uno_puesto[${i}]=${document.getElementById("inst_uno_puesto_" + i).innerHTML}
         &inst_uno_codi_pesu[${i}]=${document.getElementById("inst_uno_codigo_" + i).innerHTML}
         &inst_uno_unidad_descripcion[${i}]=${document.getElementById("inst_uno_unidad_adscripcion_" + i).innerHTML}
-        &inst_uno_fecha_alta[${i}]=${document.getElementById("inst_uno_dia_" + i).innerHTML}/${document.getElementById("inst_uno_mes_" + i).innerHTML}
-                          /${document.getElementById("inst_uno_ano_" + i).innerHTML}
+        &inst_uno_fecha_alta[${i}]=${document.getElementById("inst_uno_dia_" + i).innerHTML.trim()}/${document.getElementById("inst_uno_mes_" + i).innerHTML.trim()}/${document.getElementById("inst_uno_ano_" + i).innerHTML.trim()}
         &inst_uno_tipo_nom[${i}]=${document.getElementById("inst_uno_tipo_nombramiento_" + i).innerHTML}
         &inst_uno_renumeracion[${i}]=${document.getElementById("inst_uno_remuneracion_" + i).innerHTML}
         &inst_uno_partida[${i}]=${document.getElementById("inst_uno_presupuestal_" + i).innerHTML}
@@ -706,16 +705,15 @@ $gmx(document).ready(function () {
     const hijos_dos = contenedor_tabla_dos.children;
     let conta_dos = hijos_dos.length;
     let inst_dos_informacion = "";
-    inst_dos_informacion=inst_uno_informacion+`&certifica_inst_dos=${$('#certifica_inst_dos').val()}`;
-    inst_dos_informacion=inst_uno_informacion+`&fecha_inicio_inst_dos=${$('#fecha_inicio_inst_dos').val()}`;
-    inst_dos_informacion=inst_uno_informacion+`&fecha_termino_inst_dos=${$('#fecha_termino_inst_dos').val()}`;
+    inst_dos_informacion=inst_dos_informacion+`&certifica_inst_dos=${$('#certifica_inst_dos').val()}`;
+    inst_dos_informacion=inst_dos_informacion+`&fecha_inicio_inst_dos=${$('#fecha_inicio_inst_dos').val()}`;
+    inst_dos_informacion=inst_dos_informacion+`&fecha_termino_inst_dos=${$('#fecha_termino_inst_dos').val()}`;
     for (let i = 0; i < conta_dos; i++) {
       inst_dos_informacion = inst_dos_informacion + `
         &inst_dos_puesto[${i}]=${document.getElementById("inst_dos_puesto_" + i).innerHTML}
         &inst_dos_codi_pesu[${i}]=${document.getElementById("inst_dos_codigo_" + i).innerHTML}
         &inst_dos_unidad_descripcion[${i}]=${document.getElementById("inst_dos_unidad_adscripcion_" + i).innerHTML}
-        &inst_dos_fecha_alta[${i}]=${document.getElementById("inst_dos_dia_" + i).innerHTML}/${document.getElementById("inst_dos_mes_" + i).innerHTML}
-                          /${document.getElementById("inst_dos_ano_" + i).innerHTML}
+        &inst_dos_fecha_alta[${i}]=${document.getElementById("inst_dos_dia_" + i).innerHTML}/${document.getElementById("inst_dos_mes_" + i).innerHTML}/${document.getElementById("inst_dos_ano_" + i).innerHTML}
         &inst_dos_tipo_nom[${i}]=${document.getElementById("inst_dos_tipo_nombramiento_" + i).innerHTML}
         &inst_dos_renumeracion[${i}]=${document.getElementById("inst_dos_remuneracion_actual_" + i).innerHTML}
         &inst_dos_partida[${i}]=${document.getElementById("inst_dos_presupuestal_" + i).innerHTML}
@@ -724,27 +722,28 @@ $gmx(document).ready(function () {
 
     }
 
-    console.log($('#denominacion').val());
-    console.log($('#puesto').val());
-    console.log($('#certifica').val());
-    
-    let datos=`
-      &rfc=${$('#buscar_rfc').val()}
-      &curp=${$('#curp').val()}
-      &nombre=${$('#nombre').val()}
-      &apePaterno=${$('#apePaterno').val()}
-      &apeMaterno=${$('#apeMaterno').val()}
-    `;
+    // console.log($('#denominacion').val());
+    // console.log($('#puesto').val());
+    // console.log($('#certifica').val());
+    // console.log(inst_dos_informacion);
+    // let datos=`
+    //   &rfc=${$('#buscar_rfc').val()}
+    //   &curp=${$('#curp').val()}
+    //   &nombre=${$('#nombre').val()}
+    //   &apePaterno=${$('#apePaterno').val()}
+    //   &apeMaterno=${$('#apeMaterno').val()}
+    // `;
   
     let inst_externa;
     if(institucion==1){
       inst_externa=`
+      &inst_externa=1
       &denominacion=${$('#denominacion').val()}
       &puesto=${$('#puesto').val()}
       &certifica=${$('#certifica').val()}
     `;
     }else{
-      inst_externa="";
+      inst_externa="&inst_externa=0";
     }
     
 
@@ -753,15 +752,27 @@ $gmx(document).ready(function () {
     // console.log(inst_uno_informacion);
     // console.log(inst_dos_informacion);
     
+    let trabajador = `&nombre=${$('#nombre').val()}
+                &apePaterno=${$('#apePaterno').val()}
+                &apeMaterno=${$('#apeMaterno').val()}
+                &rfc=${$('#buscar_rfc').val()}
+                &curp=${$('#curp').val()}`;
 
     let form_url = $('#form_formatoCompatibilidad').attr("action");
     let token = `_token=${$('input[name="_token"]').val()}`;
     $.ajax({
       type:"post",
-      data: token+inst_uno_informacion+inst_dos_informacion+inst_externa,
+      data: token+trabajador+inst_uno_informacion+inst_dos_informacion+inst_externa,
       url: form_url,
       success:function(r){
-        console.log(r);
+        //console.log(r);
+        window.location=`formatoCompatibilidad/checkList`;
+      },error: function (error) {
+        texto_error="Algo Salio Mal"
+        mensajeError('#alerta',texto_error);
+        if(texto_error!=""){
+          irArriba();
+        }
       }
     });
     

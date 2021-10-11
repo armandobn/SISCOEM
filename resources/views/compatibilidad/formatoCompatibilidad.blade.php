@@ -95,7 +95,7 @@
                 <div class="form-group">
                     <label class="control-label" for="certifica_inst_uno">Institucion 1 que certifica los datos del puesto
                         actual:</label>
-                    <input class="form-control" id="certifica_inst_uno" placeholder="" type="text" disabled>
+                    <input class="form-control" id="certifica_inst_uno" placeholder="" type="text" >
                 </div>
             </div>
         </div>
