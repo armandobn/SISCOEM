@@ -131,6 +131,17 @@ class FormatoCompatabilidadController extends Controller
         return $request;
     }
 
+    public function showUpdate(){
+        $motivos = CatMotivo::all();
+        $docens = CatDocen::all();
+        $admins = CatAdmin::all();
+        $unidads = Unidad::all();
+        $subUnidads = SubUnidad::all();
+        $horas = Hora::All();
+
+        return view('compatibilidad.updateCompatibilidad', compact('motivos','docens','admins','unidads','subUnidads','horas'));
+    }
+
     public function estatusPersonal(){
         return view('compatibilidad.estatusTramitePersonal');
     }

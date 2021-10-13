@@ -45,6 +45,7 @@ Route::post('/formatoCompatibilidad/buscarRfc',[FormatoCompatabilidadController:
 Route::post('/formatoCompatibilidad/registrar',[FormatoCompatabilidadController::class, 'create'])->name('formatoCompatibilidad.create');
 Route::get('/formatoCompatibilidad/checkList',[FormatoCompatabilidadController::class, 'showCheckList'])->name('formatoCompatibilidad.showCheckList');
 Route::post('/formatoCompatibilidad/checkList',[FormatoCompatabilidadController::class, 'createCheckList'])->name('formatoCompatibilidad.createCheckList');
+Route::get('/formatoCompatibilidad/{rfc}',[FormatoCompatabilidadController::class, 'showUpdate'])->name('formatoCompatibilidad.showUpdate');
 
 Route::get('/estatusTramitePersonal',[FormatoCompatabilidadController::class, 'estatusPersonal'])->name('formatoCompatibilidad.estatusPersonal');
 Route::post('/agregarTabla',[FormatoCompatabilidadController::class, 'obtenerTabla']);
