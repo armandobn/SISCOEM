@@ -11,8 +11,8 @@
 <div class="alert" id="alerta"></div>
 <div class="row top-buffer">
     <div class="col-md-8">
-        <form id="frmlogin" method="POST" class="form-horizontal" role="form">
-        
+        <form id="formlogin" method="POST" class="form-horizontal" role="form" action="{{ route('login.create') }}">
+        @csrf
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="nombre">Nombre (s) 
                     <span class="form-text" id="asterisco_nombre">*</span>:

@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 //LOGIN
 Route::get('/',[LoginController::class,'create'])->name('login.show');
-Route::get('/login',[SesionController::class,'showCreate'])->name('login.showCreate');
+Route::get('/login',[LoginController::class,'showCreate'])->name('login.showCreate');
 Route::post('/login',[LoginController::class,'create'])->name('login.create');
 
 //Docente

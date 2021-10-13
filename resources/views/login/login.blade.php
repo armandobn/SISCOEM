@@ -47,7 +47,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-9">
-                    <a class="btn btn-primary pull-right" href="{{route('registrarLogin.show')}}"id="crearCuenta">Crear cuenta</a>
+                    <a class="btn btn-primary pull-right" href="{{route('login.showCreate')}}"id="crearCuenta">Crear cuenta</a>
                 </div>
             </div>
         </div>
