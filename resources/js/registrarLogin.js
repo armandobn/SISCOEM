@@ -81,6 +81,7 @@ function alertaError(id_asterisco, id_element) {
   $gmx(document).ready(function (){
           
     $('#btn_registrar').click(function () {
+      alert("hola");
       let texto_error="";
       if ($('#nombre').val() == "") {
           alertaError('#asterisco_nombre', '#nombre');

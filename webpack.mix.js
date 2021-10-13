@@ -12,6 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/login.js','public/js')
+    .js('resources/js/registrarLogin.js','public/js')
     .js('resources/js/app.js', 'public/js')
     .js('resources/js/docente_c.js', 'public/js')
     .js('resources/js/docente_rfc.js', 'public/js')
