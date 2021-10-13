@@ -53,7 +53,7 @@
             
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-9">
-                    <a class="btn btn-primary pull-right" id="registrar">Registrarse</a>
+                    <span class="btn btn-primary pull-right" id="btn_registrar">Registrar</span>
                 </div>
             </div>
         </form>
