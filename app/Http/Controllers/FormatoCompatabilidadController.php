@@ -131,15 +131,21 @@ class FormatoCompatabilidadController extends Controller
         return $request;
     }
 
-    public function showUpdate(){
-        $motivos = CatMotivo::all();
-        $docens = CatDocen::all();
-        $admins = CatAdmin::all();
-        $unidads = Unidad::all();
-        $subUnidads = SubUnidad::all();
-        $horas = Hora::All();
+    public function showUpdate($rfc=null){
+        // $motivos = CatMotivo::all();
+        // $docens = CatDocen::all();
+        // $admins = CatAdmin::all();
+        // $unidads = Unidad::all();
+        // $subUnidads = SubUnidad::all();
+        // $horas = Hora::All();
 
-        return view('compatibilidad.updateCompatibilidad', compact('motivos','docens','admins','unidads','subUnidads','horas'));
+        // return view('compatibilidad.updateCompatibilidad', compact('motivos','docens','admins','unidads','subUnidads','horas'));
+        if($rfc){
+            return "Bienvenido al curso $rfc";
+        }else{
+            return "Bienvenido $rfc";
+        } 
+        // return $rfc;
     }
 
     public function estatusPersonal(){

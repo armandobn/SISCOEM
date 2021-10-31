@@ -44,26 +44,26 @@ function limpiarError(id_asterisco, id_elemento) {
 }
 
 //Genera mensaje principal Error
-function mensajeError(id_alerta,mensaje){
+function mensajeError(id_alerta, mensaje) {
   const alerta = document.querySelector(id_alerta);
   if (alerta.classList.contains("alert-danger") == false) {
     alerta.classList.add("alert-danger");
     $(id_alerta).html(mensaje);
-    
-  }else{
+
+  } else {
     $(id_alerta).html(mensaje);
   }
-  
+
 }
 
 //Elimina el mensaje de Error principal
-function limpiaMensajeError(id_alerta){
+function limpiaMensajeError(id_alerta) {
   const alerta = document.querySelector(id_alerta);
   if (alerta.classList.contains("alert-danger") == true) {
     alerta.classList.remove("alert-danger");
-    alerta.innerHTML="";
+    alerta.innerHTML = "";
   }
-  
+
 }
 
 //Evento teclado, solamente mayusculas
@@ -85,100 +85,142 @@ $gmx(document).ready(function () {
   eventoTeclado('buscar_curp');
 
   //Scroll ir Arriba
-  const obtener_pixeles_inicio = ()=> document.documentElement.scrollTop || document.body.scrollTop
+  const obtener_pixeles_inicio = () => document.documentElement.scrollTop || document.body.scrollTop
   const irArriba = () => {
-   if(obtener_pixeles_inicio() > 0){
-     requestAnimationFrame(irArriba)
-     scrollTo(0, obtener_pixeles_inicio() - (obtener_pixeles_inicio() / 30))
+    if (obtener_pixeles_inicio() > 0) {
+      requestAnimationFrame(irArriba)
+      scrollTo(0, obtener_pixeles_inicio() - (obtener_pixeles_inicio() / 30))
 
-   }
- }
+    }
+  }
 
- 
+
   $('#btn_buscar_rfc').click(function () {
-    let texto_error="";
+    let texto_error = "";
     if ($('#buscar_rfc').val() == "") {
       alertaError('#asterisco_buscar_rfc', '#buscar_rfc');
       return null;
     } else if ($('#buscar_rfc').val().length == 13) {
       limpiarError('#asterisco_buscar_rfc', '#buscar_rfc');
-      texto_error="";
+      texto_error = "";
     } else {
       alertaError('#asterisco_buscar_rfc', '#buscar_rfc');
-      texto_error=`${texto_error} Campo RFC debe contener solamente 13 caracteres <br>`;
-      
+      texto_error = `${texto_error} Campo RFC debe contener solamente 13 caracteres <br>`;
+
     }
 
-    if(texto_error!=""){
-      mensajeError('#alerta',texto_error);
+    if (texto_error != "") {
+      mensajeError('#alerta', texto_error);
       irArriba();
       return false;
-    }else{
+    } else {
       limpiaMensajeError('#alerta');
     }
-    
+
+    /*Obtiene el action o ruta*/
     let form_url = $('#form_buscar_rfc').attr("action");
 
-    $.ajax({
-      type: 'POST',
-      url: form_url,
-      data: $('#form_buscar_rfc').serialize(),
-      success: function (r) {
-        console.log(r[0]['rfc']);
-        window.location=`actualizarDocente/${r[0]['rfc']}`;
-        
-      },error: function (error) {
-        texto_error="No hay registros"
-        mensajeError('#alerta',texto_error);
-        if(texto_error!=""){
-          irArriba();
-        }
-      }
-    });
 
+    /*Cual es la opcion que esta marcada para buscar docente o formato de compatibilidad
+    0 - Formato De Compatibilidad
+    1 - Docente
+     */
+    let ele = document.getElementsByName('option_rfc');
+    let op = null;
+    for (i = 0; i < ele.length; i++) {
+      if (ele[i].checked) {
+        //console.log(ele[i].value);
+        op = ele[i].value;
+      }
+
+    }
+    // console.log(op);
+    if (op == 0) {
+
+
+    } else if (op == 1) {
+      $.ajax({
+        type: 'POST',
+        url: form_url,
+        data: $('#form_buscar_rfc').serialize(),
+        success: function (r) {
+          //console.log(r[0]['rfc']);
+          window.location = `actualizarDocente/${r[0]['rfc']}`;
+
+        }, error: function (error) {
+          texto_error = "No hay registros"
+          mensajeError('#alerta', texto_error);
+          if (texto_error != "") {
+            irArriba();
+          }
+        }
+      });
+    }
 
 
 
   });
 
   $('#btn_buscar_curp').click(function () {
-    let texto_error="";
+    let texto_error = "";
     if ($('#buscar_curp').val() == "") {
       alertaError('#asterisco_buscar_curp', '#buscar_curp');
       return null;
     } else if ($('#buscar_curp').val().length == 18) {
       limpiarError('#asterisco_buscar_curp', '#buscar_curp');
-      texto_error="";
+      texto_error = "";
     } else {
       alertaError('#asterisco_buscar_curp', '#buscar_curp');
-      texto_error=`${texto_error} Campo CURP debe contener solamente 18 caracteres <br>`;
+      texto_error = `${texto_error} Campo CURP debe contener solamente 18 caracteres <br>`;
     }
 
-    if(texto_error!=""){
-      mensajeError('#alerta',texto_error);
+    if (texto_error != "") {
+      mensajeError('#alerta', texto_error);
       irArriba();
       return false;
-    }else{
+    } else {
       limpiaMensajeError('#alerta');
     }
-    
+
+    /*Obtiene el action o ruta*/
     let form_url = $('#form_buscar_curp').attr("action");
 
-    $.ajax({
-      type: 'POST',
-      url: form_url,
-      data: $('#form_buscar_curp').serialize(),
-      success: function (r) {
-        window.location=`actualizarDocente/${r[0]['rfc']}`;
-        
-      },error: function (error) {
-        texto_error="No hay registros"
-        mensajeError('#alerta',texto_error);
-        if(texto_error!=""){
-          irArriba();
-        }
+
+    /*Cual es la opcion que esta marcada para buscar docente o formato de compatibilidad
+  0 - Formato De Compatibilidad
+  1 - Docente
+   */
+    let ele = document.getElementsByName('option_curp');
+    let op = null;
+    for (i = 0; i < ele.length; i++) {
+      if (ele[i].checked) {
+        //console.log(ele[i].value);
+        op = ele[i].value;
       }
-    });
+
+    }
+    // console.log(op);
+    if (op == 0) {
+
+
+    } else if (op == 1) {
+      $.ajax({
+        type: 'POST',
+        url: form_url,
+        data: $('#form_buscar_curp').serialize(),
+        success: function (r) {
+          window.location = `actualizarDocente/${r[0]['rfc']}`;
+
+        }, error: function (error) {
+          texto_error = "No hay registros"
+          mensajeError('#alerta', texto_error);
+          if (texto_error != "") {
+            irArriba();
+          }
+        }
+      });
+    }
+
 
 
 

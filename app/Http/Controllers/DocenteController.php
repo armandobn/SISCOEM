@@ -72,10 +72,6 @@ class DocenteController extends Controller
         //return redirect()->route('docente.actualizarDocente'); 
         return 1;
     }
-    
-    public function showRfc(){
-        return view('docente.obtener_rfc');
-    }
 
     public function obtenerRfc(Request $request){
         

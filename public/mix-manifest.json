@@ -1,8 +1,9 @@
 {
     "/js/login.js": "/js/login.js",
+    "/js/registrarLogin.js": "/js/registrarLogin.js",
     "/js/app.js": "/js/app.js",
     "/js/docente_c.js": "/js/docente_c.js",
-    "/js/docente_rfc.js": "/js/docente_rfc.js",
+    "/js/actualizarDocumentos.js": "/js/actualizarDocumentos.js",
     "/js/docente_u.js": "/js/docente_u.js",
     "/js/datosTabla.js": "/js/datosTabla.js",
     "/js/formatoCompatibilidad.js": "/js/formatoCompatibilidad.js",

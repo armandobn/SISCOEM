@@ -18,7 +18,7 @@
                       <li><a href="{{route('formatoCompatibilidad.showCreate')}}">Crear compatibilidad</a></li>
                       <li><a href="#">Seguimiento</a></li>
                       <li><a href="{{route('registrarDocente.showCreate')}}">Registrar docente</a></li>
-                      <li><a href="{{route('actualizarDocente.showRfc')}}">Actualizar docente</a></li>
+                      <li><a href="{{route('actualizar.showActualizar')}}">Actualizar Documentos</a></li>
                   </ul>
               </li>
               <li><a href="#">Tablero</a></li>

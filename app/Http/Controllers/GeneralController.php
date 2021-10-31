@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 class GeneralController extends Controller
 {
     //
+        
+    public function showActualizar(){
+        return view('actualizar_documento');
+    }
+
     public function catMotivo(){
         $motivos = CatMotivo::all();
         return $motivos;

@@ -28,7 +28,6 @@ Route::post('/login',[LoginController::class,'create'])->name('login.create');
 Route::get('/registrarDocente',[DocenteController::class,'showCreate'])->name('registrarDocente.showCreate');
 Route::post('/registrarDocente/registrar',[DocenteController::class,'create'])->name('registrarDocente.create');
 
-Route::get('/actualizarDocente',[DocenteController::class,'showRfc'])->name('actualizarDocente.showRfc');
 Route::post('/actualizarDocente/buscarRfc',[DocenteController::class, 'obtenerRfc'])->name('actualizarDocente.obtenerRfc');
 Route::post('/actualizarDocente/buscarCurp',[DocenteController::class, 'obtenerCurp'])->name('actualizarDocente.obtenerCurp');
 Route::get('/actualizarDocente/{rfc}',[DocenteController::class,'showUpdate'])->name('actualizarDocente.showUpdate');
@@ -45,13 +44,15 @@ Route::post('/formatoCompatibilidad/buscarRfc',[FormatoCompatabilidadController:
 Route::post('/formatoCompatibilidad/registrar',[FormatoCompatabilidadController::class, 'create'])->name('formatoCompatibilidad.create');
 Route::get('/formatoCompatibilidad/checkList',[FormatoCompatabilidadController::class, 'showCheckList'])->name('formatoCompatibilidad.showCheckList');
 Route::post('/formatoCompatibilidad/checkList',[FormatoCompatabilidadController::class, 'createCheckList'])->name('formatoCompatibilidad.createCheckList');
-Route::get('/formatoCompatibilidad/{rfc}',[FormatoCompatabilidadController::class, 'showUpdate'])->name('formatoCompatibilidad.showUpdate');
+Route::get('/formatoCompatibilidad/update/{rfc?}',[FormatoCompatabilidadController::class, 'showUpdate'])->name('formatoCompatibilidad.showUpdate');
 
 Route::get('/estatusTramitePersonal',[FormatoCompatabilidadController::class, 'estatusPersonal'])->name('formatoCompatibilidad.estatusPersonal');
 Route::post('/agregarTabla',[FormatoCompatabilidadController::class, 'obtenerTabla']);
 
 
 //Controlador General
+Route::get('/actualizarDocumentos',[GeneralController::class,'showActualizar'])->name('actualizar.showActualizar');
+
 Route::post('/motivos',[GeneralController::class,'catMotivo'])->name('catMotivo');
 Route::post('/docens',[GeneralController::class,'catDocens'])->name('catDocens');
 Route::post('/admin',[GeneralController::class,'catAdmin'])->name('catAdmin');

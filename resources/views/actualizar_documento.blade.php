@@ -40,6 +40,16 @@
                             <input class="form-control" id="buscar_rfc" name="buscar_rfc" placeholder="Ingresa RFC"
                                 type="text">
                         </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" id="option1" name="option_rfc" value="0"
+                                    checked="checked"> Formato de Compatibilidad
+                            </label>
+                            <label>
+                                <input type="radio" id="option2" name="option_rfc" value="1"
+                                    > Docente
+                            </label>    
+                        </div>
                         <div class="pull-right">
                             <button type="button" class="btn btn-primary" id="btn_buscar_rfc">Buscar</button>
                         </div>
@@ -60,6 +70,16 @@
                             <input class="form-control" id="buscar_curp" name="buscar_curp" placeholder="Ingresa CURP"
                                 type="text">
                         </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" id="option1" name="option_curp" value="0"
+                                    checked="checked"> Formato de Compatibilidad
+                            </label>
+                            <label>
+                                <input type="radio" id="option2" name="option_curp" value="1"
+                                    > Docente
+                            </label>    
+                        </div>
                         <div class="pull-right">
                             <button type="button" class="btn btn-primary" id="btn_buscar_curp">Buscar</button>
                         </div>
@@ -78,5 +98,5 @@
 @endsection
 @section('complementos')
     <script src="https://framework-gb.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>
-    <script src="{{ asset('js/docente_rfc.js') }}"></script>
+    <script src="{{ asset('js/actualizarDocumentos.js') }}"></script>
 @endsection
