@@ -25,6 +25,7 @@
             <h2>LISTA CHECABLE</h2>
         </div>
     </div>
+    <div class="alert" id="alerta"></div>
     <form action="{{route('formatoCompatibilidad.createCheckList')}}" method="post" id="form_checkList">
         @csrf
         <div class="table-responsive">

@@ -168,6 +168,7 @@ $gmx(document).ready(function () {
   $('#institutoDosCalendarYear').val(fecha);
   $('#btn_completado').click(function () {
     obtenerDatos();
+    var texto_error = "";
 
     if ($('#inst_uno_analista').val() == "" || $('#inst_dos_analista').val() == "") {
       var asterisco = document.querySelector('#asterisco_analista');
@@ -188,6 +189,8 @@ $gmx(document).ready(function () {
           item_small.classList.add("form-text");
           item_small.classList.add("form-text-error");
           contenedor_element.appendChild(item_small); //console.log(item);
+
+          texto_error = "".concat(texto_error, " Falta Campo Nombre del analista de Insititucion 1 <br>");
         } else {}
 
         if ($('#inst_dos_analista').val() == "") {
@@ -211,23 +214,40 @@ $gmx(document).ready(function () {
 
           _contenedor_element.appendChild(_item_small); //console.log(item);
 
+
+          texto_error = "".concat(texto_error, " Falta Campo Nombre del analista de Insititucion 1 <br>");
         } else {}
       }
     } else {
       var _asterisco = document.querySelector('#asterisco_analista');
 
-      _asterisco.classList.remove("form-text-error");
+      if (_asterisco.classList.contains("form-text-error") == true) {
+        var _asterisco2 = document.querySelector('#asterisco_analista');
 
-      var element_hijo_uno = document.querySelector('#inst_uno_analista');
-      element_hijo_uno.classList.remove("form-control-error");
-      var contenedor_uno = element_hijo_uno.parentElement;
-      var small_uno = contenedor_uno.querySelector("SMALL");
-      contenedor_uno.removeChild(small_uno);
-      var element_hijo_dos = document.querySelector('#inst_dos_analista');
-      element_hijo_dos.classList.remove("form-control-error");
-      var contenedor_dos = element_hijo_dos.parentElement;
-      var small_dos = contenedor_dos.querySelector("small");
-      contenedor_dos.removeChild(small_dos);
+        _asterisco2.classList.remove("form-text-error");
+
+        var element_hijo_uno = document.querySelector('#inst_uno_analista');
+        element_hijo_uno.classList.remove("form-control-error");
+        var contenedor_uno = element_hijo_uno.parentElement;
+        var small_uno = contenedor_uno.querySelector("SMALL");
+        contenedor_uno.removeChild(small_uno);
+        var element_hijo_dos = document.querySelector('#inst_dos_analista');
+        element_hijo_dos.classList.remove("form-control-error");
+        var contenedor_dos = element_hijo_dos.parentElement;
+        var small_dos = contenedor_dos.querySelector("small");
+        contenedor_dos.removeChild(small_dos);
+      }
+
+      texto_error = "";
+
+      if (texto_error != "") {
+        mensajeError('#alerta', texto_error);
+        irArriba();
+        return false;
+      } else {
+        limpiaMensajeError('#alerta');
+      }
+
       var tabla = obtenerDatos();
       var datos = "\n      &fecha_inst_uno=".concat($('#institutoUnoCalendarYear').val(), "\n      &fecha_inst_dos=").concat($('#institutoDosCalendarYear').val(), "\n      $analista_inst_uno=").concat($('#inst_uno_analista').val(), "\n      $analista_inst_dos=").concat($('#inst_dos_analista').val(), "\n      ");
       var form_url = $('#form_checkList').attr("action");
