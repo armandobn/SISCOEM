@@ -95,8 +95,9 @@ function obtenerDatos() {
 
           for (var j = 0; j < elemento.length; j++) {
             if (elemento[j].checked) {
-              institucion[z][k - 1][i - 1] = elemento[j].value;
-              tabla = tabla + "&institucion_uno[".concat(z, "][").concat(k - 1, "][").concat(i - 1, "]=").concat(elemento[j].value);
+              institucion[z][k - 1][i - 1] = elemento[j].value; //tabla=tabla+`&institucion_uno[${z}][${k-1}][${i-1}]=${elemento[j].value}`;
+
+              tabla = tabla + "&inst_uno_".concat(k, "_").concat(i, "=").concat(elemento[j].value);
             }
           }
         }
@@ -107,8 +108,9 @@ function obtenerDatos() {
 
             for (var _j = 0; _j < _elemento.length; _j++) {
               if (_elemento[_j].checked) {
-                institucion[z][k - 1][a - 1] = _elemento[_j].value;
-                tabla = tabla + "&institucion_uno[".concat(z, "][").concat(k - 1, "][").concat(a - 1, "]=").concat(_elemento[_j].value);
+                institucion[z][k - 1][a - 1] = _elemento[_j].value; //tabla=tabla+`&institucion_uno[${z}][${k-1}][${a-1}]=${elemento[j].value}`;
+
+                tabla = tabla + "&inst_uno_".concat(k, "_").concat(a, "=").concat(_elemento[_j].value);
               }
             }
           }
@@ -121,8 +123,10 @@ function obtenerDatos() {
 
           for (var _j2 = 0; _j2 < _elemento2.length; _j2++) {
             if (_elemento2[_j2].checked) {
-              institucion[z][_k - 1][_i - 1] = _elemento2[_j2].value;
-              tabla = tabla + "&institucion_dos[".concat(z, "][").concat(_k - 1, "][").concat(_i - 1, "]=").concat(_elemento2[_j2].value);
+              institucion[z][_k - 1][_i - 1] = _elemento2[_j2].value; //tabla=tabla+`&institucion_dos[${z}][${k-1}][${i-1}]=${elemento[j].value}`;
+              //console.log("k: "+k+" i: "+i);
+
+              tabla = tabla + "&inst_dos_".concat(_k, "_").concat(_i, "=").concat(_elemento2[_j2].value);
             }
           }
         }
@@ -133,8 +137,9 @@ function obtenerDatos() {
 
             for (var _j3 = 0; _j3 < _elemento3.length; _j3++) {
               if (_elemento3[_j3].checked) {
-                institucion[z][_k - 1][_a - 1] = _elemento3[_j3].value;
-                tabla = tabla + "&institucion_dos[".concat(z, "][").concat(_k - 1, "][").concat(_a - 1, "]=").concat(_elemento3[_j3].value);
+                institucion[z][_k - 1][_a - 1] = _elemento3[_j3].value; //tabla=tabla+`&institucion_dos[${z}][${k-1}][${a-1}]=${elemento[j].value}`;
+
+                tabla = tabla + "&inst_dos_".concat(_k, "_").concat(_a, "=").concat(_elemento3[_j3].value);
               }
             }
           }
@@ -172,34 +177,45 @@ $gmx(document).ready(function () {
 
     if ($('#inst_uno_analista').val() == "" || $('#inst_dos_analista').val() == "") {
       var asterisco = document.querySelector('#asterisco_analista');
+      var element_padre_uno = document.querySelector('#inst_uno_analista');
 
-      if (asterisco.classList.contains("form-text-error") == false) {
-        // console.log(asterisco.classList.contains("form-text-error"));
-        asterisco.classList.add("form-text-error");
+      if (element_padre_uno.classList.contains("form-control-error") == true && $('#inst_uno_analista').val() != "") {
+        element_padre_uno.classList.remove("form-control-error");
+        var contenedor_uno = element_padre_uno.parentElement;
+        var small_uno = contenedor_uno.querySelector("SMALL");
+        contenedor_uno.removeChild(small_uno);
+      } else {
+        //const element_padre_uno = document.querySelector('#inst_uno_analista');
+        if (element_padre_uno.classList.contains("form-control-error") == false) {
+          element_padre_uno.classList.add("form-control-error"); // console.log(etiqueta_padre_rfc.parentElement);
 
-        if ($('#inst_uno_analista').val() == "") {
-          var element_padre = document.querySelector('#inst_uno_analista');
-          element_padre.classList.add("form-control-error"); // console.log(etiqueta_padre_rfc.parentElement);
-
-          var contenedor_element = element_padre.parentElement;
+          var contenedor_element = element_padre_uno.parentElement;
           var item_small = document.createElement("SMALL"); //todo en mayuscula
 
           var textDelItem = document.createTextNode("Este campo es obligatorio");
           item_small.appendChild(textDelItem);
           item_small.classList.add("form-text");
           item_small.classList.add("form-text-error");
-          contenedor_element.appendChild(item_small); //console.log(item);
-
-          texto_error = "".concat(texto_error, " Falta Campo Nombre del analista de Insititucion 1 <br>");
-        } else {}
-
-        if ($('#inst_dos_analista').val() == "") {
-          var _element_padre = document.querySelector('#inst_dos_analista');
-
-          _element_padre.classList.add("form-control-error"); // console.log(etiqueta_padre_rfc.parentElement);
+          contenedor_element.appendChild(item_small);
+        } //console.log(item);
 
 
-          var _contenedor_element = _element_padre.parentElement;
+        texto_error = "".concat(texto_error, " Falta Campo Nombre del analista de Insititucion 1 <br>");
+      }
+
+      var element_padre_dos = document.querySelector('#inst_dos_analista');
+
+      if (element_padre_dos.classList.contains("form-control-error") == true && $('#inst_dos_analista').val() != "") {
+        element_padre_dos.classList.remove("form-control-error");
+        var contenedor_dos = element_padre_dos.parentElement;
+        var small_dos = contenedor_dos.querySelector("small");
+        contenedor_dos.removeChild(small_dos);
+      } else {
+        //const element_padre_dos = document.querySelector('#inst_dos_analista');
+        if (element_padre_dos.classList.contains("form-control-error") == false) {
+          element_padre_dos.classList.add("form-control-error"); // console.log(etiqueta_padre_rfc.parentElement);
+
+          var _contenedor_element = element_padre_dos.parentElement;
 
           var _item_small = document.createElement("SMALL"); //todo en mayuscula
 
@@ -214,11 +230,26 @@ $gmx(document).ready(function () {
 
           _contenedor_element.appendChild(_item_small); //console.log(item);
 
+        }
 
-          texto_error = "".concat(texto_error, " Falta Campo Nombre del analista de Insititucion 1 <br>");
-        } else {}
+        texto_error = "".concat(texto_error, " Falta Campo Nombre del analista de Insititucion 1 <br>");
+      }
+
+      if (asterisco.classList.contains("form-text-error") == false) {
+        // console.log(asterisco.classList.contains("form-text-error"));
+        asterisco.classList.add("form-text-error");
+      }
+
+      if (texto_error != "") {
+        mensajeError('#alerta', texto_error);
+        irArriba();
+        return false;
       }
     } else {
+      if (texto_error == "") {
+        limpiaMensajeError('#alerta');
+      }
+
       var _asterisco = document.querySelector('#asterisco_analista');
 
       if (_asterisco.classList.contains("form-text-error") == true) {
@@ -226,30 +257,33 @@ $gmx(document).ready(function () {
 
         _asterisco2.classList.remove("form-text-error");
 
-        var element_hijo_uno = document.querySelector('#inst_uno_analista');
-        element_hijo_uno.classList.remove("form-control-error");
-        var contenedor_uno = element_hijo_uno.parentElement;
-        var small_uno = contenedor_uno.querySelector("SMALL");
-        contenedor_uno.removeChild(small_uno);
-        var element_hijo_dos = document.querySelector('#inst_dos_analista');
-        element_hijo_dos.classList.remove("form-control-error");
-        var contenedor_dos = element_hijo_dos.parentElement;
-        var small_dos = contenedor_dos.querySelector("small");
-        contenedor_dos.removeChild(small_dos);
-      }
+        var _element_padre_uno = document.querySelector('#inst_uno_analista');
 
-      texto_error = "";
+        if (_element_padre_uno.classList.contains("form-control-error") == true && $('#inst_uno_analista').val() != "") {
+          _element_padre_uno.classList.remove("form-control-error");
 
-      if (texto_error != "") {
-        mensajeError('#alerta', texto_error);
-        irArriba();
-        return false;
-      } else {
-        limpiaMensajeError('#alerta');
+          var _contenedor_uno = _element_padre_uno.parentElement;
+
+          var _small_uno = _contenedor_uno.querySelector("SMALL");
+
+          _contenedor_uno.removeChild(_small_uno);
+        }
+
+        var _element_padre_dos = document.querySelector('#inst_dos_analista');
+
+        if (_element_padre_dos.classList.contains("form-control-error") == true && $('#inst_dos_analista').val() != "") {
+          _element_padre_dos.classList.remove("form-control-error");
+
+          var _contenedor_dos = _element_padre_dos.parentElement;
+
+          var _small_dos = _contenedor_dos.querySelector("small");
+
+          _contenedor_dos.removeChild(_small_dos);
+        }
       }
 
       var tabla = obtenerDatos();
-      var datos = "\n      &fecha_inst_uno=".concat($('#institutoUnoCalendarYear').val(), "\n      &fecha_inst_dos=").concat($('#institutoDosCalendarYear').val(), "\n      $analista_inst_uno=").concat($('#inst_uno_analista').val(), "\n      $analista_inst_dos=").concat($('#inst_dos_analista').val(), "\n      ");
+      var datos = "\n      &inst_uno_3_fecha=".concat($('#institutoUnoCalendarYear').val(), "\n      &inst_dos_3_fecha=").concat($('#institutoDosCalendarYear').val(), "\n      &inst_uno_3_nombreAnalista=").concat($('#inst_uno_analista').val(), "\n      &inst_dos_3_nombreAnalista=").concat($('#inst_dos_analista').val(), "\n      ");
       var form_url = $('#form_checkList').attr("action");
       var token = "_token=".concat($('input[name="_token"]').val());
       $.ajax({
@@ -257,7 +291,9 @@ $gmx(document).ready(function () {
         data: token + tabla + datos,
         url: form_url,
         success: function success(r) {
-          console.log(r);
+          window.location = "../formatoCompatibilidad"; //console.log(r)
+        },
+        error: function error(_error) {//console.error();
         }
       });
     }

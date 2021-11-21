@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CatAdmin;
 use App\Models\CatDocen;
 use App\Models\CatMotivo;
+use App\Models\Checklist;
 use App\Models\Docente;
 use App\Models\DocentesTabla;
 use App\Models\FormatoCompatibilidad;
@@ -128,6 +129,7 @@ class FormatoCompatabilidadController extends Controller
     }
     
     public function createCheckList(Request $request){
+        $checklists = Checklist::create($request->all());
         return $request;
     }
 
