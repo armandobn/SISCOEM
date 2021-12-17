@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,31 +8,40 @@
   <title>SISCOEM</title>
   <?php require_once 'controllers/app/dependencias.php' ?>
 </head>
+
 <body>
   <div class="container">
-    <?php 
+    <?php
     require_once 'views/navbar.php';
-      if(isset($_GET['vista'])){
-        
-        switch($_GET['vista']){
-          case 'login':
-            require_once 'views/login.php';
+    if (isset($_GET['vista'])) {
+
+      switch ($_GET['vista']) {
+        case 'login':
+          require_once 'views/login.php';
           break;
 
-          case 'personal':
-            require_once 'views/personal.php';
+        case 'personal':
+          require_once 'views/personal.php';
+          break;
+
+        case 'formatoCompatibilidad':
+          require_once 'views/formatoCompatibilidad/formatoCompatibilidad_create.php';
+          break;
+
+          case 'listaChecable':
+            require_once 'views/formatoCompatibilidad/listaChecable.php';
             break;
 
-          default:
-            require_once 'views/login.php';
+        default:
+          require_once 'views/login.php';
           break;
-        }
-    
-      }else{
-        require_once 'views/login.php';
       }
+    } else {
+      require_once 'views/login.php';
+    }
 
     ?>
   </div>
 </body>
+
 </html>

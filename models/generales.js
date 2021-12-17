@@ -92,20 +92,20 @@ const irArriba = () => {
   }
 }
 
-const selectCategoria = document.querySelector('#categoria');
-selectCategoria.addEventListener('change', (event) => {
-  let select = event.target.value;
-  let token = `_token=${$('input[name="_token"]').val()}`;
-  let info = `${token}&categoria=${select}`;
-  $.ajax({
-    type: 'POST',
-    url: "categoria",
-    data: info,
-    success: function (r) {
-      $('#puesto').val(r[0]["denominacion"]);
-    }
+// const selectCategoria = document.querySelector('#categoria');
+// selectCategoria.addEventListener('change', (event) => {
+//   let select = event.target.value;
+//   let token = `_token=${$('input[name="_token"]').val()}`;
+//   let info = `${token}&categoria=${select}`;
+//   $.ajax({
+//     type: 'POST',
+//     url: "categoria",
+//     data: info,
+//     success: function (r) {
+//       $('#puesto').val(r[0]["denominacion"]);
+//     }
 
-  });
+//   });
 
-});
+// });
 
