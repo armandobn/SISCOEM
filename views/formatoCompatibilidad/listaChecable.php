@@ -1,18 +1,5 @@
 <div class="container">
-  <div class="row top-buffer">
-    <div class="col"></div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-      <h1>CISCOEM</h1>
-    </div>
-    <div class="col-md-9">
-      <p>
-      <h4>Sistema de Compatibilidad de Empleo</h4>
-      <h4>Crear formato de compatibilidad</h4>
-      </p>
-    </div>
-  </div>
+
 
   <div class="row">
     <div class="col-md-8">
@@ -554,5 +541,4 @@
 
 </div>
 
-<script src="models/generales.js"></script>
 <script src="models/listaChecable.js"></script>
