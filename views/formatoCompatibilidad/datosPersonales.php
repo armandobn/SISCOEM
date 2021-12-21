@@ -51,3 +51,6 @@
     </div>
   </div>
 </form>
+
+<script src="models/generales.js"></script>
+<script src="models/personal.js"></script>
