@@ -10,7 +10,6 @@
 <div class="row top-buffer">
     <div class="col-md-8">
         <form id="formlogin" method="POST" class="form-horizontal" role="form" action="{{ route('login.create') }}">
-        @csrf
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="nombre">Nombre (s) 
                     <span class="form-text" id="asterisco_nombre">*</span>:
@@ -47,8 +46,6 @@
                     <input class="form-control" id="password" name="password" placeholder="Ingresa tu contraseña" type="password">
                 </div>
             </div>
-            
-            
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-9">
                     <span class="btn btn-primary pull-right" id="btn_registrar">Registrar</span>
@@ -59,4 +56,4 @@
 </div>
 </div>
 <script src="models/generales.js"></script>
-<script src="models/registroLogin.php"></script>
+<script src="models/registroLogin.js"></script>

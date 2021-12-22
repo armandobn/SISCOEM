@@ -19,7 +19,9 @@
         case 'login':
           require_once 'views/Login/login.php';
           break;
-
+        case 'registroLogin':
+            require_once 'views/Login/registroLogin.php';
+            break;
         case 'personal':
           require_once 'views/personal.php';
           break;
