@@ -17,7 +17,7 @@
 
       switch ($_GET['vista']) {
         case 'login':
-          require_once 'views/login.php';
+          require_once 'views/Login/login.php';
           break;
 
         case 'personal':
