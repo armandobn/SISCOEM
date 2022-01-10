@@ -1,6 +1,6 @@
 <?php
 require_once("../database/database.php");
-require_once("../views/registroLogin.php");
+require_once("../login/views/registroLogin.php");
 
 
 $objeto_para_usar_conexion = conexion();

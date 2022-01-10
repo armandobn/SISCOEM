@@ -1,5 +1,5 @@
 $gmx(document).ready(function (){
-          
+
   $('#btn_registrar').click(function () {
     alert("hola");
     let texto_error="";

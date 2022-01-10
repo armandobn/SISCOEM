@@ -41,12 +41,12 @@
                     </div>
                     <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-9">
-                    <span class="btn btn-primary pull-right" id="enviar">Enviar</span>
+                    <button type="button" class="btn btn-primary" id="enviar" disabled>Enviar</button>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-9">
-                    <a class="btn btn-primary pull-right" href="registroLogin" id="crearCuenta">Crear cuenta</a>
+                    <a class="btn btn-primary pull-right" href="registroLogin.php" id="crearCuenta">Crear cuenta</a>
                     
                 </div>
             </div>
@@ -56,5 +56,5 @@
     </div>
 </div>
 </div>
-<script src="models/generales.js"></script>
-<script src="models/login.js"></script>
+<script src="../models/generales.js"></script>
+<script src="../models/login.js"></script>

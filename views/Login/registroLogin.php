@@ -48,12 +48,13 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-9">
-                    <span class="btn btn-primary pull-right" id="btn_registrar">Registrar</span>
+                <button type="button" class="btn btn-primary" id="btn_registrar" >Registrar</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
 </div>
-<script src="models/generales.js"></script>
-<script src="models/registroLogin.js"></script>
+<script src="../../models/generales.js"></script>
+<script src="../../models/registroLogin.js"></script>
+
