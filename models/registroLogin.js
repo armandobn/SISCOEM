@@ -39,15 +39,6 @@ $gmx(document).ready(function (){
             }else{
             limpiaMensajeError('#alerta');
             }
-            let form_url = $('#formlogin').attr("action");
-                      $.ajax({
-                        type: 'post',
-                        url: form_url,
-                        data: $('#formlogin').serialize(),
-                        success: function(r){
-                          console.log(r);
-                        } 
 
-                      });
           });
         });

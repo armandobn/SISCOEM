@@ -41,12 +41,12 @@
                     </div>
                     <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-9">
-                    <button type="button" class="btn btn-primary" id="enviar" disabled>Enviar</button>
+                    <button type="button" class="btn btn-primary" id="enviar">Enviar</button>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-9">
-                    <a class="btn btn-primary pull-right" href="registroLogin.php" id="crearCuenta">Crear cuenta</a>
+                    <a class="btn btn-primary pull-right" href="registroLogin" id="crearCuenta">Crear cuenta</a>
                     
                 </div>
             </div>

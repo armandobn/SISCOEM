@@ -13,6 +13,7 @@ apePaterno varchar(75) NOT NULL,
 apeMaterno varchar(75) NOT NULL,
 email varchar(75) NOT NULL,
 password varchar(50) NOT NULL,
+confirm_password varchar(50) NOT NULL,
 created_at datetime NOT NULL DEFAULT current_timestamp(),
 updated_at datetime NOT NULL DEFAULT current_timestamp()
  ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

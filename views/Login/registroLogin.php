@@ -9,7 +9,7 @@
 <div class="alert" id="alerta"></div>
 <div class="row top-buffer">
     <div class="col-md-8">
-        <form id="formlogin" method="POST" class="form-horizontal" role="form" action="{{ route('login.create') }}">
+        <form id="formlogin" method="POST" class="form-horizontal" role="form">
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="nombre">Nombre (s) 
                     <span class="form-text" id="asterisco_nombre">*</span>:
@@ -47,6 +47,13 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-sm-3 control-label" for="confirm_password">Confirmar Contraseña
+                    <span class="form-text" id="asterisco_confirm_password">*</span>:</label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirma tu contraseña" type="password">
+                </div>
+            </div>
+            <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-9">
                 <button type="button" class="btn btn-primary" id="btn_registrar" >Registrar</button>
                 </div>
@@ -57,4 +64,5 @@
 </div>
 <script src="../../models/generales.js"></script>
 <script src="../../models/registroLogin.js"></script>
+
 
