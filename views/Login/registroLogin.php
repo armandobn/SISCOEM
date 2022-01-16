@@ -62,12 +62,9 @@
     </div>
 </div>
 </div>
-<<<<<<< Updated upstream
+
 <script src="../../models/generales.js"></script>
 <script src="../../models/registroLogin.js"></script>
 
-=======
-<script src="models/generales.js"></script>
-<script src="models/registroLogin.js"></script>
->>>>>>> Stashed changes
+
 
