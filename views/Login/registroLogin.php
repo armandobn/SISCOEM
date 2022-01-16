@@ -19,17 +19,17 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label" for="primerApellido">Primer Apellido
-                    <span class="form-text" id="asterisco_primerApellido">*</span>:</label>
+                <label class="col-sm-3 control-label" for="apePaterno">Primer Apellido
+                    <span class="form-text" id="asterisco_apePaterno">*</span>:</label>
                 <div class="col-sm-9">
-                    <input class="form-control" id="primerApellido" name="primerApellido" placeholder="Ingresa tu primer apellido" type="text">
+                    <input class="form-control" id="apePaterno" name="apePaterno" placeholder="Ingresa tu apellido paterno" type="text">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label" for="segundoApellido">Segundo Apellido
-                    <span class="form-text" id="asterisco_segundoApellido">*</span>:</label>
+                <label class="col-sm-3 control-label" for="apeMaterno">Segundo Apellido
+                    <span class="form-text" id="asterisco_apeMaterno">*</span>:</label>
                 <div class="col-sm-9">
-                    <input class="form-control" id="segundoApellido" name="segundoApellido" placeholder="Ingresa tu segundo apellido" type="text">
+                    <input class="form-control" id="apeMaterno" name="apeMaterno" placeholder="Ingresa tu apellido materno" type="text">
                 </div>
             </div>
             <div class="form-group">
@@ -62,7 +62,12 @@
     </div>
 </div>
 </div>
+<<<<<<< Updated upstream
 <script src="../../models/generales.js"></script>
 <script src="../../models/registroLogin.js"></script>
 
+=======
+<script src="models/generales.js"></script>
+<script src="models/registroLogin.js"></script>
+>>>>>>> Stashed changes
 

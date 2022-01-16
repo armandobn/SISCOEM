@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-inverse sub-navbar navbar-fixed-top">
   <div class="container">
       <div class="navbar-header">
@@ -15,7 +16,7 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                       aria-expanded="false">Compatibilidad <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                      <li><a href="{{route('formatoCompatibilidad.showCreate')}}">Crear compatibilidad</a></li>
+                      <li><a href="../views/formatoCompatibilidad/formatoCompatibilidad_create.php">Crear compatibilidad</a></li>
                       <li><a href="#">Seguimiento</a></li>
                       <li><a href="{{route('registrarDocente.showCreate')}}">Registrar docente</a></li>
                       <li><a href="{{route('actualizar.showActualizar')}}">Actualizar Documentos</a></li>

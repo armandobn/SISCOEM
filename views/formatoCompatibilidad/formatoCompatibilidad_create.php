@@ -1,3 +1,4 @@
+<?php require_once '../../controllers/app/dependencias.php' ?>
 <div class="container">
 
   <div class="row top-buffer">
@@ -5,7 +6,7 @@
   </div>
   <div class="row">
     <div class="col-md-3">
-      <h1>CISCOEM</h1>
+      <h1>SISCOEM</h1>
     </div>
     <div class="col-md-9">
       <p>

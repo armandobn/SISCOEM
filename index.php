@@ -35,11 +35,19 @@
             break;
 
         default:
+<<<<<<< Updated upstream
           require_once 'views/Login/login.php';
           break;
       }
     } else {
       require_once 'views/Login/login.php';
+=======
+          require_once 'views/login/login.php';
+          break;
+      }
+    } else {
+      require_once 'views/login/login.php';
+>>>>>>> Stashed changes
     }
 
     ?>

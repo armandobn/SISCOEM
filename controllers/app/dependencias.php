@@ -1,6 +1,6 @@
 <!-- CSS -->
 <link href="/favicon.ico" rel="shortcut icon">
-  <link href="https://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet">
+<link href="https://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet">
   <!-- Respond.js soporte de media queries para Internet Explorer 8 -->
   <!-- ie8.js EventTarget para cada nodo en Internet Explorer 8 -->
   <!--[if lt IE 9]>
